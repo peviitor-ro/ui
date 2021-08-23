@@ -1,0 +1,16 @@
+[09-Aug-2021 12:03:47 Europe/Bucharest] PHP Warning:  file_get_contents(http://23.97.216.44/solr/shaqodoon/select?facet.field=countries&amp;facet=on&amp;q=*%3A*&amp;rows=0): failed to open stream: HTTP request failed! HTTP/1.1 400 Bad Request
+ in /home/peviitor/public_html/search/index.php on line 15
+[09-Aug-2021 12:04:14 Europe/Bucharest] PHP Warning:  file_get_contents(http://23.97.216.44/solr/shaqodoon/select?facet.field=countries&amp;facet=on&amp;q=*%3A*&amp;rows=0): failed to open stream: HTTP request failed! HTTP/1.1 400 Bad Request
+ in /home/peviitor/public_html/search/index.php on line 15
+[09-Aug-2021 12:04:39 Europe/Bucharest] PHP Warning:  file_get_contents(http://23.97.216.44/solr/shaqodoon/select?facet.field=countries&amp;facet=on&amp;q=*%3A*&amp;rows=0): failed to open stream: HTTP request failed! HTTP/1.1 400 Bad Request
+ in /home/peviitor/public_html/search/index.php on line 15
+[09-Aug-2021 12:04:45 Europe/Bucharest] PHP Warning:  file_get_contents(http://23.97.216.44/solr/shaqodoon/select?facet.field=countries&amp;facet=on&amp;q=*%3A*&amp;rows=0): failed to open stream: HTTP request failed! HTTP/1.1 400 Bad Request
+ in /home/peviitor/public_html/search/index.php on line 15
+[11-Aug-2021 09:59:51 Europe/Bucharest] PHP Warning:  file_get_contents(http://23.97.216.44/solr/shaqodoon/select?q=dev&amp;start=0): failed to open stream: Connection timed out in /home/peviitor/public_html/search/index.php on line 15
+[11-Aug-2021 10:09:53 Europe/Bucharest] PHP Warning:  file_get_contents(http://23.97.216.44/solr/shaqodoon/select?facet.field=city&amp;facet=on&amp;q=*%3A*&amp;rows=0): failed to open stream: Connection timed out in /home/peviitor/public_html/search/index.php on line 15
+[11-Aug-2021 10:25:27 Europe/Bucharest] PHP Warning:  file_get_contents(http://23.97.216.44/solr/shaqodoon/select?facet.field=city&amp;facet=on&amp;q=*%3A*&amp;rows=0): failed to open stream: Connection timed out in /home/peviitor/public_html/search/index.php on line 15
+[11-Aug-2021 10:26:21 Europe/Bucharest] PHP Warning:  file_get_contents(http://23.97.216.44/solr/shaqodoon/select?q=*%3A*&amp;rows=0): failed to open stream: Connection timed out in /home/peviitor/public_html/search/index.php on line 15
+[11-Aug-2021 10:27:38 Europe/Bucharest] PHP Warning:  file_get_contents(http://23.97.216.44/solr/shaqodoon/select?q=*%3A*&amp;rows=0): failed to open stream: HTTP request failed! HTTP/1.1 503 Service Unavailable
+ in /home/peviitor/public_html/search/index.php on line 15
+[11-Aug-2021 10:40:53 Europe/Bucharest] PHP Warning:  file_get_contents(http://23.97.216.44/solr/shaqodoon/select?q=dev&amp;start=0): failed to open stream: Connection timed out in /home/peviitor/public_html/search/index.php on line 15
+[11-Aug-2021 10:46:05 Europe/Bucharest] PHP Warning:  file_get_contents(http://23.97.216.44/solr/shaqodoon/select?facet.field=city&amp;facet=on&amp;q=*%3A*&amp;rows=0): failed to open stream: Connection timed out in /home/peviitor/public_html/search/index.php on line 15

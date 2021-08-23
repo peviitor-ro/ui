@@ -1,0 +1,62 @@
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="author" content="shaqo doon team">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@200&ampdisplay=swap" >
+    <link href="css/main.css" rel="stylesheet" />
+		<meta property="og:title" content="peviitor.ro - motor de cautare locuri de munca" />
+		<meta property="og:url" content="https://peviitor.ro/" />
+		<meta property="og:image" content="https://peviitor.ro/socialmedia/fb_image.jpg" />
+	
+  <meta name="robots" content="noindex, follow">
+  
+  <script type="text/javascript" src="js/main.js"></script>
+  <script type="text/javascript" src="js/random.js"></script>
+</head>
+
+<body>
+  <a href="./"><h1 class="logo">pe viitor</h1></a>
+  <div id="s1" class="promo">
+    <a href="#" id="link_r" target="_blank"><h2 id="job_title_r"></h2></a>
+    <label class="location" id="location_r"></label>
+<p></p>
+    <label id="company_r"></label>
+    <img src="https://img.icons8.com/ios-glyphs/30/ffffff/refresh--v1.png" onClick="getRandom();" style="padding-left: 240px;margin-left: 10px;">
+</div>
+    <div id="s129" class="s129">
+      <form autocomplete="off" action="#">
+        <div class="inner-form">
+          <div class="input-field">
+            <button class="btn-search" type="button" id="search_btn" onclick = "this.form.submit()">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+              </svg>
+            </button>
+            <input id="search" type="text" name="q" placeholder="ce vrei să te faci când vei fi mare?" />
+            <label id="resultsno"></label>
+           
+            
+			<input type=hidden name=start value=0>
+			<span id="cities">
+			    
+			    
+			</span>
+			   
+          </div>
+        </div>
+      </form>
+    </div>
+    <ul class="results" id="results">
+    </ul>
+    <div class="pages" id="pages">
+	
+    </div>
+  
+    <script type="text/javascript" src="js/work.js"></script>
+
+</body>
+</html>
