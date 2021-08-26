@@ -16,3 +16,8 @@ EMAIL: buda_ioana2002@yahoo.com
 
 TESTER: Szucs Rebeca
 EMAIL: szucsrebeca@gmail.com
+
+
+/* PRODUCT OWNER */
+Sebastian Boga
+sebastian.boga@outlook.com
