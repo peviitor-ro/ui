@@ -1,4 +1,5 @@
 /* TEAM */
+
 UI DEVELOPER: Ungureanu Daniel
 EMAIL: ungureanudaniel00@yahoo.com
 
@@ -7,3 +8,6 @@ EMAIL: stefan.e.ciobanu@gmail.com
 
 UI DEVELOPER: Trinca Teodora-Gabriela
 EMAIL: teodora.trinca@gmail.com
+
+UI DEVELOPER: Buda Ioana-Daniela
+EMAIL: buda_ioana2002@yahoo.com
