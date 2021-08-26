@@ -11,3 +11,8 @@ EMAIL: teodora.trinca@gmail.com
 
 UI DEVELOPER: Buda Ioana-Daniela
 EMAIL: buda_ioana2002@yahoo.com
+
+/* QA */ 
+
+TESTER: Szucs Rebeca
+EMAIL: szucsrebeca@gmail.com
