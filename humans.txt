@@ -14,6 +14,8 @@ EMAIL: buda_ioana2002@yahoo.com
 
 UI DEVELOPER: Sergiu Avram
 EMAIL: sergiu.avram@endava.com
+
+
 /* QA */ 
 
 TESTER: Szucs Rebeca
