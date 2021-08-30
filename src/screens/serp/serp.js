@@ -1,5 +1,5 @@
 import React from 'react';
-import "./serp.css";
+import "./serp.scss";
 
 
 
