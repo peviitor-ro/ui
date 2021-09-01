@@ -18,6 +18,10 @@ EMAIL: sergiu.avram@endava.com
 UI DEVELOPER: Tudor Bucur   
 EMAIL: tudor.bucur@endava.com
 
+UI DEVELOPER: Dandoczi Denisz
+EMAIL: denisz.dandoczi@endava.com
+
+
 /* QA */ 
 
 TESTER: Szucs Rebeca
