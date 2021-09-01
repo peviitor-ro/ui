@@ -11,6 +11,7 @@ const Home = () => {
             <div className ="inside"> Hello from home </div>
             Hello from home
             This is a test!
+            Test 2
         </div>
     )
 };
