@@ -10,7 +10,7 @@ const Home = () => {
         <div className="welcome">
             <div className ="inside"> Hello from home </div>
             Hello from home
-            This is a test
+            This is a test!
         </div>
     )
 };
