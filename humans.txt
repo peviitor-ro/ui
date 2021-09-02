@@ -15,6 +15,15 @@ EMAIL: buda_ioana2002@yahoo.com
 UI DEVELOPER: Sergiu Avram
 EMAIL: sergiu.avram@endava.com
 
+UI DEVELOPER: Cotoc Vasile Gabriel
+EMAIL: vasile.cotoc@endava.com
+
+UI DEVELOPER: Tudor Bucur   
+EMAIL: tudor.bucur@endava.com
+
+UI DEVELOPER: Dandoczi Denisz
+EMAIL: denisz.dandoczi@endava.com
+
 
 /* QA */ 
 
