@@ -1,3 +1,5 @@
+@import '../../styles/variables.scss';
+
 @font-face {
     font-family: "JustMandrawn";
     src: local("JustMandrawn"),
@@ -5,7 +7,7 @@
 }
 
 .logo {
-    color: #856A26;
-    font-family: 'JustMandrawn';
+    color: $logoColor;
+    font-family: $logoFont;
     font-size: 4em;
 }
