@@ -1,13 +1,11 @@
 @font-face {
     font-family: "JustMandrawn";
     src: local("JustMandrawn"),
-     url("../assets/fonts/JustMandrawn.ttf") format("truetype");
+     url("../../assets/fonts/JustMandrawn.ttf") format("truetype");
 }
 
-
 .logo {
-    color: red;
+    color: #856A26;
     font-family: 'JustMandrawn';
-    font-size: 3em;
-    
+    font-size: 4em;
 }
