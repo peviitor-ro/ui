@@ -1,9 +1,9 @@
 import { React, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import styles from './SearchFilter.module.scss';
 import DropdownFilter from '../DropdownFilter/DropdownFilter';
 
+import styles from './SearchFilter.module.scss';
 const SearchFilter = ({ icon, text }) => {
   const [isActiveDropdown, setActiveDropDown] = useState(false);
   const toggleDropdown = () => {
@@ -16,7 +16,6 @@ const SearchFilter = ({ icon, text }) => {
       <div className={searchFilterContainer} onClick={toggleDropdown}>
         <FontAwesomeIcon icon={icon} />
         <h3 className={searchFilterText}>{text}</h3>
-        {/* <div>{isActiveDropdown ? 'Dropdown' : ''}</div> */}
       </div>
       {isActiveDropdown && <DropdownFilter />}
     </>
