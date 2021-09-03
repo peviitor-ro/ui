@@ -1,0 +1,26 @@
+.headerContainer {
+    display: flex;
+    width: 40vw;
+
+    .logoContainer {
+        width: 40%;
+    }
+
+    .filterSearchContainer {
+        display: flex;
+        flex-direction: column;
+        width: 60%;
+
+        .search {
+            height: 70%;
+            display: flex;
+            flex-direction: column-reverse;
+        }
+
+        .filters {
+            display: flex;
+            justify-content: space-between;
+            height: 30%;
+        }
+    }
+}

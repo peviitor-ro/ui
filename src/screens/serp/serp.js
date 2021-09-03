@@ -1,7 +1,35 @@
 import React from "react";
-import "./serp.scss";
+import Logo from 'components/Logo/Logo';
+import SearchBar from 'components/SearchBar/SearchBar';
+import SearchFilter from 'componentsTemporary/SearchFilter';
+import {
+  faGlobeEurope,
+  faBuilding,
+  faMapMarkerAlt,
+} from "@fortawesome/free-solid-svg-icons";
+
+import styles from 'screens/serp/serp.module.scss';
 
 const Serp = () => {
-  return <div>Hello from search page</div>;
+
+  const { headerContainer, filterSearchContainer, logoContainer, filters, search } = styles;
+
+  return (
+    <div className={headerContainer}>
+      <div className={logoContainer}>
+        <Logo />
+      </div>
+      <div className={filterSearchContainer}>
+        <div className={search}>
+          <SearchBar />
+        </div>
+        <div className={filters}>
+          <SearchFilter icon={faGlobeEurope} text={"Tara"} />
+          <SearchFilter icon={faMapMarkerAlt} text={"Oras"} />
+          <SearchFilter icon={faBuilding} text={"Companie"} />
+        </div>
+      </div>
+    </div>
+  )
 };
 export default Serp;
