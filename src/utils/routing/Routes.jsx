@@ -1,19 +1,20 @@
-import React from "react";
-import { Route } from "react-router-dom";
-import Home from "screens/home/home";
-import Serp from "screens/serp/serp";
+import React from 'react';
+import { Route } from 'react-router-dom';
+import Home from 'screens/home/home';
+import Serp from 'screens/serp/serp';
+
 
 export const ROUTES = [
   {
-    key: "homepage",
-    path: "/",
+    key: 'homepage',
+    path: '/',
     exact: true,
     component: Home,
   },
 
   {
-    key: "serp",
-    path: "/rezultate",
+    key: 'serp',
+    path: '/rezultate',
     exact: false,
     component: Serp,
   },

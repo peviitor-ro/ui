@@ -1,21 +1,23 @@
-import React from "react";
-import Logo from "components/Logo/Logo";
+import React from 'react';
+import Logo from 'components/Logo/Logo';
 
-import { useDispatch, useSelector } from "react-redux";
-import SearchFilter from "../../componentsTemporary/SearchFilter";
+import { useDispatch, useSelector } from 'react-redux';
+import SearchFilter from '../../components/SearchFilter/SearchFilter';
 import {
   switchBackgroundOn,
   switchBackgroundOff,
-} from "../../redux/actions/background";
-import styles from "./home.module.scss";
+} from '../../redux/actions/background';
+
 
 import {
   faGlobeEurope,
   faBuilding,
   faMapMarkerAlt,
 } from "@fortawesome/free-solid-svg-icons";
-import styles from "./home.module.scss";
+
 import SearchBar from "components/SearchBar/SearchBar";
+
+import styles from './home.module.scss';
 
 const Home = (props) => {
   const dispatch = useDispatch();
