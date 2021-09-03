@@ -2,15 +2,22 @@ import React from "react";
 import Logo from "components/Logo/Logo";
 
 import { useDispatch, useSelector } from "react-redux";
+import SearchFilter from "../../componentsTemporary/SearchFilter";
 import {
   switchBackgroundOn,
   switchBackgroundOff,
-} from "redux/actions/background";
+} from "../../redux/actions/background";
+import styles from "./home.module.scss";
 
+import {
+  faGlobeEurope,
+  faBuilding,
+  faMapMarkerAlt,
+} from "@fortawesome/free-solid-svg-icons";
 import styles from "./home.module.scss";
 import SearchBar from "components/SearchBar/SearchBar";
 
-const Home = () => {
+const Home = (props) => {
   const dispatch = useDispatch();
   const { isBackground } = useSelector((state) => state);
   const { welcome, notWelcome } = styles;
@@ -36,6 +43,9 @@ const Home = () => {
         >
           Put this off
         </button>
+        <SearchFilter icon={faGlobeEurope} text={"Tara"} />
+        <SearchFilter icon={faMapMarkerAlt} text={"Oras"} />
+        <SearchFilter icon={faBuilding} text={"Companie"} />
       </div>
     </>
   );
