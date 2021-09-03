@@ -1,10 +1,12 @@
 import { combineReducers, createStore } from "redux";
 import { backgroundReducer } from "./background";
 import searchResultsReducer from "redux/reducers/searchResults";
+import filterOptionsReducer from "redux/reducers/filterOptions";
 
 const reducer = combineReducers({
   isBackground: backgroundReducer,
   searchResults: searchResultsReducer,
+  filterOptions: filterOptionsReducer,
 });
 
 const store = createStore(
