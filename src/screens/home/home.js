@@ -1,11 +1,11 @@
 import React from "react";
-import Logo from "../../components/Logo/Logo";
+import Logo from "components/Logo/Logo";
 
 import { useDispatch, useSelector } from "react-redux";
 import {
     switchBackgroundOn,
     switchBackgroundOff,
-} from "../../redux/actions/background";
+} from "redux/actions/background";
 
 import styles from "./home.module.scss";
 
