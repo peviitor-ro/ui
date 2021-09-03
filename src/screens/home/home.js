@@ -13,9 +13,9 @@ import {
     faMapMarkerAlt,
 } from "@fortawesome/free-solid-svg-icons";
 
-import styles from "./home.module.scss";
+import styles from './home.module.scss';
 
-const Home = (props) => {
+const Home = () => {
     const dispatch = useDispatch();
     const { isBackground } = useSelector((state) => state);
     const { welcome, notWelcome } = styles;
