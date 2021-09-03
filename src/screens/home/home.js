@@ -1,8 +1,12 @@
-import { React } from 'react';
+
+import React from "react";
+import Logo from "components/Logo/Logo";
+
 
 import { useDispatch, useSelector } from 'react-redux';
 import SearchFilter from '../../componentsTemporary/SearchFilter/SearchFilter';
 import {
+
   switchBackgroundOn,
   switchBackgroundOff,
 } from '../../redux/actions/background';
@@ -42,5 +46,6 @@ const Home = (props) => {
       <SearchFilter icon={faBuilding} text={'Companie'} />
     </div>
   );
+
 };
 export default Home;
