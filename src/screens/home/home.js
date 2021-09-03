@@ -1,7 +1,7 @@
 import { React } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
-import SearchFilter from '../../componentsTemporary/SearchFilter';
+import SearchFilter from '../../componentsTemporary/SearchFilter/SearchFilter';
 import {
   switchBackgroundOn,
   switchBackgroundOff,
