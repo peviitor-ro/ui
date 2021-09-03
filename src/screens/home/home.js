@@ -1,22 +1,20 @@
-
-import React from "react";
-import Logo from "components/Logo/Logo";
-
+import React from 'react';
+import Logo from 'components/Logo/Logo';
 
 import { useDispatch, useSelector } from 'react-redux';
-import SearchFilter from '../../componentsTemporary/SearchFilter/SearchFilter';
+import SearchFilter from '../../components/SearchFilter/SearchFilter';
 import {
-
   switchBackgroundOn,
   switchBackgroundOff,
 } from '../../redux/actions/background';
-import styles from './home.module.scss';
 
 import {
   faGlobeEurope,
   faBuilding,
   faMapMarkerAlt,
 } from '@fortawesome/free-solid-svg-icons';
+
+import styles from './home.module.scss';
 
 const Home = (props) => {
   const dispatch = useDispatch();
@@ -46,6 +44,5 @@ const Home = (props) => {
       <SearchFilter icon={faBuilding} text={'Companie'} />
     </div>
   );
-
 };
 export default Home;

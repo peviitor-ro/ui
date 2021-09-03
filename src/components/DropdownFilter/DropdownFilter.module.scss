@@ -1,0 +1,13 @@
+.dropdownContainer {
+  width: 100px;
+  height: 200px;
+  overflow: scroll;
+  background-color: blue;
+
+  .dropdownOption {
+    &:hover {
+      background-color: chartreuse;
+      cursor: pointer;
+    }
+  }
+}
