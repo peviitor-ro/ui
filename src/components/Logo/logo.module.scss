@@ -1,0 +1,13 @@
+@import '../../styles/variables.scss';
+
+@font-face {
+    font-family: "JustMandrawn";
+    src: local("JustMandrawn"),
+     url("../../assets/fonts/JustMandrawn.ttf") format("truetype");
+}
+
+.logo {
+    color: $logoColor;
+    font-family: $logoFont;
+    font-size: 4em;
+}
