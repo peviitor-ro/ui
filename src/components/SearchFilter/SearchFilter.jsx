@@ -16,7 +16,6 @@ const SearchFilter = ({ icon, text }) => {
       <div className={searchFilterContainer} onClick={toggleDropdown}>
         <FontAwesomeIcon icon={icon} />
         <h3 className={searchFilterText}>{text}</h3>
-        {/* <div>{isActiveDropdown ? 'Dropdown' : ''}</div> */}
       </div>
       {isActiveDropdown && <DropdownFilter />}
     </>
