@@ -1,11 +1,19 @@
-import React from "react";
+import { React } from 'react';
 
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from 'react-redux';
+import SearchFilter from '../../componentsTemporary/SearchFilter';
 import {
   switchBackgroundOn,
   switchBackgroundOff,
-} from "../../redux/actions/background";
-import styles from "./home.module.scss";
+} from '../../redux/actions/background';
+import styles from './home.module.scss';
+
+import {
+  faGlobeEurope,
+  faBuilding,
+  faMapMarkerAlt,
+} from '@fortawesome/free-solid-svg-icons';
+
 const Home = (props) => {
   const dispatch = useDispatch();
   const { isBackground } = useSelector((state) => state);
@@ -29,6 +37,9 @@ const Home = (props) => {
       >
         Put this off
       </button>
+      <SearchFilter icon={faGlobeEurope} text={'Tara'} />
+      <SearchFilter icon={faMapMarkerAlt} text={'Oras'} />
+      <SearchFilter icon={faBuilding} text={'Companie'} />
     </div>
   );
 };
