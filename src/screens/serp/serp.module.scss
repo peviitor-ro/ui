@@ -1,0 +1,15 @@
+@import "styles/variables.scss";
+
+.searchResultsList {
+  margin: 0 auto;
+}
+.searchResultsList__link {
+  text-decoration: none;
+  color: black;
+}
+
+@media screen and (min-width: $mobile-breakpoint) {
+  .searchResultsList {
+    width: 75%;
+  }
+}

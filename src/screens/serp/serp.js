@@ -1,11 +1,26 @@
 import React from "react";
-import "./serp.scss";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+
 import JobCard from "../../components/JobCard/JobCard";
+import styles from "./serp.module.scss";
+
 const Serp = () => {
+  const { searchResults } = useSelector((state) => state);
+  const { searchResultsList, searchResultsList__link } = styles;
   return (
-    <div>
-      Hello from search page
-      <JobCard />
+    <div className={searchResultsList}>
+      {searchResults.map((job) => (
+        <Link
+          className={searchResultsList__link}
+          to={{ pathname: job.job_link }}
+          target="_blank"
+          key={job.id}
+        >
+          {" "}
+          <JobCard {...job} />{" "}
+        </Link>
+      ))}
     </div>
   );
 };
