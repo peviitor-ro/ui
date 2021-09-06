@@ -1,19 +1,18 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import {
-    switchBackgroundOn,
-    switchBackgroundOff,
-} from "../../redux/actions/background";
-import Logo from "components/Logo/Logo";
-import SearchBar from "components/SearchBar/SearchBar";
-import SearchFilter from "../../componentsTemporary/SearchFilter";
+  switchBackgroundOn,
+  switchBackgroundOff,
+} from '../../redux/actions/background';
+import Logo from 'components/Logo/Logo';
+import SearchBar from 'components/SearchBar/SearchBar';
+import SearchFilter from '../../components/SearchFilter/SearchFilter';
 import {
-    faGlobeEurope,
-    faBuilding,
-    faMapMarkerAlt,
-} from "@fortawesome/free-solid-svg-icons";
-import SearchBar from "components/SearchBar/SearchBar";
-import styles from "./home.module.scss";
+  faGlobeEurope,
+  faBuilding,
+  faMapMarkerAlt,
+} from '@fortawesome/free-solid-svg-icons';
+import styles from './home.module.scss';
 
 const Home = (props) => {
   const dispatch = useDispatch();
@@ -41,30 +40,23 @@ const Home = (props) => {
         >
           Put this off
         </button>
-<<<<<<< HEAD
-        <SearchFilter icon={faGlobeEurope} text={'Tara'} />
-        <SearchFilter icon={faMapMarkerAlt} text={'Oras'} />
-        <SearchFilter icon={faBuilding} text={'Companie'} />
-=======
         <SearchFilter
           icon={faGlobeEurope}
-          text={"Tara"}
+          text={'Tara'}
           options={filterOptions.countries}
         />
         <SearchFilter
           icon={faMapMarkerAlt}
-          text={"Oras"}
+          text={'Oras'}
           options={filterOptions.cities}
         />
         <SearchFilter
           icon={faBuilding}
-          text={"Companie"}
+          text={'Companie'}
           options={filterOptions.companies}
         />
->>>>>>> origin/testing
       </div>
     </>
   );
-
 };
 export default Home;
