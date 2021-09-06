@@ -14,10 +14,12 @@ $logoFont: "JustMandrawn";
 $primaryFont: "Poppins", "sans-serif";
 
 // job card
-$font-size-title: 0.8rem;
-$font-size-details: 0.65rem;
-$font-family-card-company: MuseoModerno;
+$font-size-title: 1.2rem;
+$font-size-details: 0.85rem;
+$font-family-card-company: $primaryFont;
 $margin-bottom-card: 12px;
+$jobCard-border-color: #cecece;
+$jobTitle-border-color: #c7b577;
 
 //breakpoints media query
 $mobile-breakpoint: 480px;
