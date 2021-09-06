@@ -1,19 +1,21 @@
-import "./App.scss";
-import { Switch, Route } from "react-router-dom";
-import Home from "../src/screens/home/home";
-import Serp from "./screens/serp/serp";
+import { BrowserRouter } from "react-router-dom";
+import SwitchRoutes from 'utils/routing/SwitchRoutes';
+import { ROUTES } from 'utils/routing/Routes';
+import { useEffect } from 'react'
+import { getFilterData } from "utils/services";
+import { useDispatch } from "react-redux";
+import {setFilterOptionsData} from "./redux/actions/filterOptions"
 
 function App() {
+  const dispatch = useDispatch();
+   useEffect(() => {
+    getFilterData((data) => dispatch(setFilterOptionsData(data)));
+  },[dispatch]);
   return (
     <div className="App">
-      <Switch>
-        <Route exact path="/">
-          <Home />
-        </Route>
-        <Route path="/rezultate">
-          <Serp />
-        </Route>
-      </Switch>
+      <BrowserRouter>
+        <SwitchRoutes routes={ROUTES} />
+      </BrowserRouter>
     </div>
   );
 }
