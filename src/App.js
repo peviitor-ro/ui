@@ -8,17 +8,10 @@ import {setFilterOptionsData} from "./redux/actions/filterOptions"
 
 function App() {
   const dispatch = useDispatch();
-
    useEffect(() => {
     getFilterData((data) => dispatch(setFilterOptionsData(data)));
     
   },[]);
-
-
-
-  
-
-
   return (
     <div className="App">
       <BrowserRouter>
