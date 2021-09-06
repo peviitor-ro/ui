@@ -1,0 +1,27 @@
+@import '../../styles/variables.scss';
+
+.formSearchBar {
+  display: flex;
+  justify-content: center;
+}
+
+.searchInput {
+  width: 40vw;
+  margin-bottom: 20px;
+  border-style: none;
+  border-bottom: 2px solid $borderColor;
+  font-size: 1.2em;
+}
+
+.searchInput:focus {
+  outline: none;
+}
+
+.searchButton {
+  border-style: none;
+  margin-bottom: 20px;
+  background: transparent;
+  border-bottom: 2px solid $borderColor;
+  font-size: 1.5em;
+  color: $fontColor;
+}
