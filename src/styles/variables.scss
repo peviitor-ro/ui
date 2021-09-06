@@ -1,12 +1,24 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 
 // colors
 
-$logoColor: #856A26;
+$logoColor: #856a26;
 $white: #ffffff;
 $overlayColor: rgba(13, 12, 12, 0.45);
+$fontColor: #424242;
+$borderColor: rgba(0, 0, 0, 0.5);
 
 // fonts
 
-$logoFont: 'JustMandrawn';
-$primaryFont: 'Poppins' , 'sans-serif';
+$logoFont: "JustMandrawn";
+$primaryFont: "Poppins", "sans-serif";
+
+// job card
+$font-size-title: 0.8rem;
+$font-size-details: 0.65rem;
+$font-family-card-company: MuseoModerno;
+$margin-bottom-card: 12px;
+
+//breakpoints media query
+$mobile-breakpoint: 480px;
+$tablet-breakpoint: 768px;
