@@ -1,12 +1,10 @@
-@import '../styles/variables.scss';
-
 .searchFilterContainer {
   display: flex;
   justify-content: center;
   align-items: center;
   width: min-content;
   cursor: pointer;
-  
+
   .searchFilterText {
     margin: 0;
     margin-left: 5px;
