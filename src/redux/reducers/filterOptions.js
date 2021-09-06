@@ -1,9 +1,9 @@
-import { SET_FILTER_OPTIONS_DATA } from "../constants/constants"
+import { SET_FILTER_OPTIONS_DATA } from "../constants/constants";
 
-const filterOptionsReducer = (state = [1,2,3], action) => {
+const filterOptionsReducer = (state = [], action) => {
   switch (action.type) {
     case SET_FILTER_OPTIONS_DATA:
-      return {...action.payload};
+      return { ...action.payload };
     default:
       return state;
   }

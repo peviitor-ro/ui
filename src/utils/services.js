@@ -1,14 +1,21 @@
 import axios from "axios";
 import { baseUrl } from "./constants/url";
 
-export const getFilterData =  async (setData) => {
-    try{
-        const response = await axios.get(`${baseUrl}/cities/?count=true`);
-        setData(response);
-    } catch (error) {
-      console.log(error);
-    }
-}
-
-
-
+export const getFilterData = async (setData) => {
+  try {
+    const countriesResponse = await axios.get(
+      `${baseUrl}/countries/?count=true`
+    );
+    const citiesResponse = await axios.get(`${baseUrl}/cities/?count=true`);
+    const companiesRespons = await axios.get(
+      `${baseUrl}/companies/?count=true`
+    );
+    setData({
+      countries: countriesResponse.data.countries,
+      cities: citiesResponse.data.cities,
+      companies: companiesRespons.data.companies,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};

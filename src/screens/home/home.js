@@ -1,13 +1,12 @@
-import React from 'react';
-import Logo from 'components/Logo/Logo';
+import React from "react";
+import Logo from "components/Logo/Logo";
 
-import { useDispatch, useSelector } from 'react-redux';
-import SearchFilter from '../../components/SearchFilter/SearchFilter';
+import { useDispatch, useSelector } from "react-redux";
+import SearchFilter from "../../components/SearchFilter/SearchFilter";
 import {
   switchBackgroundOn,
   switchBackgroundOff,
-} from '../../redux/actions/background';
-
+} from "../../redux/actions/background";
 
 import {
   faGlobeEurope,
@@ -17,13 +16,13 @@ import {
 
 import SearchBar from "components/SearchBar/SearchBar";
 
-import styles from './home.module.scss';
+import styles from "./home.module.scss";
 
 const Home = (props) => {
   const dispatch = useDispatch();
   const { isBackground } = useSelector((state) => state);
+  const filterOptions = useSelector((state) => state.filterOptions);
   const { welcome, notWelcome } = styles;
-
   return (
     <>
       <Logo />
@@ -45,9 +44,21 @@ const Home = (props) => {
         >
           Put this off
         </button>
-        <SearchFilter icon={faGlobeEurope} text={"Tara"} />
-        <SearchFilter icon={faMapMarkerAlt} text={"Oras"} />
-        <SearchFilter icon={faBuilding} text={"Companie"} />
+        <SearchFilter
+          icon={faGlobeEurope}
+          text={"Tara"}
+          options={filterOptions.countries}
+        />
+        <SearchFilter
+          icon={faMapMarkerAlt}
+          text={"Oras"}
+          options={filterOptions.cities}
+        />
+        <SearchFilter
+          icon={faBuilding}
+          text={"Companie"}
+          options={filterOptions.companies}
+        />
       </div>
     </>
   );
