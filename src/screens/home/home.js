@@ -18,11 +18,28 @@ const Home = (props) => {
   const dispatch = useDispatch();
   const { isBackground } = useSelector((state) => state);
   const filterOptions = useSelector((state) => state.filterOptions);
-  const { welcome, notWelcome } = styles;
+  const { welcome, notWelcome, filtersContainer } = styles;
   return (
     <>
       <Logo />
       <SearchBar />
+      <div className={filtersContainer}>
+        <SearchFilter
+          icon={faGlobeEurope}
+          text={'Tara'}
+          options={filterOptions.countries}
+        />
+        <SearchFilter
+          icon={faMapMarkerAlt}
+          text={'Oras'}
+          options={filterOptions.cities}
+        />
+        <SearchFilter
+          icon={faBuilding}
+          text={'Companie'}
+          options={filterOptions.companies}
+        />
+      </div>
       <div className={isBackground ? `${welcome}` : `${notWelcome}`}>
         <div className="inside"> Hello from home </div>
         Hello from home
@@ -40,21 +57,6 @@ const Home = (props) => {
         >
           Put this off
         </button>
-        <SearchFilter
-          icon={faGlobeEurope}
-          text={'Tara'}
-          options={filterOptions.countries}
-        />
-        <SearchFilter
-          icon={faMapMarkerAlt}
-          text={'Oras'}
-          options={filterOptions.cities}
-        />
-        <SearchFilter
-          icon={faBuilding}
-          text={'Companie'}
-          options={filterOptions.companies}
-        />
       </div>
     </>
   );

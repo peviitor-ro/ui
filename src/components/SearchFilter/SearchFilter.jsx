@@ -12,13 +12,11 @@ const SearchFilter = ({ icon, text, options }) => {
 
   const { searchFilterContainer, searchFilterText } = styles;
   return (
-    <>
-      <div className={searchFilterContainer} onClick={toggleDropdown}>
-        <FontAwesomeIcon icon={icon} />
-        <h3 className={searchFilterText}>{text}</h3>
-      </div>
-      {isActiveDropdown && <DropdownFilter {...{options}} />}
-    </>
+    <div className={searchFilterContainer} onClick={toggleDropdown}>
+      <FontAwesomeIcon icon={icon} />
+      <h3 className={searchFilterText}>{text}</h3>
+      {isActiveDropdown && <DropdownFilter {...{ options }} />}
+    </div>
   );
 };
 
