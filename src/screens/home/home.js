@@ -1,21 +1,18 @@
 import React from "react";
-import Logo from "components/Logo/Logo";
-
 import { useDispatch, useSelector } from "react-redux";
-import SearchFilter from "../../components/SearchFilter/SearchFilter";
 import {
-  switchBackgroundOn,
-  switchBackgroundOff,
+    switchBackgroundOn,
+    switchBackgroundOff,
 } from "../../redux/actions/background";
-
-import {
-  faGlobeEurope,
-  faBuilding,
-  faMapMarkerAlt,
-} from "@fortawesome/free-solid-svg-icons";
-
+import Logo from "components/Logo/Logo";
 import SearchBar from "components/SearchBar/SearchBar";
-
+import SearchFilter from "../../componentsTemporary/SearchFilter";
+import {
+    faGlobeEurope,
+    faBuilding,
+    faMapMarkerAlt,
+} from "@fortawesome/free-solid-svg-icons";
+import SearchBar from "components/SearchBar/SearchBar";
 import styles from "./home.module.scss";
 
 const Home = (props) => {
@@ -62,5 +59,6 @@ const Home = (props) => {
       </div>
     </>
   );
+
 };
 export default Home;
