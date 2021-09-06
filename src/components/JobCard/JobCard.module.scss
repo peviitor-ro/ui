@@ -1,9 +1,5 @@
 @import "styles/variables.scss";
 
-$font-size-title: 0.8rem;
-$font-size-details: 0.65rem;
-$font-family-card-company: MuseoModerno;
-
 .jobCard {
   font-family: $primaryFont;
   background-color: $white;
@@ -11,18 +7,22 @@ $font-family-card-company: MuseoModerno;
   border: 0.5px solid #cecece;
   display: flex;
   flex-direction: column;
-
-  //box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
-  // box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+
   &__title {
     font-size: $font-size-title;
     border-bottom: 1px solid #c7b577;
     padding-bottom: 1.5rem;
     overflow: hidden;
   }
+
   &__details {
     font-family: $font-family-card-company;
     font-size: $font-size-details;
+  }
+
+  margin-bottom: $margin-bottom-card;
+  .h3 {
+    padding-bottom: 5px;
   }
 }
