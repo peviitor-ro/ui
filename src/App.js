@@ -11,7 +11,7 @@ function App() {
    useEffect(() => {
     getFilterData((data) => dispatch(setFilterOptionsData(data)));
     
-  },[]);
+  },[dispatch]);
   return (
     <div className="App">
       <BrowserRouter>
