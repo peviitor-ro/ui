@@ -1,15 +1,40 @@
 import React from "react";
+
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import {
+  faGlobeEurope,
+  faBuilding,
+  faMapMarkerAlt,
+} from "@fortawesome/free-solid-svg-icons";
 
-import JobCard from "../../components/JobCard/JobCard";
-import styles from "./serp.module.scss";
+import Logo from 'components/Logo/Logo';
+import SearchBar from 'components/SearchBar/SearchBar';
+import JobCard from "components/JobCard/JobCard";
+import SearchFilter from 'componentsTemporary/SearchFilter';
+import styles from 'screens/serp/serp.module.scss';
 
 const Serp = () => {
   const { searchResults } = useSelector((state) => state);
-  const { searchResultsList, searchResultsList__link } = styles;
+  const { headerContainer, filterSearchContainer, logoContainer, filters, search, searchResultsList, searchResultsList__link } = styles;
+
   return (
-    <div className={searchResultsList}>
+    <div className={headerContainer}>
+      <div className={logoContainer}>
+        <Logo />
+      </div>
+      <div className={filterSearchContainer}>
+        <div className={search}>
+          <SearchBar />
+        </div>
+        <div className={filters}>
+          <SearchFilter icon={faGlobeEurope} text={"Tara"} />
+          <SearchFilter icon={faMapMarkerAlt} text={"Oras"} />
+          <SearchFilter icon={faBuilding} text={"Companie"} />
+        </div>
+      </div> 
+      </div>
+       <div className={searchResultsList}>
       {searchResults.map((job) => (
         <Link
           className={searchResultsList__link}
@@ -22,6 +47,7 @@ const Serp = () => {
         </Link>
       ))}
     </div>
-  );
-};
+  )
+}
+
 export default Serp;
