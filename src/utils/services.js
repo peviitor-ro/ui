@@ -7,13 +7,13 @@ export const getFilterData = async (setData) => {
       `${baseUrl}/countries/?count=true`
     );
     const citiesResponse = await axios.get(`${baseUrl}/cities/?count=true`);
-    const companiesRespons = await axios.get(
+    const companiesResponse = await axios.get(
       `${baseUrl}/companies/?count=true`
     );
     setData({
       countries: countriesResponse.data.countries,
       cities: citiesResponse.data.cities,
-      companies: companiesRespons.data.companies,
+      companies: companiesResponse.data.companies,
     });
   } catch (error) {
     console.log(error);
