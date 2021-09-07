@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -6,16 +6,30 @@ import {
   faGlobeEurope,
   faBuilding,
   faMapMarkerAlt,
+  faAngleDoubleLeft,
+  faAngleDoubleRight,
 } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import ReactPaginate from 'react-paginate';
+import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { setSearchResults } from 'redux/actions/searchResults';
 
 import Logo from 'components/Logo/Logo';
 import SearchBar from 'components/SearchBar/SearchBar';
 import JobCard from 'components/JobCard/JobCard';
 import SearchFilter from 'components/SearchFilter/SearchFilter';
+import { baseUrl, jobsPerPage } from 'utils/constants/url';
+import paginationStyles from 'components/Pagination/Pagination.module.scss';
 import styles from 'screens/serp/serp.module.scss';
 
+
 const Serp = () => {
-  const { searchResults } = useSelector((state) => state);
+  const { searchResults, searchWord, searchResultsNumber } = useSelector((state) => state);
+  const [currentPage, setCurrentPage] = useState(0);
+  const dispatch = useDispatch();
+
+  const { pagination, paginationPage, paginationActive, paginationArrow, arrowIcons } = paginationStyles;
   const {
     headerContainer,
     filterSearchContainer,
@@ -24,7 +38,23 @@ const Serp = () => {
     search,
     searchResultsList,
     searchResultsList__link,
+    paginationContainer,
   } = styles;
+
+  const intemsPerPage = jobsPerPage;
+  const pageCount = Math.ceil(searchResultsNumber / intemsPerPage);
+
+  const onPageChange = async ({ selected }) => {
+    setCurrentPage(selected);
+    try {
+      const start = selected * intemsPerPage;
+      const response = await axios.get(`${baseUrl}/search/?q=${searchWord}&start=${start}`);
+      console.log(`${baseUrl}/search/?q=${searchWord}&start=${start}`)
+      dispatch(setSearchResults(response.data.response.docs));
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <>
@@ -56,6 +86,25 @@ const Serp = () => {
           </Link>
         ))}
       </div>
+      {searchResultsNumber > intemsPerPage &&
+      <div className={paginationContainer}>
+        <ReactPaginate
+        previousLabel={<FontAwesomeIcon icon={faAngleDoubleLeft}  className={arrowIcons}/>}
+        nextLabel={<FontAwesomeIcon icon={faAngleDoubleRight} className={arrowIcons}/>}
+        pageCount={pageCount}
+        onPageChange={onPageChange}
+        activeClassName={paginationActive}
+        containerClassName={pagination}
+        pageClassName={paginationPage}
+        previousClassName={paginationArrow}
+        nextClassName={paginationArrow}
+        />
+      </div>
+      }
+      {/* to be replaced with a react component */}
+      {searchWord && searchResultsNumber === 0 &&
+        <p>Nu a fost gasit nici un rezultat!</p>
+      }
     </>
   );
 };

@@ -1,4 +1,3 @@
-
 @import "styles/variables.scss";
 
 .searchResultsList {
@@ -36,9 +35,20 @@
     }
 }
 
+.paginationContainer {
+  display: flex;
+  justify-content: center;
+}
+
 @media screen and (min-width: $mobile-breakpoint) {
   .searchResultsList {
     width: 75%;
+  }
+
+  .paginationContainer {
+    min-width: fit-content;
+    max-width: 50%;
+    margin: 0 auto;
   }
 }
 

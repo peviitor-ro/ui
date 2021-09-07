@@ -18,7 +18,7 @@ const JobCard = ({ job_title, company, country, city }) => {
       <div className={jobCard__details}>
         <h3 className={jobCard__details__company}>
           <FontAwesomeIcon icon={faBuilding} />
-          {` ${company}`}
+          {` ${company} `}
         </h3>
         <h3 className={jobCard__details__country}>
           <FontAwesomeIcon icon={faMapMarkerAlt} /> {` ${city}, ${country}`}
