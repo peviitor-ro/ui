@@ -12,12 +12,19 @@ import {
   faBuilding,
   faMapMarkerAlt,
 } from '@fortawesome/free-solid-svg-icons';
+
+import {
+  setCurrentCountryFilterOption,
+  setCurrentCityFilterOption,
+  setCurrentCompanyFilterOption,
+} from 'redux/actions/currentFilterOption';
 import styles from './home.module.scss';
 
 const Home = (props) => {
   const dispatch = useDispatch();
   const { isBackground } = useSelector((state) => state);
   const filterOptions = useSelector((state) => state.filterOptions);
+  const currentFilterOption = useSelector((state) => state.currentFilterOption);
   const { welcome, notWelcome, filtersContainer } = styles;
   return (
     <>
@@ -26,18 +33,25 @@ const Home = (props) => {
       <div className={filtersContainer}>
         <SearchFilter
           icon={faGlobeEurope}
-          text={'Tara'}
+          text={currentFilterOption.country}
           options={filterOptions.countries}
+          onSelectOption={(data) => {
+            dispatch(setCurrentCountryFilterOption(data));
+          }}
         />
         <SearchFilter
           icon={faMapMarkerAlt}
-          text={'Oras'}
+          text={currentFilterOption.city}
           options={filterOptions.cities}
+          onSelectOption={(data) => dispatch(setCurrentCityFilterOption(data))}
         />
         <SearchFilter
           icon={faBuilding}
-          text={'Companie'}
+          text={currentFilterOption.company}
           options={filterOptions.companies}
+          onSelectOption={(data) =>
+            dispatch(setCurrentCompanyFilterOption(data))
+          }
         />
       </div>
       <div className={isBackground ? `${welcome}` : `${notWelcome}`}>
