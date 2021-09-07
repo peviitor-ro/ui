@@ -1,16 +1,14 @@
-import React from "react";
-import { useEffect, useState, useRef } from "react";
-import { Slide, Fade } from "react-slideshow-image";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { getBackgroundImages } from "utils/services";
+import React from 'react';
+import { useEffect, useState, useRef } from 'react';
+import { Slide, Fade } from 'react-slideshow-image';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { getBackgroundImages } from 'utils/services';
 import {
   faCaretSquareLeft,
   faCaretSquareRight,
-  faChevronLeft,
-  faChevronRight,
-} from "@fortawesome/free-solid-svg-icons";
-import styles from "./BackgroundSlider.module.scss";
-import "react-slideshow-image/dist/styles.css";
+} from '@fortawesome/free-solid-svg-icons';
+import styles from './BackgroundSlider.module.scss';
+import 'react-slideshow-image/dist/styles.css';
 
 const BackgroundSlider = ({ children }) => {
   const [backgroundImages, setBackgroundImages] = useState();
@@ -18,7 +16,12 @@ const BackgroundSlider = ({ children }) => {
   useEffect(() => {
     getBackgroundImages((data) => setBackgroundImages(data));
   }, []);
-  const { backgroundStyle } = styles;
+  const {
+    backgroundStyle,
+    switchBackgroundIcon,
+    switchBackgroundIconContainer,
+    pageContent,
+  } = styles;
   const properties = {
     autoplay: false,
     arrows: false,
@@ -34,35 +37,38 @@ const BackgroundSlider = ({ children }) => {
 
   return (
     <div>
-      {backgroundImages ? (
-        <Fade easing="ease" ref={slideRef} {...properties}>
+      {backgroundImages && (
+        <Slide easing="ease" ref={slideRef} {...properties}>
           {backgroundImages.map((element) => (
-            <div className="each-slide">
+            <div className="each-slide" key={element.id}>
               <div
                 className={backgroundStyle}
                 style={{
                   backgroundImage: `url(${element.url_pic})`,
-                  height: "100vh",
+                  height: '100vh',
                 }}
               >
-                {children}
-                <FontAwesomeIcon
-                  icon={faCaretSquareLeft}
-                  size="2x"
-                  onClick={back}
-                />
-                <FontAwesomeIcon
-                  icon={faCaretSquareRight}
-                  size="2x"
-                  onClick={next}
-                />
+                {/* {children} */}
               </div>
             </div>
           ))}
-        </Fade>
-      ) : (
-        children
+        </Slide>
       )}
+      <div className={pageContent}>{children}</div>
+      <div className={switchBackgroundIconContainer}>
+        <FontAwesomeIcon
+          icon={faCaretSquareLeft}
+          size="2x"
+          onClick={back}
+          className={switchBackgroundIcon}
+        />
+        <FontAwesomeIcon
+          icon={faCaretSquareRight}
+          size="2x"
+          onClick={next}
+          className={switchBackgroundIcon}
+        />
+      </div>
     </div>
   );
 };

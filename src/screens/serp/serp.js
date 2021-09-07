@@ -1,11 +1,15 @@
-
-import React from "react";
+import React from 'react';
 import Logo from 'components/Logo/Logo';
 import SearchBar from 'components/SearchBar/SearchBar';
-import JobCard from "components/JobCard/JobCard";
+import JobCard from 'components/JobCard/JobCard';
 import SearchFilter from 'components/SearchFilter/SearchFilter';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  setCurrentCountryFilterOption,
+  setCurrentCityFilterOption,
+  setCurrentCompanyFilterOption,
+} from 'redux/actions/currentFilterOption';
 
 import {
   faGlobeEurope,
@@ -14,14 +18,18 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 import styles from 'screens/serp/serp.module.scss';
+import filterStyles from 'screens/home/home.module.scss';
 
 const Serp = () => {
   const { searchResults } = useSelector((state) => state);
+  const dispatch = useDispatch();
+  const filterOptions = useSelector((state) => state.filterOptions);
+  const currentFilterOption = useSelector((state) => state.currentFilterOption);
+  const { filtersContainer } = filterStyles;
   const {
     headerContainer,
     filterSearchContainer,
     logoContainer,
-    filters,
     search,
     searchResultsList,
     searchResultsList__link,
@@ -37,10 +45,31 @@ const Serp = () => {
           <div className={search}>
             <SearchBar />
           </div>
-          <div className={filters}>
-            <SearchFilter icon={faGlobeEurope} text={'Tara'} />
-            <SearchFilter icon={faMapMarkerAlt} text={'Oras'} />
-            <SearchFilter icon={faBuilding} text={'Companie'} />
+          <div className={filtersContainer}>
+            <SearchFilter
+              icon={faGlobeEurope}
+              text={currentFilterOption.country}
+              options={filterOptions.countries}
+              onSelectOption={(data) => {
+                dispatch(setCurrentCountryFilterOption(data));
+              }}
+            />
+            <SearchFilter
+              icon={faMapMarkerAlt}
+              text={currentFilterOption.city}
+              options={filterOptions.cities}
+              onSelectOption={(data) =>
+                dispatch(setCurrentCityFilterOption(data))
+              }
+            />
+            <SearchFilter
+              icon={faBuilding}
+              text={currentFilterOption.company}
+              options={filterOptions.companies}
+              onSelectOption={(data) =>
+                dispatch(setCurrentCompanyFilterOption(data))
+              }
+            />
           </div>
         </div>
       </div>
