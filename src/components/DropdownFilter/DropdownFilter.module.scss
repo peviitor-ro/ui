@@ -1,23 +1,12 @@
 .dropdownContainer {
-  height: 40vh;
+  width: 100px;
+  height: 200px;
   overflow: scroll;
-  background-color: rgba(0, 0, 0, 0.72);
-  color: white;
-  position: absolute;
-  top: 100%;
-  border-radius: 13px;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
+  background-color: blue;
 
   .dropdownOption {
-    padding: 0 5%;
     &:hover {
-      background-color: rgba(255, 255, 255, 0.275);
+      background-color: chartreuse;
       cursor: pointer;
     }
   }
