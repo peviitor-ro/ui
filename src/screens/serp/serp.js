@@ -1,17 +1,18 @@
-import React from 'react';
 
+import React from "react";
+import Logo from 'components/Logo/Logo';
+import SearchBar from 'components/SearchBar/SearchBar';
+import JobCard from "components/JobCard/JobCard";
+import SearchFilter from 'components/SearchFilter/SearchFilter';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+
 import {
   faGlobeEurope,
   faBuilding,
   faMapMarkerAlt,
 } from '@fortawesome/free-solid-svg-icons';
 
-import Logo from 'components/Logo/Logo';
-import SearchBar from 'components/SearchBar/SearchBar';
-import JobCard from 'components/JobCard/JobCard';
-import SearchFilter from 'components/SearchFilter/SearchFilter';
 import styles from 'screens/serp/serp.module.scss';
 
 const Serp = () => {
@@ -43,6 +44,7 @@ const Serp = () => {
           </div>
         </div>
       </div>
+
       <div className={searchResultsList}>
         {searchResults.map((job) => (
           <Link

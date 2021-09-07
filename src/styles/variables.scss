@@ -10,8 +10,14 @@ $borderColor: rgba(0, 0, 0, 0.5);
 
 // fonts
 
-$logoFont: "JustMandrawn";
-$primaryFont: "Poppins", "sans-serif";
+$logoFont: 'JustMandrawn';
+$primaryFont: 'Poppins' , 'sans-serif';
+
+// screens
+
+$mobile-breakpoint: 480px;
+$tablet-breakpoint: 768px;
+$desktop-breakpoint:1024px;
 
 // job card
 $font-size-title: 1.2rem;
@@ -21,6 +27,4 @@ $margin-bottom-card: 12px;
 $jobCard-border-color: #cecece;
 $jobTitle-border-color: #c7b577;
 
-//breakpoints media query
-$mobile-breakpoint: 480px;
-$tablet-breakpoint: 768px;
+

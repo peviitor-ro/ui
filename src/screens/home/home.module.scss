@@ -1,17 +1,34 @@
-.welcome {
-  //   background-color: aqua;
-  .inside {
-    background-color: brown;
-  }
+@import "../../styles/variables.scss";
+
+.filtersContainer{
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 45px;
+    height: 10%;
 }
-.notWelcome {
-  //   background-color: blueviolet;
+
+@media screen and (min-width: $mobile-breakpoint) {
+
+        .filtersContainer{
+            padding: 0px 100px;
+        }
 }
-.filtersContainer {
-  display: flex;
-  width: 30vw;
-  justify-content: space-between;
-  align-items: center;
-  margin: 0 auto;
-  padding-left: 1vw;
+
+@media screen and (min-width: $tablet-breakpoint) {
+
+    .search{
+        margin: 30px;
+        margin-bottom: 0px;
+        margin-left: 0px;
+    }
+    .filtersContainer{
+        width: 35vw;
+        display: flex;
+        justify-content: space-between;
+        margin: 0 auto;
+    }
 }
+
+
+
+
