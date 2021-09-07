@@ -4,6 +4,8 @@ import axios from "axios";
 import { useHistory } from "react-router";
 import { useDispatch } from "react-redux";
 import { setSearchResults } from "redux/actions/searchResults";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import styles from "components/SearchBar/searchBar.module.scss";
 
@@ -38,7 +40,7 @@ const SearchBar = () => {
         type="text"
         placeholder="cautare..."
       ></input>
-      <button className={searchButton} type="submit"></button>
+      <button className={searchButton} type="submit"><FontAwesomeIcon icon={faSearch} /></button>
     </form>
   );
 };
