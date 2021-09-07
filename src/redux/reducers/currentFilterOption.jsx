@@ -5,7 +5,7 @@ import {
 } from '../constants/constants';
 
 const currentFilterOptionReducer = (
-  state = { country: 'Tara', city: 'Oras', company: 'Companie' },
+  state = { country: 'Romania', city: 'Oras', company: 'Companie' },
   action
 ) => {
   switch (action.type) {
