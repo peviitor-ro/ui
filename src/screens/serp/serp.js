@@ -6,7 +6,9 @@ import JobCard from "components/JobCard/JobCard";
 import SearchFilter from 'components/SearchFilter/SearchFilter';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-
+import FooterMenu from "components/FooterMenu/FooterMenu";
+import BurgerMenu
+  from "components/FooterMenu/BurgerMenu";
 import {
   faGlobeEurope,
   faBuilding,
@@ -25,10 +27,15 @@ const Serp = () => {
     search,
     searchResultsList,
     searchResultsList__link,
+    menuContainer,
   } = styles;
 
   return (
     <>
+      <div className={menuContainer}>
+        <FooterMenu />
+        <BurgerMenu />
+      </div>
       <div className={headerContainer}>
         <div className={logoContainer}>
           <Logo />

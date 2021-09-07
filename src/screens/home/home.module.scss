@@ -7,6 +7,11 @@
     height: 10%;
 }
 
+.menuContainer{
+    display: flex;
+    justify-content: flex-end;
+}
+
 @media screen and (min-width: $mobile-breakpoint) {
 
         .filtersContainer{

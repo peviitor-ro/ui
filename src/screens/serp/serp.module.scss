@@ -1,6 +1,10 @@
 
 @import "styles/variables.scss";
 
+.menuContainer{
+    display: flex;
+    justify-content: flex-end;
+}
 .searchResultsList {
   margin: 0 auto;
 }
@@ -16,7 +20,9 @@
     width: 100vw;
     height: 25vh;
     
-  
+  .logoContainer{
+      margin-top: 0;
+  }
     .filterSearchContainer {
         display: flex;
         flex-direction: column;
