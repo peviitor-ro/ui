@@ -10,6 +10,7 @@ function App() {
   const dispatch = useDispatch();
    useEffect(() => {
     getFilterData((data) => dispatch(setFilterOptionsData(data)));
+    
   },[dispatch]);
   return (
     <div className="App">

@@ -1,17 +1,10 @@
+
 .welcome {
-  //   background-color: aqua;
-  .inside {
-    background-color: brown;
-  }
+    background-color: aqua;
+    .inside{
+        background-color: brown;
+    }
 }
 .notWelcome {
-  //   background-color: blueviolet;
-}
-.filtersContainer {
-  display: flex;
-  width: 30vw;
-  justify-content: space-between;
-  align-items: center;
-  margin: 0 auto;
-  padding-left: 1vw;
+    background-color: blueviolet;
 }
