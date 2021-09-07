@@ -38,6 +38,7 @@ const SearchFilter = ({ icon, text, options, onSelectOption }) => {
       {isActiveDropdown && (
         <DropdownFilter {...{ options, onSelectOption, toggleDropdown }} />
       )}
+
     </div>
   );
 };
