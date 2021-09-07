@@ -1,6 +1,12 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
+  faGlobeEurope,
+  faBuilding,
+  faMapMarkerAlt,
+} from '@fortawesome/free-solid-svg-icons';
+
+import {
   switchBackgroundOn,
   switchBackgroundOff,
 } from '../../redux/actions/background';
@@ -18,6 +24,7 @@ import {
   setCurrentCityFilterOption,
   setCurrentCompanyFilterOption,
 } from 'redux/actions/currentFilterOption';
+
 import styles from './home.module.scss';
 
 const Home = (props) => {
