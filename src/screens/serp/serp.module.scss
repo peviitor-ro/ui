@@ -9,12 +9,6 @@
   color: black;
 }
 
-@media screen and (min-width: $mobile-breakpoint) {
-  .searchResultsList {
-    width: 75%;
-  }
-}
-
 .headerContainer {
     display: flex;
     width: 40vw;
@@ -40,5 +34,11 @@
             height: 30%;
         }
     }
+}
+
+@media screen and (min-width: $mobile-breakpoint) {
+  .searchResultsList {
+    width: 75%;
+  }
 }
 
