@@ -1,14 +1,17 @@
+
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Logo from "components/Logo/Logo";
 import SearchBar from "components/SearchBar/SearchBar";
 import SearchFilter from "../../components/SearchFilter/SearchFilter";
 import BackgroundSlider from "../../components/BackgroundSlider/BackgroundSlider";
+
 import {
   faGlobeEurope,
   faBuilding,
   faMapMarkerAlt,
 } from "@fortawesome/free-solid-svg-icons";
+
 
 import {
   setCurrentCountryFilterOption,

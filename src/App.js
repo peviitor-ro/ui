@@ -4,11 +4,11 @@ import { ROUTES } from 'utils/routing/Routes';
 import { useEffect } from 'react'
 import { getFilterData } from "utils/services";
 import { useDispatch } from "react-redux";
-import {setFilterOptionsData} from "./redux/actions/filterOptions"
+import { setFilterOptionsData } from "./redux/actions/filterOptions"
 
 function App() {
   const dispatch = useDispatch();
-   useEffect(() => {
+  useEffect(() => {
     getFilterData((data) => dispatch(setFilterOptionsData(data)));
   },[dispatch]);
   return (
