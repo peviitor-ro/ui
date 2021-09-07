@@ -1,19 +1,22 @@
 @import "../../styles/variables.scss";
 
-.filtersContainer{
-    display: flex;
-    justify-content: space-between;
-    padding: 0px 45px;
-    height: 10%;
+.homeContainer {
+  width: 100vw;
+  height: 100vh;
+  
+  .filtersContainer{
+      display: flex;
+      justify-content: space-between;
+      padding: 0px 45px;
+      height: 10%;
+  }
 }
-
 @media screen and (min-width: $mobile-breakpoint) {
 
         .filtersContainer{
             padding: 0px 100px;
         }
 }
-
 @media screen and (min-width: $tablet-breakpoint) {
 
     .search{
@@ -21,6 +24,7 @@
         margin-bottom: 0px;
         margin-left: 0px;
     }
+  
     .filtersContainer{
         width: 35vw;
         display: flex;
