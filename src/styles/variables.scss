@@ -1,8 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 
 // colors
 
-$logoColor: #856A26;
+$logoColor: #856a26;
 $white: #ffffff;
 $overlayColor: rgba(13, 12, 12, 0.45);
 $fontColor: #424242;
@@ -18,4 +18,13 @@ $primaryFont: 'Poppins' , 'sans-serif';
 $mobile-breakpoint: 480px;
 $tablet-breakpoint: 768px;
 $desktop-breakpoint:1024px;
+
+// job card
+$font-size-title: 1.2rem;
+$font-size-details: 0.85rem;
+$font-family-card-company: $primaryFont;
+$margin-bottom-card: 12px;
+$jobCard-border-color: #cecece;
+$jobTitle-border-color: #c7b577;
+
 

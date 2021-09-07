@@ -1,4 +1,15 @@
-@import "../../styles/variables.scss";
+
+@import "styles/variables.scss";
+
+.searchResultsList {
+  margin: 0 auto;
+}
+.searchResultsList__link {
+  text-decoration: none;
+  color: black;
+}
+
+
 .headerContainer {
     display: flex;
     flex-direction: column;
@@ -28,7 +39,11 @@
             padding: 0px 100px;
         }
     }
+      
 }
+  .searchResultsList {
+    width: 75%;
+  }
 }
 
 @media screen and (min-width: $tablet-breakpoint){
@@ -68,5 +83,9 @@
             }
         }
     }
-    
+
 }
+
+
+
+
