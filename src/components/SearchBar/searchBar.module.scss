@@ -6,11 +6,11 @@
 }
 
 .searchInput {
-  width: 40vw;
+  width: 70vw;
   margin-bottom: 20px;
   border-style: none;
-  border-bottom: 2px solid $borderColor;
-  font-size: 1.2em;
+  border-bottom: 1px solid $borderColor;
+  font-size: 0.9rem;
 }
 
 .searchInput:focus {
@@ -21,7 +21,15 @@
   border-style: none;
   margin-bottom: 20px;
   background: transparent;
-  border-bottom: 2px solid $borderColor;
-  font-size: 1.5em;
+  border-bottom: 1px solid $borderColor;
+  font-size: 1.1rem;
   color: $fontColor;
+}
+
+
+@media screen and (min-width: $tablet-breakpoint){
+  .searchInput{
+    width: 35vw;
+  }
+
 }

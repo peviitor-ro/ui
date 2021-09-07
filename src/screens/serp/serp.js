@@ -2,7 +2,7 @@ import React from "react";
 import Logo from 'components/Logo/Logo';
 import SearchBar from 'components/SearchBar/SearchBar';
 import JobCard from "components/JobCard/JobCard";
-import SearchFilter from 'componentsTemporary/SearchFilter';
+import SearchFilter from 'components/SearchFilter/SearchFilter';
 import {
   faGlobeEurope,
   faBuilding,
@@ -30,7 +30,7 @@ const Serp = () => {
           <SearchFilter icon={faBuilding} text={"Companie"} />
         </div>
       </div>
-      <JobCard />
+      {/* <JobCard /> */}
     </div>
   )
 }

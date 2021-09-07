@@ -1,10 +1,41 @@
 
-.welcome {
-    background-color: aqua;
-    .inside{
-        background-color: brown;
+@import "../../styles/variables.scss";
+
+.filters{
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 45px;
+    height: 10%;
+
+}
+
+@media screen and (min-width: $mobile-breakpoint) {
+
+   
+        .filters{
+            padding: 0px 100px;
+        }
+        
+    
+
+}
+
+@media screen and (min-width: $tablet-breakpoint) {
+
+    .search{
+        margin: 30px;
+        margin-bottom: 0px;
+        margin-left: 0px;
+       
+    }
+    .filters{
+        width: 35vw;
+        display: flex;
+        justify-content: space-between;
+        margin: 0 auto;
     }
 }
-.notWelcome {
-    background-color: blueviolet;
-}
+
+
+
+
