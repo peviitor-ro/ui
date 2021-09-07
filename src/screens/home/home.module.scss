@@ -1,28 +1,17 @@
 @import "../../styles/variables.scss";
 
-.filters{
+.filtersContainer{
     display: flex;
     justify-content: space-between;
     padding: 0px 45px;
     height: 10%;
-
 }
 
 @media screen and (min-width: $mobile-breakpoint) {
 
-   
-        .filters{
+        .filtersContainer{
             padding: 0px 100px;
         }
-        
-.filtersContainer {
-  display: flex;
-  width: 30vw;
-  justify-content: space-between;
-  align-items: center;
-  margin: 0 auto;
-  padding-left: 1vw;
-  }
 }
 
 @media screen and (min-width: $tablet-breakpoint) {
@@ -31,9 +20,8 @@
         margin: 30px;
         margin-bottom: 0px;
         margin-left: 0px;
-       
     }
-    .filters{
+    .filtersContainer{
         width: 35vw;
         display: flex;
         justify-content: space-between;

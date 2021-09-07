@@ -39,8 +39,8 @@
             padding: 0px 100px;
         }
     }
-      
 }
+
   .searchResultsList {
     width: 75%;
   }
@@ -59,31 +59,23 @@
               margin: 15px;
               font-size: 3em;
           }
-
-          
       }
         .filterSearchContainer {
              display: flex;
              justify-content: flex-start;
              flex-direction: column;
 
-            
            .search{
                margin: 30px;
                margin-bottom: 0px;
-               margin-left: 0px;
-              
+               margin-left: 0px;  
            }
     
             .filters{
-                // display: flex;
-                // justify-content: space-between;
-                padding: 0px 30px 0px 0px;
-                
+                padding: 0px 30px 0px 0px; 
             }
         }
     }
-
 }
 
 
