@@ -3,7 +3,6 @@ import { Route } from 'react-router-dom';
 import Home from 'screens/home/home';
 import Serp from 'screens/serp/serp';
 
-
 export const ROUTES = [
   {
     key: 'homepage',
