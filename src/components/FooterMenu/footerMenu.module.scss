@@ -1,0 +1,54 @@
+@import "styles/variables.scss";
+
+ .footerMenuContainer{
+     width: 100vw;
+     height: 30vh;
+     
+    ul{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        height: 100%;
+        margin: 0;
+            
+        li{
+            list-style: none;
+            border: 1px solid black;
+            width: 30vw;
+            height: 4vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+ }
+
+ @media screen and (min-width: $tablet-breakpoint){
+    .footerMenuContainer{
+        width: 100vw;
+        height: 3vh;
+        background-color: $footerColor;
+        z-index: 1;
+        position: fixed;
+        bottom: 0;
+         
+       ul{ 
+        width: 30vw;
+        display:flex ;
+        flex-direction: row; 
+        justify-content: space-between;
+        padding-left: 0;
+        
+           li{
+             font-family: $primaryFont;
+              border: 0;
+              height: 0;
+              width: 15vw;
+              z-index: 1;
+              color:$black;
+              font-size: 12px;
+            }
+       }
+    }
+  }

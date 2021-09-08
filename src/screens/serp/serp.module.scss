@@ -1,26 +1,32 @@
 @import "styles/variables.scss";
 
+.menuContainer{
+    display: flex;
+    justify-content: flex-end;
+}
+
 .searchResultsList {
   margin: 0 auto;
 }
+
 .searchResultsList__link {
   text-decoration: none;
   color: black;
 }
-
 
 .headerContainer {
     display: flex;
     flex-direction: column;
     width: 100vw;
     height: 25vh;
-    
   
+    .logoContainer{
+        margin-top: 0;
+    }
     .filterSearchContainer {
         display: flex;
         flex-direction: column;
        
-
         .filters{
             display: flex;
             justify-content: space-between;
@@ -30,12 +36,11 @@
         }
     }
 }
-
 .paginationContainer {
-  display: flex;
-  justify-content: center;
-  padding: 10px;
-}
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+  }
 
 @media screen and (min-width: $mobile-breakpoint) {
 
@@ -49,12 +54,12 @@
   .searchResultsList {
     width: 75%;
   }
-
   .paginationContainer {
     min-width: fit-content;
     max-width: 50%;
     margin: 0 auto;
   }
+
 }
 
 @media screen and (min-width: $tablet-breakpoint){

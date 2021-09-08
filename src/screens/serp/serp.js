@@ -8,6 +8,13 @@ import SearchBar from 'components/SearchBar/SearchBar';
 import JobCard from 'components/JobCard/JobCard';
 import SearchFilter from 'components/SearchFilter/SearchFilter';
 import { Link } from 'react-router-dom';
+import FooterMenu from "components/FooterMenu/FooterMenu";
+import BurgerMenu from "components/FooterMenu/BurgerMenu";
+import {
+  setCurrentCountryFilterOption,
+  setCurrentCityFilterOption,
+  setCurrentCompanyFilterOption,
+} from 'redux/actions/currentFilterOption';
 import {
   faGlobeEurope,
   faBuilding,
@@ -15,12 +22,6 @@ import {
   faAngleDoubleLeft,
   faAngleDoubleRight,
 } from '@fortawesome/free-solid-svg-icons';
-
-import {
-  setCurrentCountryFilterOption,
-  setCurrentCityFilterOption,
-  setCurrentCompanyFilterOption,
-} from 'redux/actions/currentFilterOption';
 import { setSearchResults } from 'redux/actions/searchResults';
 import { baseUrl, jobsPerPage } from 'utils/constants/url';
 import paginationStyles from 'components/Pagination/Pagination.module.scss';
@@ -31,7 +32,7 @@ import styles from 'screens/serp/serp.module.scss';
 const Serp = () => {
   const { searchResults, searchWord, searchResultsNumber } = useSelector((state) => state);
   const [currentPage, setCurrentPage] = useState(0);
-  const [pageRangeDisplay, setPageRangeDisplay] = useState(1);  
+  const [pageRangeDisplay, setPageRangeDisplay] = useState(1);
   const intemsPerPage = jobsPerPage;
   const pageCount = Math.ceil(searchResultsNumber / intemsPerPage);
   const dispatch = useDispatch();
@@ -46,15 +47,15 @@ const Serp = () => {
     search,
     searchResultsList,
     searchResultsList__link,
-    paginationContainer,
+    menuContainer,
   } = styles;
 
   ////needs refactoring
   useEffect(() => {
-    if(window.innerWidth > 481)
-    setPageRangeDisplay(3)
-    if(window.innerWidth < 481)
-    setPageRangeDisplay(1)
+    if (window.innerWidth > 481)
+      setPageRangeDisplay(3)
+    if (window.innerWidth < 481)
+      setPageRangeDisplay(1)
   }, [window.innerWidth])
   ////
   const onPageChange = async ({ selected }) => {
@@ -70,6 +71,10 @@ const Serp = () => {
 
   return (
     <>
+      <div className={menuContainer}>
+        <FooterMenu />
+        <BurgerMenu />
+      </div>
       <div className={headerContainer}>
         <div className={logoContainer}>
           <Logo />
@@ -121,23 +126,23 @@ const Serp = () => {
         ))}
       </div>
       {searchResultsNumber > intemsPerPage &&
-      <div className={paginationContainer}>
-        <ReactPaginate
-        previousLabel={<FontAwesomeIcon icon={faAngleDoubleLeft}  className={arrowIcons}/>}
-        nextLabel={<FontAwesomeIcon icon={faAngleDoubleRight} className={arrowIcons}/>}
-        pageCount={pageCount}
-        onPageChange={onPageChange}
-        activeClassName={paginationActive}
-        containerClassName={pagination}
-        pageClassName={paginationPage}
-        previousClassName={paginationArrow}
-        nextClassName={paginationArrow}
-        disabledClassName={paginationDisabled}
-        breakClassName={paginationPage}
-        pageRangeDisplayed={pageRangeDisplay}
-        marginPagesDisplayed={1}
-        />
-      </div>
+        <div className={paginationContainer}>
+          <ReactPaginate
+            previousLabel={<FontAwesomeIcon icon={faAngleDoubleLeft} className={arrowIcons} />}
+            nextLabel={<FontAwesomeIcon icon={faAngleDoubleRight} className={arrowIcons} />}
+            pageCount={pageCount}
+            onPageChange={onPageChange}
+            activeClassName={paginationActive}
+            containerClassName={pagination}
+            pageClassName={paginationPage}
+            previousClassName={paginationArrow}
+            nextClassName={paginationArrow}
+            disabledClassName={paginationDisabled}
+            breakClassName={paginationPage}
+            pageRangeDisplayed={pageRangeDisplay}
+            marginPagesDisplayed={1}
+          />
+        </div>
       }
       {/* to be replaced with a react component */}
       {searchWord && searchResultsNumber === 0 &&
