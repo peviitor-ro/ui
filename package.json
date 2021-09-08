@@ -22,6 +22,7 @@
     "react-router-dom": "^5.2.1",
     "react-scripts": "4.0.3",
     "react-slideshow-image": "^3.5.0",
+    "react-toggle-button": "^2.2.0",
     "sass": "^1.38.2",
     "web-vitals": "^1.1.2"
   },

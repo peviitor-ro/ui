@@ -7,11 +7,13 @@ import {
   faCaretSquareLeft,
   faCaretSquareRight,
 } from '@fortawesome/free-solid-svg-icons';
+import ToggleButton from 'react-toggle-button';
 import styles from './BackgroundSlider.module.scss';
 import 'react-slideshow-image/dist/styles.css';
 
 const BackgroundSlider = ({ children }) => {
   const [backgroundImages, setBackgroundImages] = useState();
+  const [isBackgroundVisible, setBackgroundVisibility] = useState(true);
 
   useEffect(() => {
     getBackgroundImages((data) => setBackgroundImages(data));
@@ -37,7 +39,7 @@ const BackgroundSlider = ({ children }) => {
 
   return (
     <div>
-      {backgroundImages && (
+      {isBackgroundVisible && backgroundImages && (
         <Slide easing="ease" ref={slideRef} {...properties}>
           {backgroundImages.map((element) => (
             <div className="each-slide" key={element.id}>
@@ -55,6 +57,14 @@ const BackgroundSlider = ({ children }) => {
         </Slide>
       )}
       <div className={pageContent}>{children}</div>
+      {/* <ToggleButton
+        inactiveLabel={'x'}
+        activeLabel={'y'}
+        value={isBackgroundVisible}
+        onToggle={(value) => {
+          setBackgroundVisibility(!value);
+        }}
+      /> */}
       <div className={switchBackgroundIconContainer}>
         <FontAwesomeIcon
           icon={faCaretSquareLeft}
