@@ -6,14 +6,15 @@
     justify-content: space-between;
     width: 100%;
     list-style-type: none;
-    background-color: $pagination-Bg;
-    padding: 6px 12px;
+    padding: 10px 12px;
 }
 
 .paginationPage {
-    padding: 0.5rem;
-    font-size: 1.5rem;
+    //padding: 0.5rem;
+    padding: 4px 10px;
+    font-size: 2rem;
     cursor: pointer;
+    margin: auto;
     &:hover {
         @extend %paginationPageBg;
     }
@@ -27,10 +28,18 @@
     display: flex;
     align-items: center;
     size: 5rem;
+    padding: 4px 10px;
     cursor: pointer;
 
     &:hover {
         @extend %paginationPageBg;
+    }
+}
+
+.paginationDisabled {
+    opacity: 0.5;
+    &:hover {
+        background: none;
     }
 }
 

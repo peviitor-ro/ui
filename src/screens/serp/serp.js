@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -27,9 +27,12 @@ import styles from 'screens/serp/serp.module.scss';
 const Serp = () => {
   const { searchResults, searchWord, searchResultsNumber } = useSelector((state) => state);
   const [currentPage, setCurrentPage] = useState(0);
+  const [pageRangeDisplay, setPageRangeDisplay] = useState(1);  
+  const intemsPerPage = jobsPerPage;
+  const pageCount = Math.ceil(searchResultsNumber / intemsPerPage);
   const dispatch = useDispatch();
 
-  const { pagination, paginationPage, paginationActive, paginationArrow, arrowIcons } = paginationStyles;
+  const { pagination, paginationPage, paginationActive, paginationArrow, arrowIcons, paginationDisabled } = paginationStyles;
   const {
     headerContainer,
     filterSearchContainer,
@@ -41,15 +44,19 @@ const Serp = () => {
     paginationContainer,
   } = styles;
 
-  const intemsPerPage = jobsPerPage;
-  const pageCount = Math.ceil(searchResultsNumber / intemsPerPage);
-
+  ////needs refactoring
+  useEffect(() => {
+    if(window.innerWidth > 481)
+    setPageRangeDisplay(3)
+    if(window.innerWidth < 481)
+    setPageRangeDisplay(1)
+  }, [window.innerWidth])
+  ////
   const onPageChange = async ({ selected }) => {
     setCurrentPage(selected);
     try {
       const start = selected * intemsPerPage;
       const response = await axios.get(`${baseUrl}/search/?q=${searchWord}&start=${start}`);
-      console.log(`${baseUrl}/search/?q=${searchWord}&start=${start}`)
       dispatch(setSearchResults(response.data.response.docs));
     } catch (error) {
       console.log(error);
@@ -98,6 +105,10 @@ const Serp = () => {
         pageClassName={paginationPage}
         previousClassName={paginationArrow}
         nextClassName={paginationArrow}
+        disabledClassName={paginationDisabled}
+        breakClassName={paginationPage}
+        pageRangeDisplayed={pageRangeDisplay}
+        marginPagesDisplayed={1}
         />
       </div>
       }
