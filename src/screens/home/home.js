@@ -1,29 +1,28 @@
-
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import Logo from "components/Logo/Logo";
-import SearchBar from "components/SearchBar/SearchBar";
-import SearchFilter from "../../components/SearchFilter/SearchFilter";
-import BackgroundSlider from "../../components/BackgroundSlider/BackgroundSlider";
+import { React, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import Logo from 'components/Logo/Logo';
+import SearchBar from 'components/SearchBar/SearchBar';
+import SearchFilter from '../../components/SearchFilter/SearchFilter';
+import BackgroundSlider from '../../components/BackgroundSlider/BackgroundSlider';
 
 import {
   faGlobeEurope,
   faBuilding,
   faMapMarkerAlt,
-} from "@fortawesome/free-solid-svg-icons";
-
+} from '@fortawesome/free-solid-svg-icons';
 
 import {
   setCurrentCountryFilterOption,
   setCurrentCityFilterOption,
   setCurrentCompanyFilterOption,
-} from "redux/actions/currentFilterOption";
-import styles from "./home.module.scss";
+} from 'redux/actions/currentFilterOption';
+import styles from './home.module.scss';
 
 const Home = () => {
   const dispatch = useDispatch();
   const filterOptions = useSelector((state) => state.filterOptions);
   const currentFilterOption = useSelector((state) => state.currentFilterOption);
+
   const { filtersContainer, homeContainer } = styles;
   return (
     <div className={homeContainer}>
