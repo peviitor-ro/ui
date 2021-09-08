@@ -1,7 +1,13 @@
-import React, { useEffect, useState } from 'react';
-
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import ReactPaginate from 'react-paginate';
+import axios from 'axios';
+import Logo from 'components/Logo/Logo';
+import SearchBar from 'components/SearchBar/SearchBar';
+import JobCard from 'components/JobCard/JobCard';
+import SearchFilter from 'components/SearchFilter/SearchFilter';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import {
   faGlobeEurope,
   faBuilding,
@@ -9,18 +15,16 @@ import {
   faAngleDoubleLeft,
   faAngleDoubleRight,
 } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import ReactPaginate from 'react-paginate';
-import axios from 'axios';
-import { useDispatch } from 'react-redux';
-import { setSearchResults } from 'redux/actions/searchResults';
 
-import Logo from 'components/Logo/Logo';
-import SearchBar from 'components/SearchBar/SearchBar';
-import JobCard from 'components/JobCard/JobCard';
-import SearchFilter from 'components/SearchFilter/SearchFilter';
+import {
+  setCurrentCountryFilterOption,
+  setCurrentCityFilterOption,
+  setCurrentCompanyFilterOption,
+} from 'redux/actions/currentFilterOption';
+import { setSearchResults } from 'redux/actions/searchResults';
 import { baseUrl, jobsPerPage } from 'utils/constants/url';
 import paginationStyles from 'components/Pagination/Pagination.module.scss';
+import filterStyles from 'screens/home/home.module.scss';
 import styles from 'screens/serp/serp.module.scss';
 
 
@@ -31,13 +35,14 @@ const Serp = () => {
   const intemsPerPage = jobsPerPage;
   const pageCount = Math.ceil(searchResultsNumber / intemsPerPage);
   const dispatch = useDispatch();
-
+  const filterOptions = useSelector((state) => state.filterOptions);
+  const currentFilterOption = useSelector((state) => state.currentFilterOption);
   const { pagination, paginationPage, paginationActive, paginationArrow, arrowIcons, paginationDisabled } = paginationStyles;
+  const { filtersContainer } = filterStyles;
   const {
     headerContainer,
     filterSearchContainer,
     logoContainer,
-    filters,
     search,
     searchResultsList,
     searchResultsList__link,
@@ -73,13 +78,35 @@ const Serp = () => {
           <div className={search}>
             <SearchBar />
           </div>
-          <div className={filters}>
-            <SearchFilter icon={faGlobeEurope} text={'Tara'} />
-            <SearchFilter icon={faMapMarkerAlt} text={'Oras'} />
-            <SearchFilter icon={faBuilding} text={'Companie'} />
+          <div className={filtersContainer}>
+            <SearchFilter
+              icon={faGlobeEurope}
+              text={currentFilterOption.country}
+              options={filterOptions.countries}
+              onSelectOption={(data) => {
+                dispatch(setCurrentCountryFilterOption(data));
+              }}
+            />
+            <SearchFilter
+              icon={faMapMarkerAlt}
+              text={currentFilterOption.city}
+              options={filterOptions.cities}
+              onSelectOption={(data) =>
+                dispatch(setCurrentCityFilterOption(data))
+              }
+            />
+            <SearchFilter
+              icon={faBuilding}
+              text={currentFilterOption.company}
+              options={filterOptions.companies}
+              onSelectOption={(data) =>
+                dispatch(setCurrentCompanyFilterOption(data))
+              }
+            />
           </div>
         </div>
       </div>
+
       <div className={searchResultsList}>
         {searchResults.map((job) => (
           <Link

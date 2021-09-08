@@ -19,3 +19,13 @@ export const getFilterData = async (setData) => {
     console.log(error);
   }
 };
+
+export const getBackgroundImages = async (setData) => {
+  try {
+    const backgroundImagesResponse = await axios.get(`${baseUrl}/background/`);
+    const backgroundImagesData = backgroundImagesResponse.data.response.docs;
+    setData(backgroundImagesData);
+  } catch (error) {
+    console.log(error);
+  }
+};
