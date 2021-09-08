@@ -1,11 +1,9 @@
-
 .searchFilterContainer {
   display: flex;
   justify-content: center;
   align-items: center;
   width: min-content;
   cursor: pointer;
-  position: relative;
 
   .searchFilterText {
     margin: 0;
@@ -14,9 +12,5 @@
     -moz-user-select: none; /* Firefox */
     -ms-user-select: none; /* IE10+/Edge */
     user-select: none; /* Standard */
-  }
-  .textIconFilterContainer {
-    display: flex;
-    align-items: center;
   }
 }

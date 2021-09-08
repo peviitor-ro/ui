@@ -1,45 +1,10 @@
-@import "../../styles/variables.scss";
 
-.homeContainer {
-    width: 100vw;
-    height: 100vh;
-
-    .filtersContainer{
-    display: flex;
-    justify-content: space-between;
-    padding: 0px 45px;
-    height: 10%;
-    }
-
-    .menuContainer{
-        display: flex;
-        justify-content: flex-end;
+.welcome {
+    background-color: aqua;
+    .inside{
+        background-color: brown;
     }
 }
-
-@media screen and (min-width: $mobile-breakpoint) {
-
-        .filtersContainer{
-            padding: 0px 100px;
-        }
+.notWelcome {
+    background-color: blueviolet;
 }
-
-@media screen and (min-width: $tablet-breakpoint) {
-
-    .search{
-        margin: 30px;
-        margin-bottom: 0px;
-        margin-left: 0px;
-    }
-    
-    .filtersContainer{
-        width: 35vw;
-        display: flex;
-        justify-content: space-between;
-        margin: 0 auto;
-    }
-}
-
-
-
-

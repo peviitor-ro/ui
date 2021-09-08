@@ -1,16 +1,13 @@
-@import '../../styles/variables.scss';
-
 .formSearchBar {
   display: flex;
   justify-content: center;
 }
 
 .searchInput {
-  width: 70vw;
   margin-bottom: 20px;
+  width: 40vw;
   border-style: none;
-  border-bottom: 1px solid $borderColor;
-  font-size: 0.9rem;
+  border-bottom: 1px solid rgba(53, 48, 48, 0.5);
 }
 
 .searchInput:focus {
@@ -20,14 +17,7 @@
 .searchButton {
   border-style: none;
   margin-bottom: 20px;
-  background: transparent;
-  border-bottom: 1px solid $borderColor;
-  font-size: 1.1rem;
-  color: $fontColor;
-}
-
-@media screen and (min-width: $tablet-breakpoint){
-  .searchInput{
-    width: 35vw;
-  }
+  background-color: rgba(255, 255, 255, 0);
+  background-image: url(../../assets/search-solid.svg);
+  background-repeat: no-repeat;
 }
