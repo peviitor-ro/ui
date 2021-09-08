@@ -4,6 +4,10 @@ import axios from "axios";
 import { useHistory } from "react-router";
 import { useDispatch } from "react-redux";
 import { setSearchResults } from "redux/actions/searchResults";
+import { setSearchResultsNumber} from "redux/actions/searchResultsNumber";
+import { setSearchWord} from 'redux/actions/searchWord';
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import styles from "components/SearchBar/searchBar.module.scss";
 
@@ -19,6 +23,8 @@ const SearchBar = () => {
     try {
       const response = await axios.get(`${baseUrl}/search/?q=${searchQuery}`);
       dispatch(setSearchResults(response.data.response.docs));
+      dispatch(setSearchResultsNumber(response.data.response.numFound));
+      dispatch(setSearchWord(searchQuery));
     } catch (error) {
       console.log(error);
     }
@@ -38,7 +44,7 @@ const SearchBar = () => {
         type="text"
         placeholder="cautare..."
       ></input>
-      <button className={searchButton} type="submit"></button>
+      <button className={searchButton} type="submit"><FontAwesomeIcon icon={faSearch} /></button>
     </form>
   );
 };
