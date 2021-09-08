@@ -1,15 +1,20 @@
 @import "../../styles/variables.scss";
 
-.filtersContainer{
+.homeContainer {
+    width: 100vw;
+    height: 100vh;
+
+    .filtersContainer{
     display: flex;
     justify-content: space-between;
     padding: 0px 45px;
     height: 10%;
-}
+    }
 
-.menuContainer{
-    display: flex;
-    justify-content: flex-end;
+    .menuContainer{
+        display: flex;
+        justify-content: flex-end;
+    }
 }
 
 @media screen and (min-width: $mobile-breakpoint) {
@@ -26,6 +31,7 @@
         margin-bottom: 0px;
         margin-left: 0px;
     }
+    
     .filtersContainer{
         width: 35vw;
         display: flex;

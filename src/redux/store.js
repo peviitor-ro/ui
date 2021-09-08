@@ -6,7 +6,6 @@ import currentFilterOptionReducer from './reducers/currentFilterOption';
 import burgerReducer from './reducers/burger';
 
 const reducer = combineReducers({
-  isBackground: backgroundReducer,
   searchResults: searchResultsReducer,
   filterOptions: filterOptionsReducer,
   currentFilterOption: currentFilterOptionReducer,

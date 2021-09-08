@@ -31,39 +31,43 @@ const Home = (props) => {
     const { welcome, notWelcome, filtersContainer, menuContainer } = styles;
     return (
         <>
-            <div className={menuContainer}>
-                <FooterMenu />
-                <BurgerMenu />
+            <div className={homeContainer}>
+                <BackgroundSlider>
+                    <div className={menuContainer}>
+                        <FooterMenu />
+                        <BurgerMenu />
+                    </div>
+                    <Logo />
+                    <SearchBar />
+                    <div className={filtersContainer}>
+                        <SearchFilter
+                            icon={faGlobeEurope}
+                            text={currentFilterOption.country}
+                            options={filterOptions.countries}
+                            onSelectOption={(data) => {
+                                dispatch(setCurrentCountryFilterOption(data));
+                            }}
+                        />
+                        <SearchFilter
+                            icon={faMapMarkerAlt}
+                            text={currentFilterOption.city}
+                            options={filterOptions.cities}
+                            onSelectOption={(data) =>
+                                dispatch(setCurrentCityFilterOption(data))
+                            }
+                        />
+                        <SearchFilter
+                            icon={faBuilding}
+                            text={currentFilterOption.company}
+                            options={filterOptions.companies}
+                            onSelectOption={(data) =>
+                                dispatch(setCurrentCompanyFilterOption(data))
+                            }
+                        />
+                    </div>
+                </BackgroundSlider>
             </div>
-            <Logo />
-            <SearchBar />
-            <div className={filtersContainer}>
-                <SearchFilter
-                    icon={faGlobeEurope}
-                    text={currentFilterOption.country}
-                    options={filterOptions.countries}
-                    onSelectOption={(data) => {
-                        dispatch(setCurrentCountryFilterOption(data));
-                    }}
-                />
-                <SearchFilter
-                    icon={faMapMarkerAlt}
-                    text={currentFilterOption.city}
-                    options={filterOptions.cities}
-                    onSelectOption={(data) => dispatch(setCurrentCityFilterOption(data))}
-                />
-                <SearchFilter
-                    icon={faBuilding}
-                    text={currentFilterOption.company}
-                    options={filterOptions.companies}
-                    onSelectOption={(data) =>
-                        dispatch(setCurrentCompanyFilterOption(data))
-                    }
-                />
-            </div>
-
-
         </>
     );
-};
+}
 export default Home;
