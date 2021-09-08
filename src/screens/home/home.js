@@ -1,9 +1,5 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-    switchBackgroundOn,
-    switchBackgroundOff,
-} from "../../redux/actions/background";
 import Logo from "components/Logo/Logo";
 import SearchBar from "components/SearchBar/SearchBar";
 import FooterMenu from "components/FooterMenu/FooterMenu";
@@ -13,7 +9,7 @@ import {
     faBuilding,
     faMapMarkerAlt,
 } from '@fortawesome/free-solid-svg-icons';
-
+import BackgroundSlider from 'components/BackgroundSlider/BackgroundSlider';
 
 import {
     setCurrentCountryFilterOption,
@@ -28,7 +24,7 @@ const Home = (props) => {
     const { isBackground } = useSelector((state) => state);
     const filterOptions = useSelector((state) => state.filterOptions);
     const currentFilterOption = useSelector((state) => state.currentFilterOption);
-    const { welcome, notWelcome, filtersContainer, menuContainer } = styles;
+    const { welcome, notWelcome, filtersContainer, menuContainer, homeContainer } = styles;
     return (
         <>
             <div className={homeContainer}>

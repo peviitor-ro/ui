@@ -1,5 +1,4 @@
 import { combineReducers, createStore } from 'redux';
-import { backgroundReducer } from './background';
 import searchResultsReducer from 'redux/reducers/searchResults';
 import filterOptionsReducer from 'redux/reducers/filterOptions';
 import currentFilterOptionReducer from './reducers/currentFilterOption';

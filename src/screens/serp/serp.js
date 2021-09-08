@@ -1,4 +1,4 @@
-import React from 'react';
+import { React, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ReactPaginate from 'react-paginate';
@@ -29,6 +29,7 @@ import filterStyles from 'screens/home/home.module.scss';
 import styles from 'screens/serp/serp.module.scss';
 
 
+
 const Serp = () => {
   const { searchResults, searchWord, searchResultsNumber } = useSelector((state) => state);
   const [currentPage, setCurrentPage] = useState(0);
@@ -48,6 +49,7 @@ const Serp = () => {
     searchResultsList,
     searchResultsList__link,
     menuContainer,
+    paginationContainer,
   } = styles;
 
   ////needs refactoring
