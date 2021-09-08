@@ -1,4 +1,3 @@
-
 @import "styles/variables.scss";
 
 .menuContainer{
@@ -38,6 +37,12 @@
     }
 }
 
+.paginationContainer {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
+
 @media screen and (min-width: $mobile-breakpoint) {
 
     .headerContainer {.filterSearchContainer {
@@ -49,6 +54,12 @@
 
   .searchResultsList {
     width: 75%;
+  }
+
+  .paginationContainer {
+    min-width: fit-content;
+    max-width: 50%;
+    margin: 0 auto;
   }
 }
 
