@@ -61,10 +61,6 @@ const Serp = () => {
   }, [window.innerWidth])
   ////
 
-  // useEffect(() => {
-  //   setCurrentPage(0)
-  // }, [searchWord]);
-
   const onPageChange = async ({ selected }) => {
     setCurrentPage(selected);
     try {
@@ -88,7 +84,7 @@ const Serp = () => {
         </div>
         <div className={filterSearchContainer}>
           <div className={search}>
-            <SearchBar {...{currentPage, setCurrentPage}}/>
+            <SearchBar setCurrentPage={setCurrentPage}/>
           </div>
           <div className={filtersContainer}>
             <SearchFilter
