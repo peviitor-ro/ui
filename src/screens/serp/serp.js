@@ -60,6 +60,11 @@ const Serp = () => {
       setPageRangeDisplay(1)
   }, [window.innerWidth])
   ////
+
+  // useEffect(() => {
+  //   setCurrentPage(0)
+  // }, [searchWord]);
+
   const onPageChange = async ({ selected }) => {
     setCurrentPage(selected);
     try {
@@ -83,7 +88,7 @@ const Serp = () => {
         </div>
         <div className={filterSearchContainer}>
           <div className={search}>
-            <SearchBar />
+            <SearchBar {...{currentPage, setCurrentPage}}/>
           </div>
           <div className={filtersContainer}>
             <SearchFilter
@@ -143,6 +148,7 @@ const Serp = () => {
             breakClassName={paginationPage}
             pageRangeDisplayed={pageRangeDisplay}
             marginPagesDisplayed={1}
+            forcePage={currentPage}
           />
         </div>
       }

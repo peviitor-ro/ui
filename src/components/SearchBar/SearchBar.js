@@ -11,7 +11,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import styles from "components/SearchBar/searchBar.module.scss";
 
-const SearchBar = () => {
+const SearchBar = ({ currentPage, setCurrentPage }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const history = useHistory();
   const dispatch = useDispatch();
@@ -20,6 +20,7 @@ const SearchBar = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setCurrentPage(0);
     try {
       const response = await axios.get(`${baseUrl}/search/?q=${searchQuery}`);
       dispatch(setSearchResults(response.data.response.docs));
