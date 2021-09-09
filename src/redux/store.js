@@ -9,6 +9,7 @@ import searchWordReducer from 'redux/reducers/searchWord';
 const reducer = combineReducers({
   searchResults: searchResultsReducer,
   searchResultsNumber: searchResultsNumberReducer,
+  searchWord: searchWordReducer,
   filterOptions: filterOptionsReducer,
   currentFilterOption: currentFilterOptionReducer,
   isBurger: burgerReducer,
