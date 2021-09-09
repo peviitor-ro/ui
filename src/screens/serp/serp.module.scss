@@ -26,16 +26,20 @@
     .filterSearchContainer {
         display: flex;
         flex-direction: column;
-       
+
+       .filtersContainer{
+         display: flex;
+       }
+
         .filters{
             display: flex;
             justify-content: space-between;
             padding: 0px 45px;
             height: 10%;
-
         }
     }
 }
+
 .paginationContainer {
     display: flex;
     justify-content: center;
@@ -44,7 +48,12 @@
 
 @media screen and (min-width: $mobile-breakpoint) {
 
-    .headerContainer {.filterSearchContainer {
+    .headerContainer {
+      .filterSearchContainer{
+        .filtersContainer{
+          display: flex;
+        }  
+
         .filters{
             padding: 0px 100px;
         }
@@ -54,12 +63,12 @@
   .searchResultsList {
     width: 75%;
   }
+
   .paginationContainer {
     min-width: fit-content;
     max-width: 50%;
     margin: 0 auto;
   }
-
 }
 
 @media screen and (min-width: $tablet-breakpoint){
@@ -72,7 +81,7 @@
           align-items: flex-start;
           
           p{
-              margin: 15px;
+              margin: 40px 0px 0px 5px;
               font-size: 3em;
           }
       }
@@ -82,7 +91,7 @@
              flex-direction: column;
 
            .search{
-               margin: 30px;
+              //  margin: 30px;
                margin-bottom: 0px;
                margin-left: 0px;  
            }

@@ -33,6 +33,7 @@ const Home = (props) => {
                         <FooterMenu />
                         <BurgerMenu />
                     </div>
+
                     <Logo />
                     <SearchBar />
                     <div className={filtersContainer}>
