@@ -12,18 +12,27 @@
   margin: 0 auto;
 }
 .switchBackgroundIconContainer {
+  display: flex;
   position: absolute;
   bottom: 1%;
-  right: 1.5%;
+  right: 5%;
   z-index: 6;
 
-  .switchBackgroundIcon {
-    cursor: pointer;
-    color: rgba(0, 0, 0, 0.638);
+  .iconContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.638);
+    color: rgba(250, 250, 250, 0.702);
+    padding: 10% 40%;
     margin-right: 4px;
-    font-size: 25px;
+    border-radius: 9%;
+    cursor: pointer;
+    font-size: 40px;
+
     &:hover {
-      color: rgba(0, 0, 0, 0.802);
+      background-color: rgba(0, 0, 0, 0.802);
+      color: rgba(250, 250, 250, 0.9);
     }
   }
 }
