@@ -4,8 +4,8 @@ import axios from "axios";
 import { useHistory } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { setSearchResults } from "redux/actions/searchResults";
-import { setSearchResultsNumber} from "redux/actions/searchResultsNumber";
-import { setSearchWord} from 'redux/actions/searchWord';
+import { setSearchResultsNumber } from "redux/actions/searchResultsNumber";
+import { setSearchWord } from "redux/actions/searchWord";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -15,18 +15,13 @@ const SearchBar = ({ setCurrentPage }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const history = useHistory();
   const dispatch = useDispatch();
-  const { searchWord } = useSelector(state => state);
 
   const { formSearchBar, searchInput, searchButton } = styles;
-  const{ searchWord } = useSelector(state => state);
+  const { searchWord } = useSelector((state) => state);
 
   useEffect(() => {
-    setSearchQuery(searchWord)
-  }, [])
-
-  useEffect(() => {
-    setSearchQuery(searchWord)
-  }, [])
+    setSearchQuery(searchWord);
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -45,7 +40,7 @@ const SearchBar = ({ setCurrentPage }) => {
   };
 
   const handleChange = (e) => {
-    setSearchQuery(e.target.value);  
+    setSearchQuery(e.target.value);
   };
 
   return (
@@ -57,7 +52,9 @@ const SearchBar = ({ setCurrentPage }) => {
         placeholder="cautare..."
         value={searchQuery}
       ></input>
-      <button className={searchButton} type="submit"><FontAwesomeIcon icon={faSearch} /></button>
+      <button className={searchButton} type="submit">
+        <FontAwesomeIcon icon={faSearch} />
+      </button>
     </form>
   );
 };
