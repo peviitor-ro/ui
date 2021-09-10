@@ -9,12 +9,27 @@
 .logo {
   display: flex;
   justify-content: center;
-  color: $logoColor;
+  color: $black;
   font-family: $logoFont;
-  margin: 0;
-  font-size: 4rem;
+  margin-bottom: 0;
+  font-size: 7rem;
+  margin:0;
+  }
 
+@media screen and (min-width: $mobile-breakpoint){
+  
+  .logo{
+    font-size: 6.5rem;
+  }
 }
+
+@media screen and (min-width: $tablet-breakpoint){
+  
+  .logo{
+    margin-top: 5%;
+  }
+}
+
 
 
 

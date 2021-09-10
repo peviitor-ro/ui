@@ -3,6 +3,7 @@
  .footerMenuContainer{
      width: 100vw;
      height: 30vh;
+     color:$black;
      
     ul{
         display: flex;
@@ -14,7 +15,7 @@
             
         li{
             list-style: none;
-            border: 1px solid black;
+            border: 1px solid $black;
             width: 30vw;
             height: 4vh;
             display: flex;

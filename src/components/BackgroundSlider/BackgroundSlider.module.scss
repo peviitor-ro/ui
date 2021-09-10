@@ -7,9 +7,9 @@
 }
 .pageContent {
   position: absolute;
-  top: 30%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top:0;
+  width: 99.5vw;
+  margin: 0 auto;
 }
 .switchBackgroundIconContainer {
   display: flex;
