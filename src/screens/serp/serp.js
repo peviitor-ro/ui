@@ -1,20 +1,9 @@
 import { React, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ReactPaginate from 'react-paginate';
 import axios from 'axios';
-import Logo from 'components/Logo/Logo';
-import SearchBar from 'components/SearchBar/SearchBar';
-import JobCard from 'components/JobCard/JobCard';
-import SearchFilter from 'components/SearchFilter/SearchFilter';
-import { Link } from 'react-router-dom';
-import FooterMenu from "components/FooterMenu/FooterMenu";
-import BurgerMenu from "components/FooterMenu/BurgerMenu";
-import {
-  setCurrentCountryFilterOption,
-  setCurrentCityFilterOption,
-  setCurrentCompanyFilterOption,
-} from "redux/actions/currentFilterOption";
 import {
   faGlobeEurope,
   faBuilding,
@@ -22,6 +11,19 @@ import {
   faAngleDoubleLeft,
   faAngleDoubleRight,
 } from "@fortawesome/free-solid-svg-icons";
+
+import {
+  setCurrentCountryFilterOption,
+  setCurrentCityFilterOption,
+  setCurrentCompanyFilterOption,
+} from "redux/actions/currentFilterOption";
+
+import Logo from 'components/Logo/Logo';
+import SearchBar from 'components/SearchBar/SearchBar';
+import JobCard from 'components/JobCard/JobCard';
+import SearchFilter from 'components/SearchFilter/SearchFilter';
+import FooterMenu from "components/FooterMenu/FooterMenu";
+import BurgerMenu from "components/FooterMenu/BurgerMenu";
 import { setSearchResults } from "redux/actions/searchResults";
 import { baseUrl, jobsPerPage } from "utils/constants/url";
 import paginationStyles from "components/Pagination/Pagination.module.scss";
@@ -29,11 +31,12 @@ import filterStyles from "screens/home/home.module.scss";
 import styles from "screens/serp/serp.module.scss";
 
 const Serp = () => {
-  const { searchResults, searchWord, searchResultsNumber, isMobile } = useSelector(state => state);
+  const { searchResults, searchWord, resultsNumber } = useSelector(state => state.searchResults);
+  const { isMobile } = useSelector(state => state);
   const [currentPage, setCurrentPage] = useState(0);
   const pageRangeDisplay = isMobile ? 1 : 3;
   const intemsPerPage = jobsPerPage;
-  const pageCount = Math.ceil(searchResultsNumber / intemsPerPage);
+  const pageCount = Math.ceil(resultsNumber / intemsPerPage);
   const dispatch = useDispatch();
   const filterOptions = useSelector((state) => state.filterOptions);
   const currentFilterOption = useSelector((state) => state.currentFilterOption);
@@ -64,7 +67,11 @@ const Serp = () => {
       const response = await axios.get(
         `${baseUrl}/search/?q=${searchWord}&start=${start}`
       );
-      dispatch(setSearchResults(response.data.response.docs));
+      dispatch(setSearchResults({
+        searchResults: response.data.response.docs,
+        resultsNumber: response.data.response.numFound,
+        searchWord: searchWord,
+      }));
     } catch (error) {
       console.log(error);
     }
@@ -114,7 +121,7 @@ const Serp = () => {
       </div>
 
       <div className={searchResultsList}>
-        {searchResults.map((job) => (
+        {searchResults && searchResults.map((job) => (
           <Link
             className={searchResultsList__link}
             to={{ pathname: job.job_link }}
@@ -126,7 +133,7 @@ const Serp = () => {
           </Link>
         ))}
       </div>
-      {searchResultsNumber > intemsPerPage && (
+      {resultsNumber > intemsPerPage && (
         <div className={paginationContainer}>
           <ReactPaginate
             previousLabel={
@@ -157,7 +164,7 @@ const Serp = () => {
         </div>
       )}
       {/* to be replaced with a react component */}
-      {searchWord && searchResultsNumber === 0 && (
+      {searchWord && resultsNumber === 0 && (
         <p>Nu a fost gasit nici un rezultat!</p>
       )}
     </>

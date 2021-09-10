@@ -1,28 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { baseUrl } from "utils/constants/url";
-import axios from "axios";
 import { useHistory } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
-import { setSearchResults } from "redux/actions/searchResults";
-import { setSearchResultsNumber} from "redux/actions/searchResultsNumber";
-import { setSearchWord} from 'redux/actions/searchWord';
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
+import { baseUrl } from "utils/constants/url";
+import { setSearchResults } from "redux/actions/searchResults";
 import styles from "components/SearchBar/searchBar.module.scss";
 
 const SearchBar = ({ setCurrentPage }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const history = useHistory();
   const dispatch = useDispatch();
-  const { searchWord } = useSelector(state => state);
+  const { searchWord } = useSelector(state => state.searchResults);
 
   const { formSearchBar, searchInput, searchButton } = styles;
-  const{ searchWord } = useSelector(state => state);
-
-  useEffect(() => {
-    setSearchQuery(searchWord)
-  }, [])
 
   useEffect(() => {
     setSearchQuery(searchWord)
@@ -34,9 +27,11 @@ const SearchBar = ({ setCurrentPage }) => {
 
     try {
       const response = await axios.get(`${baseUrl}/search/?q=${searchQuery}`);
-      dispatch(setSearchResults(response.data.response.docs));
-      dispatch(setSearchResultsNumber(response.data.response.numFound));
-      dispatch(setSearchWord(searchQuery));
+      dispatch(setSearchResults({
+        searchResults: response.data.response.docs,
+        resultsNumber: response.data.response.numFound,
+        searchWord: searchQuery,
+      }));
     } catch (error) {
       console.log(error);
     }
