@@ -1,13 +1,13 @@
-import React from 'react';
-import styles from './logo.module.scss';
-
+import React from "react";
+import { useSelector } from "react-redux";
+import styles from "./logo.module.scss";
 
 const Logo = () => {
-    const { logo } = styles;
+  const switchBackground = useSelector((state) => state.switchBackground);
 
-    return (
-        <p className={logo}>pe viitor</p>
-    )
-}
+  const { logo, logoOff } = styles;
+
+  return <p className={!switchBackground ? logo : logoOff}>pe viitor</p>;
+};
 
 export default Logo;

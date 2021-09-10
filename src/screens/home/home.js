@@ -21,57 +21,55 @@ import BurgerMenu from "components/FooterMenu/BurgerMenu";
 
 const Home = (props) => {
   const dispatch = useDispatch();
-  const { isBackground } = useSelector((state) => state);
   const filterOptions = useSelector((state) => state.filterOptions);
   const currentFilterOption = useSelector((state) => state.currentFilterOption);
+  const switchBackground = useSelector((state) => state.switchBackground);
   const {
-    welcome,
-    notWelcome,
     filtersContainer,
     menuContainer,
-    homeContainer,
     overlayContainer,
+    landingPageContainer,
   } = styles;
   return (
     <>
-      <div className={homeContainer}>
-        {/* <BackgroundSlider> */}
-        <div className={menuContainer}>
-          <FooterMenu />
-          <BurgerMenu />
-        </div>
-        <div className={overlayContainer}>
-          <Logo />
-          <SearchBar />
-          <div className={filtersContainer}>
-            <SearchFilter
-              icon={faGlobeEurope}
-              text={currentFilterOption.country}
-              options={filterOptions.countries}
-              onSelectOption={(data) => {
-                dispatch(setCurrentCountryFilterOption(data));
-              }}
-            />
-            <SearchFilter
-              icon={faMapMarkerAlt}
-              text={currentFilterOption.city}
-              options={filterOptions.cities}
-              onSelectOption={(data) =>
-                dispatch(setCurrentCityFilterOption(data))
-              }
-            />
-            <SearchFilter
-              icon={faBuilding}
-              text={currentFilterOption.company}
-              options={filterOptions.companies}
-              onSelectOption={(data) =>
-                dispatch(setCurrentCompanyFilterOption(data))
-              }
-            />
+      <BackgroundSlider>
+        <div className={landingPageContainer}>
+          <div className={menuContainer}>
+            <FooterMenu />
+            <BurgerMenu />
+          </div>
+          <div className={overlayContainer}>
+            <Logo />
+            <SearchBar />
+            <div className={filtersContainer}>
+              <SearchFilter
+                icon={faGlobeEurope}
+                text={currentFilterOption.country}
+                options={filterOptions.countries}
+                onSelectOption={(data) => {
+                  dispatch(setCurrentCountryFilterOption(data));
+                }}
+              />
+              <SearchFilter
+                icon={faMapMarkerAlt}
+                text={currentFilterOption.city}
+                options={filterOptions.cities}
+                onSelectOption={(data) =>
+                  dispatch(setCurrentCityFilterOption(data))
+                }
+              />
+              <SearchFilter
+                icon={faBuilding}
+                text={currentFilterOption.company}
+                options={filterOptions.companies}
+                onSelectOption={(data) =>
+                  dispatch(setCurrentCompanyFilterOption(data))
+                }
+              />
+            </div>
           </div>
         </div>
-        {/* </BackgroundSlider> */}
-      </div>
+      </BackgroundSlider>
     </>
   );
 };
