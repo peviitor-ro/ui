@@ -14,21 +14,19 @@ import {
   setCurrentCountryFilterOption,
   setCurrentCityFilterOption,
   setCurrentCompanyFilterOption,
-} from 'redux/actions/currentFilterOption';
+} from "redux/actions/currentFilterOption";
 import {
   faGlobeEurope,
   faBuilding,
   faMapMarkerAlt,
   faAngleDoubleLeft,
   faAngleDoubleRight,
-} from '@fortawesome/free-solid-svg-icons';
-import { setSearchResults } from 'redux/actions/searchResults';
-import { baseUrl, jobsPerPage } from 'utils/constants/url';
-import paginationStyles from 'components/Pagination/Pagination.module.scss';
-import filterStyles from 'screens/home/home.module.scss';
-import styles from 'screens/serp/serp.module.scss';
-
-
+} from "@fortawesome/free-solid-svg-icons";
+import { setSearchResults } from "redux/actions/searchResults";
+import { baseUrl, jobsPerPage } from "utils/constants/url";
+import paginationStyles from "components/Pagination/Pagination.module.scss";
+import filterStyles from "screens/home/home.module.scss";
+import styles from "screens/serp/serp.module.scss";
 
 const Serp = () => {
   const { searchResults, searchWord, searchResultsNumber, isMobile } = useSelector(state => state);
@@ -39,7 +37,14 @@ const Serp = () => {
   const dispatch = useDispatch();
   const filterOptions = useSelector((state) => state.filterOptions);
   const currentFilterOption = useSelector((state) => state.currentFilterOption);
-  const { pagination, paginationPage, paginationActive, paginationArrow, arrowIcons, paginationDisabled } = paginationStyles;
+  const {
+    pagination,
+    paginationPage,
+    paginationActive,
+    paginationArrow,
+    arrowIcons,
+    paginationDisabled,
+  } = paginationStyles;
   const { filtersContainer } = filterStyles;
   const {
     headerContainer,
@@ -56,7 +61,9 @@ const Serp = () => {
     setCurrentPage(selected);
     try {
       const start = selected * intemsPerPage;
-      const response = await axios.get(`${baseUrl}/search/?q=${searchWord}&start=${start}`);
+      const response = await axios.get(
+        `${baseUrl}/search/?q=${searchWord}&start=${start}`
+      );
       dispatch(setSearchResults(response.data.response.docs));
     } catch (error) {
       console.log(error);
@@ -114,16 +121,26 @@ const Serp = () => {
             target="_blank"
             key={job.id}
           >
-            {' '}
-            <JobCard {...job} />{' '}
+            {" "}
+            <JobCard {...job} />{" "}
           </Link>
         ))}
       </div>
-      {searchResultsNumber > intemsPerPage &&
+      {searchResultsNumber > intemsPerPage && (
         <div className={paginationContainer}>
           <ReactPaginate
-            previousLabel={<FontAwesomeIcon icon={faAngleDoubleLeft} className={arrowIcons} />}
-            nextLabel={<FontAwesomeIcon icon={faAngleDoubleRight} className={arrowIcons} />}
+            previousLabel={
+              <FontAwesomeIcon
+                icon={faAngleDoubleLeft}
+                className={arrowIcons}
+              />
+            }
+            nextLabel={
+              <FontAwesomeIcon
+                icon={faAngleDoubleRight}
+                className={arrowIcons}
+              />
+            }
             pageCount={pageCount}
             onPageChange={onPageChange}
             activeClassName={paginationActive}
@@ -138,11 +155,11 @@ const Serp = () => {
             forcePage={currentPage}
           />
         </div>
-      }
+      )}
       {/* to be replaced with a react component */}
-      {searchWord && searchResultsNumber === 0 &&
+      {searchWord && searchResultsNumber === 0 && (
         <p>Nu a fost gasit nici un rezultat!</p>
-      }
+      )}
     </>
   );
 };

@@ -18,6 +18,11 @@ const SearchBar = ({ setCurrentPage }) => {
   const { searchWord } = useSelector(state => state);
 
   const { formSearchBar, searchInput, searchButton } = styles;
+  const{ searchWord } = useSelector(state => state);
+
+  useEffect(() => {
+    setSearchQuery(searchWord)
+  }, [])
 
   useEffect(() => {
     setSearchQuery(searchWord)
@@ -26,6 +31,7 @@ const SearchBar = ({ setCurrentPage }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setCurrentPage && setCurrentPage(0);
+
     try {
       const response = await axios.get(`${baseUrl}/search/?q=${searchQuery}`);
       dispatch(setSearchResults(response.data.response.docs));
@@ -39,7 +45,7 @@ const SearchBar = ({ setCurrentPage }) => {
   };
 
   const handleChange = (e) => {
-    setSearchQuery(e.target.value);
+    setSearchQuery(e.target.value);  
   };
 
   return (

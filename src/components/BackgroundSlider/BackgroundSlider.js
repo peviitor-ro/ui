@@ -1,15 +1,12 @@
-import React from 'react';
-import { useEffect, useState, useRef } from 'react';
-import { Slide, Fade } from 'react-slideshow-image';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { getBackgroundImages } from 'utils/services';
-import {
-  faCaretSquareLeft,
-  faCaretSquareRight,
-} from '@fortawesome/free-solid-svg-icons';
-import ToggleButton from 'react-toggle-button';
-import styles from './BackgroundSlider.module.scss';
-import 'react-slideshow-image/dist/styles.css';
+import React from "react";
+import { useEffect, useState, useRef } from "react";
+import { Slide, Fade } from "react-slideshow-image";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { getBackgroundImages } from "utils/services";
+import { faCaretRight, faCaretLeft } from "@fortawesome/free-solid-svg-icons";
+import ToggleButton from "react-toggle-button";
+import styles from "./BackgroundSlider.module.scss";
+import "react-slideshow-image/dist/styles.css";
 
 const BackgroundSlider = ({ children }) => {
   const [backgroundImages, setBackgroundImages] = useState();
@@ -23,6 +20,7 @@ const BackgroundSlider = ({ children }) => {
     switchBackgroundIcon,
     switchBackgroundIconContainer,
     pageContent,
+    iconContainer,
   } = styles;
   const properties = {
     autoplay: false,
@@ -47,7 +45,7 @@ const BackgroundSlider = ({ children }) => {
                 className={backgroundStyle}
                 style={{
                   backgroundImage: `url(${element.url_pic})`,
-                  height: '100vh',
+                  height: "100vh",
                 }}
               >
                 {/* {children} */}
@@ -66,18 +64,12 @@ const BackgroundSlider = ({ children }) => {
         }}
       /> */}
       <div className={switchBackgroundIconContainer}>
-        <FontAwesomeIcon
-          icon={faCaretSquareLeft}
-          size="2x"
-          onClick={back}
-          className={switchBackgroundIcon}
-        />
-        <FontAwesomeIcon
-          icon={faCaretSquareRight}
-          size="2x"
-          onClick={next}
-          className={switchBackgroundIcon}
-        />
+        <div className={iconContainer} onClick={back}>
+          <FontAwesomeIcon icon={faCaretLeft} />
+        </div>
+        <div className={iconContainer} onClick={next}>
+          <FontAwesomeIcon icon={faCaretRight} />
+        </div>
       </div>
     </div>
   );
