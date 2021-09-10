@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { baseUrl } from "utils/constants/url";
 import axios from "axios";
 import { useHistory } from "react-router";
@@ -15,6 +15,7 @@ const SearchBar = ({ setCurrentPage }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const history = useHistory();
   const dispatch = useDispatch();
+  const { searchWord } = useSelector(state => state);
 
   const { formSearchBar, searchInput, searchButton } = styles;
   const{ searchWord } = useSelector(state => state);
@@ -23,10 +24,14 @@ const SearchBar = ({ setCurrentPage }) => {
     setSearchQuery(searchWord)
   }, [])
 
+  useEffect(() => {
+    setSearchQuery(searchWord)
+  }, [])
+
   const handleSubmit = async (e) => {
-    e.preventDefault();   
-      setCurrentPage && setCurrentPage(0);
-    
+    e.preventDefault();
+    setCurrentPage && setCurrentPage(0);
+
     try {
       const response = await axios.get(`${baseUrl}/search/?q=${searchQuery}`);
       dispatch(setSearchResults(response.data.response.docs));

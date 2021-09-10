@@ -1,13 +1,13 @@
-import { React, useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import ReactPaginate from "react-paginate";
-import axios from "axios";
-import Logo from "components/Logo/Logo";
-import SearchBar from "components/SearchBar/SearchBar";
-import JobCard from "components/JobCard/JobCard";
-import SearchFilter from "components/SearchFilter/SearchFilter";
-import { Link } from "react-router-dom";
+import { React, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import ReactPaginate from 'react-paginate';
+import axios from 'axios';
+import Logo from 'components/Logo/Logo';
+import SearchBar from 'components/SearchBar/SearchBar';
+import JobCard from 'components/JobCard/JobCard';
+import SearchFilter from 'components/SearchFilter/SearchFilter';
+import { Link } from 'react-router-dom';
 import FooterMenu from "components/FooterMenu/FooterMenu";
 import BurgerMenu from "components/FooterMenu/BurgerMenu";
 import {
@@ -29,11 +29,9 @@ import filterStyles from "screens/home/home.module.scss";
 import styles from "screens/serp/serp.module.scss";
 
 const Serp = () => {
-  const { searchResults, searchWord, searchResultsNumber } = useSelector(
-    (state) => state
-  );
+  const { searchResults, searchWord, searchResultsNumber, isMobile } = useSelector(state => state);
   const [currentPage, setCurrentPage] = useState(0);
-  const [pageRangeDisplay, setPageRangeDisplay] = useState(1);
+  const pageRangeDisplay = isMobile ? 1 : 3;
   const intemsPerPage = jobsPerPage;
   const pageCount = Math.ceil(searchResultsNumber / intemsPerPage);
   const dispatch = useDispatch();
@@ -58,13 +56,6 @@ const Serp = () => {
     menuContainer,
     paginationContainer,
   } = styles;
-
-  ////needs refactoring
-  useEffect(() => {
-    if (window.innerWidth > 481) setPageRangeDisplay(3);
-    if (window.innerWidth < 481) setPageRangeDisplay(1);
-  }, [window.innerWidth]);
-  ////
 
   const onPageChange = async ({ selected }) => {
     setCurrentPage(selected);
@@ -91,7 +82,7 @@ const Serp = () => {
         </div>
         <div className={filterSearchContainer}>
           <div className={search}>
-            <SearchBar setCurrentPage={setCurrentPage}/>
+            <SearchBar {...{setCurrentPage}}/>
           </div>
           <div className={filtersContainer}>
             <SearchFilter

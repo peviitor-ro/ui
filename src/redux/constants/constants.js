@@ -6,4 +6,5 @@ export const SET_COMPANY_OPTION = 'SET_COMPANY_OPTION';
 export const IS_BURGER = 'IS_BURGER';
 export const SET_RESULTS_NUMBER = 'SET_RESULTS_NUMBER';
 export const SET_SEARCH_WORD = 'SET_SEARCH_WORD';
+export const IS_MOBILE = 'IS_MOBILE';
 
