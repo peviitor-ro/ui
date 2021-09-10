@@ -21,6 +21,8 @@ const BackgroundSlider = ({ children }) => {
     switchBackgroundIconContainer,
     pageContent,
     iconContainer,
+    backgroundSliderContainer,
+    eachSlide,
   } = styles;
   const properties = {
     autoplay: false,
@@ -36,16 +38,16 @@ const BackgroundSlider = ({ children }) => {
   };
 
   return (
-    <div>
+    <div className={backgroundSliderContainer}>
       {isBackgroundVisible && backgroundImages && (
         <Slide easing="ease" ref={slideRef} {...properties}>
           {backgroundImages.map((element) => (
-            <div className="each-slide" key={element.id}>
+            <div className={eachSlide} key={element.id}>
               <div
                 className={backgroundStyle}
                 style={{
                   backgroundImage: `url(${element.url_pic})`,
-                  height: "100vh",
+                  height: "100%",
                 }}
               >
                 {/* {children} */}
