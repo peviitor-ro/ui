@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from 'react';
+import { React, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ReactPaginate from 'react-paginate';
@@ -31,9 +31,9 @@ import styles from 'screens/serp/serp.module.scss';
 
 
 const Serp = () => {
-  const { searchResults, searchWord, searchResultsNumber } = useSelector((state) => state);
+  const { searchResults, searchWord, searchResultsNumber, isMobile } = useSelector(state => state);
   const [currentPage, setCurrentPage] = useState(0);
-  const [pageRangeDisplay, setPageRangeDisplay] = useState(1);
+  const pageRangeDisplay = isMobile ? 1 : 3;
   const intemsPerPage = jobsPerPage;
   const pageCount = Math.ceil(searchResultsNumber / intemsPerPage);
   const dispatch = useDispatch();
@@ -52,14 +52,6 @@ const Serp = () => {
     paginationContainer,
   } = styles;
 
-  ////needs refactoring
-  useEffect(() => {
-    if (window.innerWidth > 481)
-      setPageRangeDisplay(3)
-    if (window.innerWidth < 481)
-      setPageRangeDisplay(1)
-  }, [window.innerWidth])
-  ////
   const onPageChange = async ({ selected }) => {
     setCurrentPage(selected);
     try {
@@ -83,7 +75,7 @@ const Serp = () => {
         </div>
         <div className={filterSearchContainer}>
           <div className={search}>
-            <SearchBar />
+            <SearchBar {...{setCurrentPage}}/>
           </div>
           <div className={filtersContainer}>
             <SearchFilter
@@ -143,6 +135,7 @@ const Serp = () => {
             breakClassName={paginationPage}
             pageRangeDisplayed={pageRangeDisplay}
             marginPagesDisplayed={1}
+            forcePage={currentPage}
           />
         </div>
       }
