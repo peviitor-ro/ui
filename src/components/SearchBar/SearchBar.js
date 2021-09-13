@@ -4,29 +4,37 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { setSearchResults } from "redux/actions/searchResults";
+import { getQueryWithFilters } from "../../screens/serp/serp";
 
 import { baseUrl } from "utils/constants/url";
-import { setSearchResults } from "redux/actions/searchResults";
 import styles from "components/SearchBar/searchBar.module.scss";
 
 const SearchBar = ({ setCurrentPage }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const history = useHistory();
   const dispatch = useDispatch();
-  const { searchWord } = useSelector(state => state.searchResults);
 
   const { formSearchBar, searchInput, searchButton } = styles;
+  const { searchResults, currentFilterOption } = useSelector((state) => state);
+  const { searchWord } = searchResults;
 
   useEffect(() => {
-    setSearchQuery(searchWord)
-  }, [])
+    setSearchQuery(searchWord);
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     setCurrentPage && setCurrentPage(0);
 
     try {
-      const response = await axios.get(`${baseUrl}/search/?q=${searchQuery}`);
+      const response = await axios.get(
+        getQueryWithFilters(
+          `${baseUrl}/search/?q=${searchQuery}`,
+          currentFilterOption
+        )
+      );
       dispatch(setSearchResults({
         searchResults: response.data.response.docs,
         resultsNumber: response.data.response.numFound,
@@ -39,8 +47,29 @@ const SearchBar = ({ setCurrentPage }) => {
     history.push("/rezultate");
   };
 
+  useEffect(() => {
+    (async () => {
+      try {
+        const response = await axios.get(
+          getQueryWithFilters(
+            `${baseUrl}/search/?q=${searchWord}`,
+            currentFilterOption
+          )
+        );
+        dispatch(setSearchResults({
+          searchResults: response.data.response.docs,
+          resultsNumber: response.data.response.numFound,
+          searchWord: searchQuery,
+        }));
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+    console.log("activate");
+  }, [currentFilterOption]);
+
   const handleChange = (e) => {
-    setSearchQuery(e.target.value);  
+    setSearchQuery(e.target.value);
   };
 
   return (
@@ -52,7 +81,9 @@ const SearchBar = ({ setCurrentPage }) => {
         placeholder="cautare..."
         value={searchQuery}
       ></input>
-      <button className={searchButton} type="submit"><FontAwesomeIcon icon={faSearch} /></button>
+      <button className={searchButton} type="submit">
+        <FontAwesomeIcon icon={faSearch} />
+      </button>
     </form>
   );
 };

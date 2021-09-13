@@ -1,10 +1,11 @@
-import { combineReducers, createStore } from 'redux';
+import { combineReducers, createStore } from "redux";
 
-import searchResultsReducer from 'redux/reducers/searchResults';
-import filterOptionsReducer from 'redux/reducers/filterOptions';
-import currentFilterOptionReducer from './reducers/currentFilterOption';
-import burgerReducer from './reducers/burger';
-import checkScreenSizeReducer from 'redux/reducers/mediaQueries';
+import searchResultsReducer from "redux/reducers/searchResults";
+import filterOptionsReducer from "redux/reducers/filterOptions";
+import currentFilterOptionReducer from "./reducers/currentFilterOption";
+import burgerReducer from "./reducers/burger";
+import checkScreenSizeReducer from "redux/reducers/mediaQueries";
+import switchBackgroundReducer from "./reducers/switchBackground";
 
 const reducer = combineReducers({
   searchResults: searchResultsReducer,
@@ -12,6 +13,7 @@ const reducer = combineReducers({
   currentFilterOption: currentFilterOptionReducer,
   isBurger: burgerReducer,
   isMobile: checkScreenSizeReducer,
+  switchBackground: switchBackgroundReducer,
 });
 
 const store = createStore(

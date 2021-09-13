@@ -1,9 +1,22 @@
-import { React, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import ReactPaginate from 'react-paginate';
-import axios from 'axios';
+import { React, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import ReactPaginate from "react-paginate";
+import axios from "axios";
+import Logo from "components/Logo/Logo";
+import SearchBar from "components/SearchBar/SearchBar";
+import JobCard from "components/JobCard/JobCard";
+import SearchFilter from "components/SearchFilter/SearchFilter";
+import { Link } from "react-router-dom";
+import FooterMenu from "components/FooterMenu/FooterMenu";
+import BurgerMenu from "components/FooterMenu/BurgerMenu";
+
+import {
+  setCurrentCountryFilterOption,
+  setCurrentCityFilterOption,
+  setCurrentCompanyFilterOption,
+} from "redux/actions/currentFilterOption";
+
 import {
   faGlobeEurope,
   faBuilding,
@@ -12,27 +25,24 @@ import {
   faAngleDoubleRight,
 } from "@fortawesome/free-solid-svg-icons";
 
-import {
-  setCurrentCountryFilterOption,
-  setCurrentCityFilterOption,
-  setCurrentCompanyFilterOption,
-} from "redux/actions/currentFilterOption";
-
-import Logo from 'components/Logo/Logo';
-import SearchBar from 'components/SearchBar/SearchBar';
-import JobCard from 'components/JobCard/JobCard';
-import SearchFilter from 'components/SearchFilter/SearchFilter';
-import FooterMenu from "components/FooterMenu/FooterMenu";
-import BurgerMenu from "components/FooterMenu/BurgerMenu";
 import { setSearchResults } from "redux/actions/searchResults";
 import { baseUrl, jobsPerPage } from "utils/constants/url";
 import paginationStyles from "components/Pagination/Pagination.module.scss";
 import filterStyles from "screens/home/home.module.scss";
 import styles from "screens/serp/serp.module.scss";
 
+export const getQueryWithFilters = (query, currentFilterOption) => {
+  let { city, company, country } = currentFilterOption;
+
+  if (city !== "Oras") query = query + "&fq%3Dcity%253A" + city;
+  query = query + "&fq%3Dcountry%253A" + country;
+  if (company !== "Companie") query = query + "&fq%3Dcompany%253A" + company;
+  return query;
+};
+
 const Serp = () => {
-  const { searchResults, searchWord, resultsNumber } = useSelector(state => state.searchResults);
-  const { isMobile } = useSelector(state => state);
+  const { searchResults, isMobile } = useSelector((state) => state);
+  const { searchWord, resultsNumber } = searchResults;
   const [currentPage, setCurrentPage] = useState(0);
   const pageRangeDisplay = isMobile ? 1 : 3;
   const intemsPerPage = jobsPerPage;
@@ -65,7 +75,11 @@ const Serp = () => {
     try {
       const start = selected * intemsPerPage;
       const response = await axios.get(
-        `${baseUrl}/search/?q=${searchWord}&start=${start}`
+        getQueryWithFilters(
+          `${baseUrl}/search/?q=${searchWord}&start=${start}`,
+          currentFilterOption
+        )
+        //console.log(searchword)
       );
       dispatch(setSearchResults({
         searchResults: response.data.response.docs,
@@ -76,7 +90,6 @@ const Serp = () => {
       console.log(error);
     }
   };
-
   return (
     <>
       <div className={menuContainer}>
@@ -89,7 +102,7 @@ const Serp = () => {
         </div>
         <div className={filterSearchContainer}>
           <div className={search}>
-            <SearchBar {...{setCurrentPage}}/>
+            <SearchBar {...{ setCurrentPage }} />
           </div>
           <div className={filtersContainer}>
             <SearchFilter
@@ -121,7 +134,7 @@ const Serp = () => {
       </div>
 
       <div className={searchResultsList}>
-        {searchResults && searchResults.map((job) => (
+        {searchResults.searchResults && searchResults.searchResults.map((job) => (
           <Link
             className={searchResultsList__link}
             to={{ pathname: job.job_link }}
