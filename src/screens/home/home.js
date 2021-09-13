@@ -29,6 +29,10 @@ const Home = (props) => {
     menuContainer,
     overlayContainer,
     landingPageContainer,
+    textContainer,
+    textInfo,
+    textInfoDescriptionOff,
+    textInfoDescriptionOn
   } = styles;
   return (
     <>
@@ -68,7 +72,12 @@ const Home = (props) => {
               />
             </div>
           </div>
+          <div className={textContainer}>
+          <h1 className={textInfo}>motor de cautare</h1>
+          <h2 className={switchBackground? textInfoDescriptionOff : textInfoDescriptionOn}>locuri de munca</h2>
         </div>
+        </div>
+
       </BackgroundSlider>
     </>
   );

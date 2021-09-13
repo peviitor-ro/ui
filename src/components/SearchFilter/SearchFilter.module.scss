@@ -7,18 +7,44 @@
   width: min-content;
   cursor: pointer;
   position: relative;
+ 
+
   
-  .searchFilterText {
+  .searchFilterTextOff {
     margin: 0;
     margin-left: 5px;
     -webkit-user-select: none; /* Safari */
     -moz-user-select: none; /* Firefox */
     -ms-user-select: none; /* IE10+/Edge */
     user-select: none; /* Standard */
+    color: $black;
+  
   }
-
-  .textIconFilterContainer {
+   .textIconFilterContainerOff {
     display: flex;
     align-items: center;
+    color: $black;
+  }
+}
+
+
+
+
+.searchFilterContainer{
+
+ .searchFilterTextOn {
+    margin: 0;
+    margin-left: 5px;
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard */
+    color: $white;
+ }
+  
+ .textIconFilterContainerOn {
+    display: flex;
+    align-items: center;
+    color:$white;
   }
 }

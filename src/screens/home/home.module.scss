@@ -20,6 +20,35 @@
   justify-content: flex-end;
 }
 
+.textContainer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 5%;
+
+  .textInfo{
+    font-family: $primaryFont;
+    height: 10px;
+    color: $logoColor;
+  }
+  .textInfoDescriptionOff{
+    font-family: $primaryFont;
+    height: 10px;
+    color: $white;
+  }
+  
+}
+
+.textContainer{
+  
+  .textInfoDescriptionOn{
+    font-family: $primaryFont;
+    height: 10px;
+    color: $black;
+  }
+}
+
+
 @media screen and (min-width: $mobile-breakpoint) {
   .filtersContainer {
     padding: 0px 100px;

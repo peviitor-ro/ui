@@ -14,9 +14,9 @@ const SearchBar = ({ setCurrentPage }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const history = useHistory();
   const dispatch = useDispatch();
-
-  const { formSearchBar, searchInput, searchButton } = styles;
-  const { searchResults, currentFilterOption } = useSelector((state) => state);
+  const { formSearchBar, searchInputOff, searchInputOn, searchButtonOff, searchButtonOn } = styles;
+  const { searchResults, currentFilterOption, switchBackground } = useSelector((state) => state);
+  
   const { searchWord } = searchResults;
 
   useEffect(() => {
@@ -76,12 +76,12 @@ const SearchBar = ({ setCurrentPage }) => {
     <form onSubmit={handleSubmit} className={formSearchBar}>
       <input
         onChange={handleChange}
-        className={searchInput}
+        className={!switchBackground ? searchInputOff : searchInputOn }
         type="text"
         placeholder="cautare..."
         value={searchQuery}
       ></input>
-      <button className={searchButton} type="submit">
+      <button className={!switchBackground ? searchButtonOff : searchButtonOn} type="submit">
         <FontAwesomeIcon icon={faSearch} />
       </button>
     </form>

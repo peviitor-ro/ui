@@ -6,8 +6,8 @@ import { faFileExcel } from '@fortawesome/free-solid-svg-icons';
 import useWindowDimensions from 'utils/customsHooks/useWindowsDimensions';
 
 const FooterMenu = () => {
-    const { isBurger } = useSelector(state => state)
-    const { footerMenuContainer } = styles;
+    const { isBurger, switchBackground } = useSelector(state => state)
+    const { footerMenuContainer, menuTextOff, menuTextOn } = styles;
     const { height, width } = useWindowDimensions();
     const footerStyle = {
         display: (isBurger || width > 768) ? 'block' : 'none',
@@ -17,9 +17,9 @@ const FooterMenu = () => {
     return (
         <div className={footerMenuContainer} style={footerStyle}>
             <ul>
-                <li>Despre noi</li>
-                <li>Ajutor</li>
-                <li>Feedback</li>
+                <li  className={!switchBackground ? menuTextOff : menuTextOn } >Despre noi</li>
+                <li  className={!switchBackground ? menuTextOff : menuTextOn }>Ajutor</li>
+                <li  className={!switchBackground ? menuTextOff : menuTextOn }>Feedback</li>
             </ul>
         </div>
     )

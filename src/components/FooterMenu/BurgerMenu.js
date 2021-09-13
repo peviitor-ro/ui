@@ -7,7 +7,7 @@ import useWindowDimensions from 'utils/customsHooks/useWindowsDimensions';
 const BurgerMenu = () => {
 
     const { width } = useWindowDimensions();
-    const { isBurger } = useSelector(state => state)
+    const { isBurger, switchBackground } = useSelector(state => state)
     const dispatch = useDispatch();
     const toggleBurger = () => {
         dispatch(setIsBurger());
@@ -15,12 +15,12 @@ const BurgerMenu = () => {
     }
     const burgerStyle = {
         display: width > 768 ? 'none' : 'block',
-        marginBottom: isBurger ? 0 : 197.5,
+        marginBottom: isBurger ? 100 : 100,
         color: '#000000',
     }
     return (
         <div style={burgerStyle}>
-            <Hamburger onToggle={toggleBurger} />
+            <Hamburger onToggle={toggleBurger}  color={!switchBackground ? "#000000": "#ffffff"}/>
         </div>
     )
 }
