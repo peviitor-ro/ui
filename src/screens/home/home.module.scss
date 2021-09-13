@@ -1,45 +1,52 @@
 @import "../../styles/variables.scss";
 
-.homeContainer {
-    width: 100vw;
-    height: 100vh;
+.landingPageContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: $borderColor;
+}
+.filtersContainer {
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 45px;
+  height: 10%;
+}
 
-    .filtersContainer{
-    display: flex;
-    justify-content: space-between;
-    padding: 0px 45px;
-    height: 10%;
-    }
-
-    .menuContainer{
-        display: flex;
-        justify-content: flex-end;       
-    }
+.menuContainer {
+  display: flex;
+  justify-content: flex-end;
 }
 
 @media screen and (min-width: $mobile-breakpoint) {
-
-        .filtersContainer{
-            padding: 0px 100px;
-        }
+  .filtersContainer {
+    padding: 0px 100px;
+  }
 }
 
 @media screen and (min-width: $tablet-breakpoint) {
+  .landingPageContainer {
+    background-color: transparent;
+  }
+  .overlayContainer {
+    background-color: $borderColor;
+    margin: 10% auto;
+    width: 50%;
+    height: 30%;
+  }
 
-    .search{
-        margin: 30px;
-        margin-bottom: 0px;
-        margin-left: 0px;
-    }
-    
-    .filtersContainer{
-        width: 35vw;
-        display: flex;
-        justify-content: space-between;
-        margin: 0 auto;
-    }
+  .search {
+    margin: 30px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+  }
+
+  .filtersContainer {
+    width: 35vw;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+  }
 }
-
-
-
-

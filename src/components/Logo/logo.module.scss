@@ -9,34 +9,36 @@
 .logo {
   display: flex;
   justify-content: center;
-  color: $black;
+  color: $logoColor;
   font-family: $logoFont;
   margin-bottom: 0;
   font-size: 7rem;
-  margin:0;
-  }
+  margin: 0;
+}
+.logoOff {
+  display: flex;
+  justify-content: center;
+  color: $white;
+  font-family: $logoFont;
+  margin-bottom: 0;
+  font-size: 7rem;
+  margin: 0;
+}
 
-@media screen and (min-width: $mobile-breakpoint){
-  
-  .logo{
+@media screen and (min-width: $mobile-breakpoint) {
+  .logo {
+    font-size: 6.5rem;
+  }
+  .logoOff {
     font-size: 6.5rem;
   }
 }
 
-@media screen and (min-width: $tablet-breakpoint){
-  
-  .logo{
+@media screen and (min-width: $tablet-breakpoint) {
+  .logo {
+    margin-top: 5%;
+  }
+  .logoOff {
     margin-top: 5%;
   }
 }
-
-
-
-
- 
-
-
-   
- 
-
-
