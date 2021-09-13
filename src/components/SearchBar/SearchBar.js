@@ -8,6 +8,7 @@ import { setSearchResultsNumber } from "redux/actions/searchResultsNumber";
 import { setSearchWord } from "redux/actions/searchWord";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { getQueryWithFilters } from "../../screens/serp/serp";
 
 import styles from "components/SearchBar/searchBar.module.scss";
 
@@ -17,18 +18,23 @@ const SearchBar = ({ setCurrentPage }) => {
   const dispatch = useDispatch();
 
   const { formSearchBar, searchInput, searchButton } = styles;
-  const { searchWord } = useSelector((state) => state);
+  const { searchWord, currentFilterOption } = useSelector((state) => state);
 
   useEffect(() => {
     setSearchQuery(searchWord);
   }, []);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     setCurrentPage && setCurrentPage(0);
 
     try {
-      const response = await axios.get(`${baseUrl}/search/?q=${searchQuery}`);
+      const response = await axios.get(
+        getQueryWithFilters(
+          `${baseUrl}/search/?q=${searchQuery}`,
+          currentFilterOption
+        )
+      );
       dispatch(setSearchResults(response.data.response.docs));
       dispatch(setSearchResultsNumber(response.data.response.numFound));
       dispatch(setSearchWord(searchQuery));
@@ -38,6 +44,24 @@ const SearchBar = ({ setCurrentPage }) => {
 
     history.push("/rezultate");
   };
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const response = await axios.get(
+          getQueryWithFilters(
+            `${baseUrl}/search/?q=${searchWord}`,
+            currentFilterOption
+          )
+        );
+        dispatch(setSearchResults(response.data.response.docs));
+        dispatch(setSearchResultsNumber(response.data.response.numFound));
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+    console.log("activate");
+  }, [currentFilterOption]);
 
   const handleChange = (e) => {
     setSearchQuery(e.target.value);
