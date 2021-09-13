@@ -1,12 +1,21 @@
 @import "../../styles/variables.scss";
 
-.landingPageContainer {
+.landingPageContainerOverlay {
   position: absolute;
   top: 0;
   left: 0;
   height: 100%;
   width: 100%;
   background-color: $borderColor;
+  color: $white;
+}
+.landingPageContainerNoOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: transparent;
 }
 .filtersContainer {
   display: flex;
@@ -27,11 +36,17 @@
 }
 
 @media screen and (min-width: $tablet-breakpoint) {
-  .landingPageContainer {
+  .landingPageContainerOverlay {
     background-color: transparent;
   }
   .overlayContainer {
     background-color: $borderColor;
+    margin: 10% auto;
+    width: 50%;
+    height: 30%;
+    color: $white;
+  }
+  .noOverlayContainer {
     margin: 10% auto;
     width: 50%;
     height: 30%;

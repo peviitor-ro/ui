@@ -40,7 +40,11 @@
       }
     }
   }
+  .noIcon {
+    display: none;
+  }
 }
+
 .toggleButtonContainer {
   position: absolute;
   bottom: 5%;

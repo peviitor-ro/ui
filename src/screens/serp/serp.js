@@ -81,11 +81,13 @@ const Serp = () => {
         )
         //console.log(searchword)
       );
-      dispatch(setSearchResults({
-        searchResults: response.data.response.docs,
-        resultsNumber: response.data.response.numFound,
-        searchWord: searchWord,
-      }));
+      dispatch(
+        setSearchResults({
+          searchResults: response.data.response.docs,
+          resultsNumber: response.data.response.numFound,
+          searchWord: searchWord,
+        })
+      );
     } catch (error) {
       console.log(error);
     }
@@ -134,17 +136,18 @@ const Serp = () => {
       </div>
 
       <div className={searchResultsList}>
-        {searchResults.searchResults && searchResults.searchResults.map((job) => (
-          <Link
-            className={searchResultsList__link}
-            to={{ pathname: job.job_link }}
-            target="_blank"
-            key={job.id}
-          >
-            {" "}
-            <JobCard {...job} />{" "}
-          </Link>
-        ))}
+        {searchResults.searchResults &&
+          searchResults.searchResults.map((job) => (
+            <Link
+              className={searchResultsList__link}
+              to={{ pathname: job.job_link }}
+              target="_blank"
+              key={job.id}
+            >
+              {" "}
+              <JobCard {...job} />{" "}
+            </Link>
+          ))}
       </div>
       {resultsNumber > intemsPerPage && (
         <div className={paginationContainer}>

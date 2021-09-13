@@ -9,14 +9,14 @@ import ToggleButton from "react-toggle-button";
 import styles from "./BackgroundSlider.module.scss";
 import "react-slideshow-image/dist/styles.css";
 import { setSwitchBackground } from "redux/actions/switchBackground";
+import switchBackground from "redux/reducers/switchBackground";
 
 const BackgroundSlider = ({ children }) => {
   const [backgroundImages, setBackgroundImages] = useState();
-  const [isBackgroundVisible, setBackgroundVisibility] = useState(true);
+  const switchBackground = useSelector((state) => state.switchBackground);
   const dispatch = useDispatch();
   const toggleButton = () => {
     dispatch(setSwitchBackground());
-    setBackgroundVisibility(!isBackgroundVisible);
   };
 
   useEffect(() => {
@@ -31,6 +31,7 @@ const BackgroundSlider = ({ children }) => {
     backgroundSliderContainer,
     eachSlide,
     toggleButtonContainer,
+    noIcon,
   } = styles;
   const properties = {
     autoplay: false,
@@ -47,7 +48,7 @@ const BackgroundSlider = ({ children }) => {
 
   return (
     <div className={backgroundSliderContainer}>
-      {isBackgroundVisible && backgroundImages && (
+      {switchBackground && backgroundImages && (
         <Slide easing="ease" ref={slideRef} {...properties}>
           {backgroundImages.map((element) => (
             <div className={eachSlide} key={element.id}>
@@ -57,9 +58,7 @@ const BackgroundSlider = ({ children }) => {
                   backgroundImage: `url(${element.url_pic})`,
                   height: "100%",
                 }}
-              >
-                {/* {children} */}
-              </div>
+              ></div>
             </div>
           ))}
         </Slide>
@@ -71,7 +70,7 @@ const BackgroundSlider = ({ children }) => {
           trackStyle={{ borderRadius: 2, with: "40px", height: "35px" }}
           inactiveLabel={""}
           activeLabel={""}
-          value={isBackgroundVisible}
+          value={switchBackground}
           onToggle={toggleButton}
           colors={{
             activeThumb: {
@@ -89,7 +88,9 @@ const BackgroundSlider = ({ children }) => {
           }}
         />
       </div>
-      <div className={switchBackgroundIconContainer}>
+      <div
+        className={switchBackground ? switchBackgroundIconContainer : noIcon}
+      >
         <div className={iconContainer} onClick={back}>
           <FontAwesomeIcon icon={faCaretLeft} />
         </div>

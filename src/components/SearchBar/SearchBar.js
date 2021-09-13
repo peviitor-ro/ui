@@ -10,12 +10,18 @@ import { getQueryWithFilters } from "../../screens/serp/serp";
 import { baseUrl } from "utils/constants/url";
 import styles from "components/SearchBar/searchBar.module.scss";
 
-const SearchBar = ({ setCurrentPage }) => {
+const SearchBar = ({ setCurrentPage, switchBackground }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const { formSearchBar, searchInput, searchButton } = styles;
+  const {
+    formSearchBar,
+    searchInputBlack,
+    searchInputWhite,
+    searchButtonBlack,
+    searchButtonWhite,
+  } = styles;
   const { searchResults, currentFilterOption } = useSelector((state) => state);
   const { searchWord } = searchResults;
 
@@ -35,11 +41,13 @@ const SearchBar = ({ setCurrentPage }) => {
           currentFilterOption
         )
       );
-      dispatch(setSearchResults({
-        searchResults: response.data.response.docs,
-        resultsNumber: response.data.response.numFound,
-        searchWord: searchQuery,
-      }));
+      dispatch(
+        setSearchResults({
+          searchResults: response.data.response.docs,
+          resultsNumber: response.data.response.numFound,
+          searchWord: searchQuery,
+        })
+      );
     } catch (error) {
       console.log(error);
     }
@@ -56,11 +64,13 @@ const SearchBar = ({ setCurrentPage }) => {
             currentFilterOption
           )
         );
-        dispatch(setSearchResults({
-          searchResults: response.data.response.docs,
-          resultsNumber: response.data.response.numFound,
-          searchWord: searchQuery,
-        }));
+        dispatch(
+          setSearchResults({
+            searchResults: response.data.response.docs,
+            resultsNumber: response.data.response.numFound,
+            searchWord: searchQuery,
+          })
+        );
       } catch (error) {
         console.log(error);
       }
@@ -76,12 +86,27 @@ const SearchBar = ({ setCurrentPage }) => {
     <form onSubmit={handleSubmit} className={formSearchBar}>
       <input
         onChange={handleChange}
-        className={searchInput}
+        className={
+          switchBackground === undefined
+            ? searchInputBlack
+            : switchBackground
+            ? searchInputWhite
+            : searchInputBlack
+        }
         type="text"
         placeholder="cautare..."
         value={searchQuery}
       ></input>
-      <button className={searchButton} type="submit">
+      <button
+        className={
+          switchBackground === undefined
+            ? searchButtonBlack
+            : switchBackground
+            ? searchButtonWhite
+            : searchButtonBlack
+        }
+        type="submit"
+      >
         <FontAwesomeIcon icon={faSearch} />
       </button>
     </form>

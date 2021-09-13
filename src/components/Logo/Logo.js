@@ -1,16 +1,28 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useEffect } from "react";
+
 import styles from "./logo.module.scss";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
-const Logo = () => {
-  const switchBackground = useSelector((state) => state.switchBackground);
-
+const Logo = ({ switchBackground }) => {
   const { logo, logoOff, logoContainer } = styles;
-
-  return <Link  to='/' className={logoContainer}>
-  <p className={!switchBackground ? logo : logoOff}>pe viitor</p>
-  </Link>;
+  console.log(switchBackground);
+  return (
+    <Link to="/" className={logoContainer}>
+      <p
+        className={
+          switchBackground === undefined
+            ? logo
+            : switchBackground
+            ? logoOff
+            : logo
+        }
+      >
+        pe viitor
+      </p>
+    </Link>
+  );
 };
 
 export default Logo;
