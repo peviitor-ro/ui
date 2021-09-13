@@ -57,9 +57,9 @@ const SearchBar = ({ setCurrentPage }) => {
           )
         );
         dispatch(setSearchResults({
+          ...searchResults,
           searchResults: response.data.response.docs,
           resultsNumber: response.data.response.numFound,
-          searchWord: searchQuery,
         }));
       } catch (error) {
         console.log(error);
