@@ -29,6 +29,53 @@
   justify-content: flex-end;
 }
 
+.textContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .textInfo {
+    font-family: $primaryFont;
+    height: 8px;
+    color: $logoColor;
+  }
+  .textInfoDescriptionOff {
+    font-family: $primaryFont;
+    height: 10px;
+    color: $white;
+  }
+  .textInfoDescriptionOn {
+    font-family: $primaryFont;
+    height: 10px;
+    color: $black;
+  }
+}
+.textContainerOverlayOn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .textInfo {
+    font-family: $primaryFont;
+    height: 8px;
+    color: $logoColor;
+  }
+
+  .textInfoDescriptionOff {
+    font-family: $primaryFont;
+    height: 10px;
+    color: $white;
+    margin-bottom: 8%;
+  }
+
+  .textInfoDescriptionOn {
+    font-family: $primaryFont;
+    height: 10px;
+    color: $black;
+    margin-bottom: 8%;
+  }
+}
+
 @media screen and (min-width: $mobile-breakpoint) {
   .filtersContainer {
     padding: 0px 100px;
@@ -41,15 +88,25 @@
   }
   .overlayContainer {
     background-color: $borderColor;
-    margin: 10% auto;
+    margin: 5% auto;
     width: 50%;
     height: 30%;
     color: $white;
   }
   .noOverlayContainer {
-    margin: 10% auto;
+    margin: 5% auto;
     width: 50%;
     height: 30%;
+  }
+  .textContainer {
+    margin: 0 auto;
+    width: 30%;
+  }
+
+  .textContainerOverlayOn {
+    margin: 0 auto;
+    width: 30%;
+    background-color: $borderColor;
   }
 
   .search {
@@ -59,7 +116,7 @@
   }
 
   .filtersContainer {
-    width: 35vw;
+    width: 70%;
     display: flex;
     justify-content: space-between;
     margin: 0 auto;

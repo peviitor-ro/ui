@@ -75,7 +75,6 @@ const SearchBar = ({ setCurrentPage, switchBackground }) => {
         console.log(error);
       }
     })();
-    console.log("activate");
   }, [currentFilterOption]);
 
   const handleChange = (e) => {

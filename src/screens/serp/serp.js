@@ -79,7 +79,6 @@ const Serp = () => {
           `${baseUrl}/search/?q=${searchWord}&start=${start}`,
           currentFilterOption
         )
-        //console.log(searchword)
       );
       dispatch(
         setSearchResults({
