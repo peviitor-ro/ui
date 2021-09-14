@@ -1,8 +1,8 @@
 @import "styles/variables.scss";
 
-.menuContainer{
-    display: flex;
-    justify-content: flex-end;
+.menuContainer {
+  display: flex;
+  justify-content: flex-end;
 }
 
 .searchResultsList {
@@ -15,50 +15,50 @@
 }
 
 .headerContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 30%;
+  margin-bottom: 1rem;
+
+  .logoContainer {
+    margin-top: 0;
+  }
+  .filterSearchContainer {
     display: flex;
     flex-direction: column;
-    width: 100vw;
-    height: 25vh;
-  
-    .logoContainer{
-        margin-top: 0;
-    }
-    .filterSearchContainer {
-        display: flex;
-        flex-direction: column;
 
-       .filtersContainer{
-         display: flex;
-       }
-
-        .filters{
-            display: flex;
-            justify-content: space-between;
-            padding: 0px 45px;
-            height: 10%;
-        }
+    .filtersContainer {
+      display: flex;
     }
+
+    .filters {
+      display: flex;
+      justify-content: space-between;
+      padding: 0px 45px;
+      height: 10%;
+    }
+  }
 }
 
 .paginationContainer {
-    display: flex;
-    justify-content: center;
-    padding: 10px;
-  }
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
 
 @media screen and (min-width: $mobile-breakpoint) {
+  .headerContainer {
+    .filterSearchContainer {
+      .filtersContainer {
+        display: flex;
+      }
 
-    .headerContainer {
-      .filterSearchContainer{
-        .filtersContainer{
-          display: flex;
-        }  
-
-        .filters{
-            padding: 0px 100px;
-        }
+      .filters {
+        padding: 0px 100px;
+      }
     }
-}
+  }
 
   .searchResultsList {
     width: 75%;
@@ -71,38 +71,33 @@
   }
 }
 
-@media screen and (min-width: $tablet-breakpoint){
+@media screen and (min-width: $tablet-breakpoint) {
+  .headerContainer {
+    flex-direction: row;
 
-    .headerContainer {
-        flex-direction: row;
-      
-      .logoContainer{
-          display: flex;
-          align-items: flex-start;
-          
-          p{
-              margin: 40px 0px 0px 5px;
-              font-size: 3em;
-          }
+    .logoContainer {
+      display: flex;
+      align-items: flex-start;
+
+      p {
+        margin: 40px 0px 0px 5px;
+        font-size: 3em;
       }
-        .filterSearchContainer {
-             display: flex;
-             justify-content: flex-start;
-             flex-direction: column;
-
-           .search{
-              //  margin: 30px;
-               margin-bottom: 0px;
-               margin-left: 0px;  
-           }
-    
-            .filters{
-                padding: 0px 30px 0px 0px; 
-            }
-        }
     }
+    .filterSearchContainer {
+      display: flex;
+      justify-content: flex-start;
+      flex-direction: column;
+
+      .search {
+        //  margin: 30px;
+        margin-bottom: 0px;
+        margin-left: 0px;
+      }
+
+      .filters {
+        padding: 0px 30px 0px 0px;
+      }
+    }
+  }
 }
-
-
-
-

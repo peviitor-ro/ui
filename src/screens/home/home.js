@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Logo from "components/Logo/Logo";
 import SearchBar from "components/SearchBar/SearchBar";
@@ -24,23 +24,39 @@ const Home = (props) => {
   const filterOptions = useSelector((state) => state.filterOptions);
   const currentFilterOption = useSelector((state) => state.currentFilterOption);
   const switchBackground = useSelector((state) => state.switchBackground);
+  useEffect(() => {}, []);
   const {
     filtersContainer,
     menuContainer,
     overlayContainer,
-    landingPageContainer,
+    landingPageContainerNoOverlay,
+    landingPageContainerOverlay,
+    noOverlayContainer,
+    textInfoDescriptionOn,
+    textInfoDescriptionOff,
+    textContainer,
+    textInfo,
+    textContainerOverlayOn,
   } = styles;
   return (
     <>
       <BackgroundSlider>
-        <div className={landingPageContainer}>
+        <div
+          className={
+            switchBackground
+              ? landingPageContainerOverlay
+              : landingPageContainerNoOverlay
+          }
+        >
           <div className={menuContainer}>
             <FooterMenu />
             <BurgerMenu />
           </div>
-          <div className={overlayContainer}>
-            <Logo />
-            <SearchBar />
+          <div
+            className={switchBackground ? overlayContainer : noOverlayContainer}
+          >
+            <Logo {...{ switchBackground }} />
+            <SearchBar {...{ switchBackground }} />
             <div className={filtersContainer}>
               <SearchFilter
                 icon={faGlobeEurope}
@@ -67,6 +83,22 @@ const Home = (props) => {
                 }
               />
             </div>
+          </div>
+          <div
+            className={
+              switchBackground ? textContainerOverlayOn : textContainer
+            }
+          >
+            <h1 className={textInfo}>motor de cautare</h1>
+            <h2
+              className={
+                switchBackground
+                  ? textInfoDescriptionOff
+                  : textInfoDescriptionOn
+              }
+            >
+              locuri de munca
+            </h2>
           </div>
         </div>
       </BackgroundSlider>

@@ -1,4 +1,4 @@
-@import '../../styles/variables.scss';
+@import "../../styles/variables.scss";
 
 .formSearchBar {
   display: flex;
@@ -6,39 +6,64 @@
   margin-top: 10%;
 }
 
-.searchInput {
+.searchInputBlack {
   width: 80vw;
   margin-bottom: 20px;
   border-style: none;
   border-bottom: 1px solid $black;
   font-size: 1.5rem;
-  background: transparent ;
+  background: transparent;
 
-  &::placeholder { 
+  &::placeholder {
     color: $black;
   }
 }
+.searchInputWhite {
+  width: 80vw;
+  margin-bottom: 20px;
+  border-style: none;
+  border-bottom: 1px solid $white;
+  font-size: 1.5rem;
+  background: transparent;
+  color: $white;
 
-.searchInput:focus {
+  &::placeholder {
+    color: $white;
+  }
+}
+
+.searchInputWhite:focus {
+  outline: none;
+}
+.searchInputBlack:focus {
   outline: none;
 }
 
-.searchButton {
+.searchButtonBlack {
   border-style: none;
   margin-bottom: 20px;
   background: transparent;
   border-bottom: 1px solid $black;
-  font-size: 2.0rem;
+  font-size: 2rem;
   color: $black;
 }
+.searchButtonWhite {
+  border-style: none;
+  margin-bottom: 20px;
+  background: transparent;
+  border-bottom: 1px solid $white;
+  font-size: 2rem;
+  color: $white;
+}
 
-@media screen and (min-width: $tablet-breakpoint){
-  
-  .formSearchBar{
+@media screen and (min-width: $tablet-breakpoint) {
+  .formSearchBar {
     margin-top: 5%;
   }
-  .searchInput{
+  .searchInputWhite {
     width: 35vw;
-    
+  }
+  .searchInputBlack {
+    width: 35vw;
   }
 }
