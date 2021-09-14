@@ -10,6 +10,7 @@ import SearchFilter from "components/SearchFilter/SearchFilter";
 import { Link } from "react-router-dom";
 import FooterMenu from "components/FooterMenu/FooterMenu";
 import BurgerMenu from "components/FooterMenu/BurgerMenu";
+import SearchMessage from 'components/SearchMessage/SearchMessage';
 
 import {
   setCurrentCountryFilterOption,
@@ -24,6 +25,7 @@ import {
   faAngleDoubleLeft,
   faAngleDoubleRight,
 } from "@fortawesome/free-solid-svg-icons";
+import { faFrown } from "@fortawesome/free-regular-svg-icons";
 
 import { setSearchResults } from "redux/actions/searchResults";
 import { baseUrl, jobsPerPage } from "utils/constants/url";
@@ -178,10 +180,10 @@ const Serp = () => {
           />
         </div>
       )}
-      {/* to be replaced with a react component */}
+
       {searchWord && resultsNumber === 0 && (
-        <p>Nu a fost gasit nici un rezultat!</p>
-      )}
+        <SearchMessage message={'Nu a fost gasit nici un rezultat!'} icon={<FontAwesomeIcon icon={faFrown} size="6x"/>}/>
+      )}      
     </>
   );
 };

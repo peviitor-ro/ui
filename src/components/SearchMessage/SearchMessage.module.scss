@@ -1,0 +1,21 @@
+@import 'styles/variables.scss';
+
+.messageContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 20px 0;
+    font-family: $primaryFont;
+    color: $fontColor;
+
+
+    &_message {
+        font-size: 1.6rem;
+    }
+}
+
+@media screen and (min-width: $mobile-breakpoint) {
+    .messageContainer {
+        width: 75%;
+    }
+}
