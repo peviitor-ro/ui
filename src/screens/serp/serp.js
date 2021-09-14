@@ -25,6 +25,7 @@ import {
   faAngleDoubleLeft,
   faAngleDoubleRight,
 } from "@fortawesome/free-solid-svg-icons";
+import { faFrown } from "@fortawesome/free-regular-svg-icons";
 
 import { setSearchResults } from "redux/actions/searchResults";
 import { baseUrl, jobsPerPage } from "utils/constants/url";
@@ -178,7 +179,7 @@ const Serp = () => {
       )}
 
       {searchWord && resultsNumber === 0 && (
-        <SearchMessage message={'Nu a fost gasit nici un rezultat!'}/>
+        <SearchMessage message={'Nu a fost gasit nici un rezultat!'} icon={<FontAwesomeIcon icon={faFrown} size="6x"/>}/>
       )}      
     </>
   );
