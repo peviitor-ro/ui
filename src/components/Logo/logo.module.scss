@@ -8,6 +8,7 @@
 
 .logoContainer{
   text-decoration: none;
+  margin-right: 8px;
 }
 
 .logo {
@@ -41,8 +42,10 @@
 @media screen and (min-width: $tablet-breakpoint) {
   .logo {
     margin-top: 5%;
+    font-size: 5rem;
   }
   .logoOff {
     margin-top: 5%;
+    font-size: 5rem;
   }
 }
