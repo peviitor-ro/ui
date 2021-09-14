@@ -11,9 +11,9 @@ export const getFilterData = async (setData) => {
       `${baseUrl}/companies/?count=true`
     );
     setData({
-      countries: countriesResponse.data.countries,
-      cities: citiesResponse.data.cities,
-      companies: companiesResponse.data.companies,
+      countries: [{name: 'Toate țările'}, ...countriesResponse.data.countries],
+      cities: [{name: 'Toate orașele'}, ...citiesResponse.data.cities],
+      companies: [{name: 'Toate companiile'}, ...companiesResponse.data.companies],
     });
   } catch (error) {
     console.log(error);
