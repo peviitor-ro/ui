@@ -24,7 +24,7 @@ const Home = (props) => {
   const filterOptions = useSelector((state) => state.filterOptions);
   const currentFilterOption = useSelector((state) => state.currentFilterOption);
   const switchBackground = useSelector((state) => state.switchBackground);
-  useEffect(() => { }, []);
+  useEffect(() => {}, []);
   const {
     filtersContainer,
     menuContainer,
@@ -90,8 +90,9 @@ const Home = (props) => {
               switchBackground ? textContainerOverlayOn : textContainer
             }
           >
-            <h1 className={switchBackground
-              ? textInfoOn : textInfoOff}>motor de cautare</h1>
+            <h1 className={switchBackground ? textInfoOn : textInfoOff}>
+              motor de căutare
+            </h1>
             <h2
               className={
                 switchBackground
@@ -99,7 +100,7 @@ const Home = (props) => {
                   : textInfoDescriptionOn
               }
             >
-              locuri de munca
+              locuri de muncă
             </h2>
           </div>
         </div>

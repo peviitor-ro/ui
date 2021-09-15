@@ -93,7 +93,7 @@ const SearchBar = ({ setCurrentPage, switchBackground }) => {
             : searchInputBlack
         }
         type="text"
-        placeholder="cautare..."
+        placeholder="căutare..."
         value={searchQuery}
       ></input>
       <button
