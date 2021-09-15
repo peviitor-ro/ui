@@ -36,9 +36,10 @@ import styles from "screens/serp/serp.module.scss";
 export const getQueryWithFilters = (query, currentFilterOption) => {
   let { city, company, country } = currentFilterOption;
 
-  if (city !== "Oras") query = query + "&fq%3Dcity%253A" + city;
-  query = query + "&fq%3Dcountry%253A" + country;
-  if (company !== "Companie") query = query + "&fq%3Dcompany%253A" + company;
+  if (city !== 'Oraș' && city !=='Toate orașele' ) query = query + "&fq%3Dcity%253A" + city;
+  if(country !== 'Toate țările') query = query + "&fq%3Dcountry%253A" + country;
+  if (company !== 'Toate companiile' && company !=='Companie') query = query + "&fq%3Dcompany%253A" + company;
+ 
   return query;
 };
 
