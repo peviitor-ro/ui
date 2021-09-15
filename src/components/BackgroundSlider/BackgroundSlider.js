@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Slide, Fade } from "react-slideshow-image";
@@ -32,6 +33,7 @@ const BackgroundSlider = ({ children }) => {
     eachSlide,
     toggleButtonContainer,
     noIcon,
+    infoContainer,
   } = styles;
   const properties = {
     autoplay: false,
@@ -59,6 +61,10 @@ const BackgroundSlider = ({ children }) => {
                   height: "100%",
                 }}
               ></div>
+              <div className={infoContainer}>
+                <div>{element.author}</div>
+                <div>{element.source_pic}</div>
+              </div>
             </div>
           ))}
         </Slide>
