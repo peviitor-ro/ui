@@ -3,7 +3,7 @@
 .formSearchBar {
   display: flex;
   justify-content: center;
-  margin-top: 10%;
+  margin-top: 0%;
 }
 
 .searchInputBlack {
@@ -58,12 +58,20 @@
 
 @media screen and (min-width: $tablet-breakpoint) {
   .formSearchBar {
-    margin-top: 5%;
+    margin-top: 0;
   }
   .searchInputWhite {
-    width: 35vw;
+    width: 30vw;
+
+    &::placeholder {
+      font-size: 1.2rem;
+      }
   }
   .searchInputBlack {
-    width: 35vw;
+    width: 30vw;
+
+    &::placeholder {
+      font-size: 1.2rem;
+    }
   }
 }
