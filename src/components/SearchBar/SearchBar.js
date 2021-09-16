@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { setSearchResults } from "redux/actions/searchResults";
 import { getQueryWithFilters } from "../../screens/serp/serp";
+import { setSwitchBackground } from "redux/actions/switchBackground";
 
 import { baseUrl } from "utils/constants/url";
 import styles from "components/SearchBar/searchBar.module.scss";
@@ -53,6 +54,7 @@ const SearchBar = ({ setCurrentPage, switchBackground }) => {
     }
 
     history.push("/rezultate");
+    dispatch(setSwitchBackground())
   };
 
   useEffect(() => {
@@ -89,8 +91,8 @@ const SearchBar = ({ setCurrentPage, switchBackground }) => {
           switchBackground === undefined
             ? searchInputBlack
             : switchBackground
-            ? searchInputWhite
-            : searchInputBlack
+              ? searchInputWhite
+              : searchInputBlack
         }
         type="text"
         placeholder="căutare..."
@@ -101,8 +103,8 @@ const SearchBar = ({ setCurrentPage, switchBackground }) => {
           switchBackground === undefined
             ? searchButtonBlack
             : switchBackground
-            ? searchButtonWhite
-            : searchButtonBlack
+              ? searchButtonWhite
+              : searchButtonBlack
         }
         type="submit"
       >
