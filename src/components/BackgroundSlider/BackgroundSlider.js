@@ -34,6 +34,7 @@ const BackgroundSlider = ({ children }) => {
     toggleButtonContainer,
     noIcon,
     infoContainer,
+    authorPage,
   } = styles;
   const properties = {
     autoplay: false,
@@ -62,8 +63,13 @@ const BackgroundSlider = ({ children }) => {
                 }}
               ></div>
               <div className={infoContainer}>
-                <div>{element.author}</div>
-                <div>{element.source_pic}</div>
+                <div>{element.title}</div>
+                <div
+                  className={authorPage}
+                  onClick={() => window.open(element.url_author, "_blank")}
+                >
+                  {element.author}
+                </div>
               </div>
             </div>
           ))}
