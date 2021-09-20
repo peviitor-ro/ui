@@ -8,6 +8,7 @@
   width: 100%;
   background-color: $borderColor;
   color: $white;
+  pointer-events: none;
 }
 
 .landingPageContainerNoOverlay {
@@ -103,6 +104,7 @@
     width: 65%;
     height: 40%;
     color: $white;
+    pointer-events: all;
   }
   .noOverlayContainer {
     margin: 5% auto;
@@ -120,38 +122,38 @@
     background-color: $borderColor;
 
     .textInfoOff {
-    font-size: 20px;
+      font-size: 20px;
     }
 
     .textInfoOn {
       font-size: 20px;
     }
-  
+
     .textInfoDescriptionOff {
       font-size: 16px;
     }
-  
+
     .textInfoDescriptionOn {
       font-size: 16px;
     }
   }
 
-  .textContainer{
+  .textContainer {
     .textInfoOff {
       font-size: 20px;
-      }
+    }
 
-      .textInfoOn {
-        font-size: 20px;
-      }
-    
-      .textInfoDescriptionOff {
-        font-size: 16px;
-      }
-    
-      .textInfoDescriptionOn {
-        font-size: 16px;
-      }
+    .textInfoOn {
+      font-size: 20px;
+    }
+
+    .textInfoDescriptionOff {
+      font-size: 16px;
+    }
+
+    .textInfoDescriptionOn {
+      font-size: 16px;
+    }
   }
 
   .search {
