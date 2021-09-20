@@ -6,3 +6,4 @@ export const SET_COMPANY_OPTION = "SET_COMPANY_OPTION";
 export const IS_BURGER = "IS_BURGER";
 export const IS_MOBILE = "IS_MOBILE";
 export const SWITCH_BACKGROUND = "SWITCH_BACKGROUND";
+export const BACKGROUND_BTN = "BACKGROUND_BTN";

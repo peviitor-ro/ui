@@ -11,6 +11,7 @@ import styles from "./BackgroundSlider.module.scss";
 import "react-slideshow-image/dist/styles.css";
 import { setSwitchBackground } from "redux/actions/switchBackground";
 import switchBackground from "redux/reducers/switchBackground";
+import { setBackgroundBtn } from "redux/actions/backgroundBtn";
 
 const BackgroundSlider = ({ children }) => {
   const [backgroundImages, setBackgroundImages] = useState();
@@ -18,6 +19,7 @@ const BackgroundSlider = ({ children }) => {
   const dispatch = useDispatch();
   const toggleButton = () => {
     dispatch(setSwitchBackground());
+    dispatch(setBackgroundBtn());
   };
 
   useEffect(() => {

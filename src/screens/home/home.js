@@ -19,12 +19,11 @@ import {
 import styles from "./home.module.scss";
 import BurgerMenu from "components/FooterMenu/BurgerMenu";
 import { setSwitchBackground } from "redux/actions/switchBackground";
+import { setBackgroundBtn } from "redux/actions/backgroundBtn";
 
 const Home = (props) => {
   const dispatch = useDispatch();
-  const filterOptions = useSelector((state) => state.filterOptions);
-  const currentFilterOption = useSelector((state) => state.currentFilterOption);
-  const switchBackground = useSelector((state) => state.switchBackground);
+  const { filterOptions, currentFilterOption, switchBackground, backgroundBtn } = useSelector((state) => state);
   const {
     filtersContainer,
     filtersContainerOff,
@@ -41,10 +40,8 @@ const Home = (props) => {
     textContainerOverlayOn,
   } = styles;
   useEffect(() => {
-    if (!switchBackground)
+    if (!backgroundBtn)
       dispatch(setSwitchBackground())
-    console.log('hi');
-
   }, [dispatch]);
   return (
     <>
