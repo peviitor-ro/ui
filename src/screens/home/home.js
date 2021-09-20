@@ -18,13 +18,13 @@ import {
 } from "redux/actions/currentFilterOption";
 import styles from "./home.module.scss";
 import BurgerMenu from "components/FooterMenu/BurgerMenu";
+import { setSwitchBackground } from "redux/actions/switchBackground";
 
 const Home = (props) => {
   const dispatch = useDispatch();
   const filterOptions = useSelector((state) => state.filterOptions);
   const currentFilterOption = useSelector((state) => state.currentFilterOption);
   const switchBackground = useSelector((state) => state.switchBackground);
-  useEffect(() => {}, []);
   const {
     filtersContainer,
     menuContainer,
@@ -39,6 +39,12 @@ const Home = (props) => {
     textInfoOn,
     textContainerOverlayOn,
   } = styles;
+  useEffect(() => {
+    if (!switchBackground)
+      dispatch(setSwitchBackground())
+    console.log('hi');
+
+  }, [dispatch]);
   return (
     <>
       <BackgroundSlider>

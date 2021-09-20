@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ReactPaginate from "react-paginate";
@@ -32,6 +32,7 @@ import { baseUrl, jobsPerPage } from "utils/constants/url";
 import paginationStyles from "components/Pagination/Pagination.module.scss";
 import filterStyles from "screens/home/home.module.scss";
 import styles from "screens/serp/serp.module.scss";
+import { setSwitchBackground } from "redux/actions/switchBackground";
 
 export const getQueryWithFilters = (query, currentFilterOption) => {
   let { city, company, country } = currentFilterOption;
@@ -47,15 +48,13 @@ export const getQueryWithFilters = (query, currentFilterOption) => {
 };
 
 const Serp = () => {
-  const { searchResults, isMobile } = useSelector((state) => state);
+  const { searchResults, isMobile, filterOptions, currentFilterOption, switchBackground } = useSelector((state) => state);
   const { searchWord, resultsNumber } = searchResults;
   const [currentPage, setCurrentPage] = useState(0);
   const pageRangeDisplay = isMobile ? 1 : 3;
   const intemsPerPage = jobsPerPage;
   const pageCount = Math.ceil(resultsNumber / intemsPerPage);
   const dispatch = useDispatch();
-  const filterOptions = useSelector((state) => state.filterOptions);
-  const currentFilterOption = useSelector((state) => state.currentFilterOption);
   const {
     pagination,
     paginationPage,
@@ -75,6 +74,10 @@ const Serp = () => {
     menuContainer,
     paginationContainer,
   } = styles;
+
+  useEffect(() => {
+    if (switchBackground) dispatch(setSwitchBackground());
+  }, [dispatch])
 
   const onPageChange = async ({ selected }) => {
     setCurrentPage(selected);
