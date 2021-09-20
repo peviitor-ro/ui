@@ -19,11 +19,15 @@
   width: 100%;
   background-color: transparent;
 }
+.overlayContainer {
+  pointer-events: all;
+}
 .filtersContainer {
   display: flex;
   justify-content: space-between;
   padding: 0px 45px;
   height: 10%;
+  pointer-events: all;
 }
 .filtersContainerOff {
   display: flex;
@@ -35,6 +39,7 @@
 .menuContainer {
   display: flex;
   justify-content: flex-end;
+  pointer-events: all;
 }
 
 .textContainer {
@@ -116,6 +121,7 @@
     margin: 5% auto;
     width: 50%;
     height: 30%;
+    pointer-events: all;
   }
   .textContainer {
     margin: 0 auto;
