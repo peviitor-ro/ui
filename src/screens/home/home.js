@@ -18,15 +18,15 @@ import {
 } from "redux/actions/currentFilterOption";
 import styles from "./home.module.scss";
 import BurgerMenu from "components/FooterMenu/BurgerMenu";
-import { setSwitchBackground } from "redux/actions/switchBackground";
+import { setSwitchBackgroundOff, setSwitchBackgroundOn } from "redux/actions/switchBackground";
+import { setBackgroundBtn } from "redux/actions/backgroundBtn";
 
 const Home = (props) => {
   const dispatch = useDispatch();
-  const filterOptions = useSelector((state) => state.filterOptions);
-  const currentFilterOption = useSelector((state) => state.currentFilterOption);
-  const switchBackground = useSelector((state) => state.switchBackground);
+  const { filterOptions, currentFilterOption, switchBackground, backgroundBtn } = useSelector((state) => state);
   const {
     filtersContainer,
+    filtersContainerOff,
     menuContainer,
     overlayContainer,
     landingPageContainerNoOverlay,
@@ -40,10 +40,11 @@ const Home = (props) => {
     textContainerOverlayOn,
   } = styles;
   useEffect(() => {
-    if (!switchBackground)
-      dispatch(setSwitchBackground())
-    console.log('hi');
-
+    if (!backgroundBtn)
+      dispatch(setSwitchBackgroundOff())
+    if (backgroundBtn)
+      dispatch(setSwitchBackgroundOn())
+    console.log("hii")
   }, [dispatch]);
   return (
     <>
@@ -64,7 +65,7 @@ const Home = (props) => {
           >
             <Logo {...{ switchBackground }} />
             <SearchBar {...{ switchBackground }} />
-            <div className={filtersContainer}>
+            <div className={switchBackground ? filtersContainer : filtersContainerOff}>
               <SearchFilter
                 icon={faGlobeEurope}
                 text={currentFilterOption.country}

@@ -25,6 +25,12 @@
   padding: 0px 45px;
   height: 10%;
 }
+.filtersContainerOff {
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 45px;
+  height: 10%;
+}
 
 .menuContainer {
   display: flex;
@@ -101,7 +107,7 @@
   .overlayContainer {
     background-color: $borderColor;
     margin: 5% auto;
-    width: 65%;
+    width: 57%;
     height: 40%;
     color: $white;
     pointer-events: all;
@@ -163,7 +169,14 @@
   }
 
   .filtersContainer {
-    width: 70%;
+    width: 57%;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+  }
+
+  .filtersContainerOff {
+    width: 64%;
     display: flex;
     justify-content: space-between;
     margin: 0 auto;

@@ -6,6 +6,7 @@ import currentFilterOptionReducer from "./reducers/currentFilterOption";
 import burgerReducer from "./reducers/burger";
 import checkScreenSizeReducer from "redux/reducers/mediaQueries";
 import switchBackgroundReducer from "./reducers/switchBackground";
+import backgroundBtnReducer from "./reducers/backgroundBtn";
 
 const reducer = combineReducers({
   searchResults: searchResultsReducer,
@@ -14,6 +15,7 @@ const reducer = combineReducers({
   isBurger: burgerReducer,
   isMobile: checkScreenSizeReducer,
   switchBackground: switchBackgroundReducer,
+  backgroundBtn: backgroundBtnReducer,
 });
 
 const store = createStore(
