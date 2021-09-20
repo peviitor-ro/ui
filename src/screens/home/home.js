@@ -18,7 +18,7 @@ import {
 } from "redux/actions/currentFilterOption";
 import styles from "./home.module.scss";
 import BurgerMenu from "components/FooterMenu/BurgerMenu";
-import { setSwitchBackground } from "redux/actions/switchBackground";
+import { setSwitchBackgroundOff, setSwitchBackgroundOn } from "redux/actions/switchBackground";
 import { setBackgroundBtn } from "redux/actions/backgroundBtn";
 
 const Home = (props) => {
@@ -41,7 +41,10 @@ const Home = (props) => {
   } = styles;
   useEffect(() => {
     if (!backgroundBtn)
-      dispatch(setSwitchBackground())
+      dispatch(setSwitchBackgroundOff())
+    if (backgroundBtn)
+      dispatch(setSwitchBackgroundOn())
+    console.log("hii")
   }, [dispatch]);
   return (
     <>

@@ -9,7 +9,7 @@ import { faCaretRight, faCaretLeft } from "@fortawesome/free-solid-svg-icons";
 import ToggleButton from "react-toggle-button";
 import styles from "./BackgroundSlider.module.scss";
 import "react-slideshow-image/dist/styles.css";
-import { setSwitchBackground } from "redux/actions/switchBackground";
+import { setSwitchBackground, setSwitchBackgroundOff, setSwitchBackgroundOn } from "redux/actions/switchBackground";
 import switchBackground from "redux/reducers/switchBackground";
 import { setBackgroundBtn } from "redux/actions/backgroundBtn";
 
@@ -18,7 +18,12 @@ const BackgroundSlider = ({ children }) => {
   const switchBackground = useSelector((state) => state.switchBackground);
   const dispatch = useDispatch();
   const toggleButton = () => {
-    dispatch(setSwitchBackground());
+    if (switchBackground) {
+      dispatch(setSwitchBackgroundOff());
+    }
+    if (!switchBackground) {
+      dispatch(setSwitchBackgroundOn())
+    }
     dispatch(setBackgroundBtn());
   };
 
