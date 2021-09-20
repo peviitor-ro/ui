@@ -30,7 +30,7 @@ import { faFrown } from "@fortawesome/free-regular-svg-icons";
 import { setSearchResults } from "redux/actions/searchResults";
 import { baseUrl, jobsPerPage } from "utils/constants/url";
 import paginationStyles from "components/Pagination/Pagination.module.scss";
-import filterStyles from "screens/home/home.module.scss";
+import filterStyles from "screens/serp/serp.module.scss";
 import styles from "screens/serp/serp.module.scss";
 import { setSwitchBackground } from "redux/actions/switchBackground";
 

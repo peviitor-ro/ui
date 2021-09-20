@@ -27,6 +27,7 @@ const Home = (props) => {
   const switchBackground = useSelector((state) => state.switchBackground);
   const {
     filtersContainer,
+    filtersContainerOff,
     menuContainer,
     overlayContainer,
     landingPageContainerNoOverlay,
@@ -64,7 +65,7 @@ const Home = (props) => {
           >
             <Logo {...{ switchBackground }} />
             <SearchBar {...{ switchBackground }} />
-            <div className={filtersContainer}>
+            <div className={switchBackground ? filtersContainer : filtersContainerOff}>
               <SearchFilter
                 icon={faGlobeEurope}
                 text={currentFilterOption.country}

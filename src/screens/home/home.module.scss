@@ -100,7 +100,7 @@
   .overlayContainer {
     background-color: $borderColor;
     margin: 5% auto;
-    width: 65%;
+    width: 57%;
     height: 40%;
     color: $white;
   }
@@ -161,7 +161,14 @@
   }
 
   .filtersContainer {
-    width: 70%;
+    width: 57%;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+  }
+
+  .filtersContainerOff {
+    width: 64%;
     display: flex;
     justify-content: space-between;
     margin: 0 auto;

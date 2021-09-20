@@ -27,9 +27,12 @@
   .filterSearchContainer {
     display: flex;
     flex-direction: column;
-
+    
     .filtersContainer {
       display: flex;
+      width: 80%;
+    margin-left: 9%;
+    justify-content: space-between;
     }
 
     .filters {
@@ -52,6 +55,8 @@
     .filterSearchContainer {
       .filtersContainer {
         display: flex;
+        width: 80%;
+        margin-left: 9%;
       }
 
       .filters {
@@ -89,6 +94,11 @@
       justify-content: flex-start;
       flex-direction: column;
 
+      .filtersContainer {
+        display: flex;
+        width: 100%;
+        margin-left: 0
+      }
       .search {
         //  margin: 30px;
         margin-bottom: 0px;
