@@ -5,7 +5,7 @@ import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { setSearchResults } from "redux/actions/searchResults";
-import { getQueryWithFilters } from "../../screens/serp/serp";
+import { getQueryWithFilters, createQueryString } from "../../screens/serp/serp";
 import { setSwitchBackground } from "redux/actions/switchBackground";
 
 import { baseUrl } from "utils/constants/url";
@@ -33,16 +33,10 @@ const SearchBar = ({ setCurrentPage, switchBackground }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setCurrentPage && setCurrentPage(0);
-    let url = `${baseUrl}/search/?`
-    if(searchQuery) {
-      const sq = encodeURIComponent(searchQuery);
-      url = url + "q=" + sq;
-    }
-
     try {
       const response = await axios.get(
         getQueryWithFilters(
-          url,
+          createQueryString(searchQuery, baseUrl),
           currentFilterOption,
         )
       );
@@ -63,16 +57,10 @@ const SearchBar = ({ setCurrentPage, switchBackground }) => {
 
   useEffect(() => {
     (async () => {
-      //const sq = encodeURIComponent(searchWord);
-      let url = `${baseUrl}/search/?`
-      if(searchWord) {
-      const sq = encodeURIComponent(searchWord);
-      url = url + "q=" + sq;
-    }
       try {
         const response = await axios.get(
           getQueryWithFilters(
-            url,
+            createQueryString(searchWord, baseUrl),
             currentFilterOption
           )
         );

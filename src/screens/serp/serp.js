@@ -47,6 +47,18 @@ export const getQueryWithFilters = (query, currentFilterOption) => {
   return query;
 };
 
+export const createQueryString = (searchWord, baseUrl, selectedPage = false) => {
+  let url = `${baseUrl}/search/?`
+  if (selectedPage)
+    url = url + `&page=${selectedPage + 1}`;
+
+  if(searchWord) {
+    const encodedQuery = encodeURIComponent(searchWord);
+    url = url + "&q=" + encodedQuery;
+    }  
+  return url;
+}
+
 const Serp = () => {
   const { searchResults, isMobile, filterOptions, currentFilterOption, switchBackground } = useSelector((state) => state);
   const { searchWord, resultsNumber } = searchResults;
@@ -81,17 +93,12 @@ const Serp = () => {
 
   const onPageChange = async ({ selected }) => {
     setCurrentPage(selected);
-    let url = `${baseUrl}/search/?&page=${selected + 1}`
-    if(typeof searchWord !== 'undefined') {
-      const sq = encodeURIComponent(searchWord);
-      url = url + "&q=" + sq;
-    }
     
     try {
       console.log(selected)
       const response = await axios.get(
         getQueryWithFilters(
-          url,
+          createQueryString(searchWord, baseUrl, selected),
           currentFilterOption
         )
       );
@@ -194,7 +201,7 @@ const Serp = () => {
         </div>
       )}
 
-      {searchWord && resultsNumber === 0 && (
+      {searchWord !== undefined && resultsNumber === 0 && (
         <SearchMessage
           message={"Nu a fost găsit nici un rezultat!"}
           icon={<FontAwesomeIcon icon={faFrown} size="6x" />}
