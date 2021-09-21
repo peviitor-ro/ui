@@ -38,14 +38,26 @@ export const getQueryWithFilters = (query, currentFilterOption) => {
   let { city, company, country } = currentFilterOption;
 
   if (city !== "Oraș" && city !== "Toate orașele")
-    query = query + "&fq%3Dcity%253A" + city;
+    query = query + `&city=${city}`;
   if (country !== "Toate țările")
-    query = query + "&fq%3Dcountry%253A" + country;
+    query = query + `&country=${country}`;
   if (company !== "Toate companiile" && company !== "Companie")
-    query = query + "&fq%3Dcompany%253A" + company;
-
+    query = query + `&company=${company}`;
+  console.log('from function', query)
   return query;
 };
+
+export const createQueryString = (searchWord, baseUrl, selectedPage = false) => {
+  let url = `${baseUrl}/search/?`
+  if (selectedPage)
+    url = url + `&page=${selectedPage + 1}`;
+
+  if(searchWord) {
+    const encodedQuery = encodeURIComponent(searchWord);
+    url = url + "&q=" + encodedQuery;
+    }  
+  return url;
+}
 
 const Serp = () => {
   const { searchResults, isMobile, filterOptions, currentFilterOption, switchBackground } = useSelector((state) => state);
@@ -81,11 +93,12 @@ const Serp = () => {
 
   const onPageChange = async ({ selected }) => {
     setCurrentPage(selected);
+    
     try {
-      const start = selected * intemsPerPage;
+      console.log(selected)
       const response = await axios.get(
         getQueryWithFilters(
-          `${baseUrl}/search/?q=${searchWord}&start=${start}`,
+          createQueryString(searchWord, baseUrl, selected),
           currentFilterOption
         )
       );
@@ -188,7 +201,7 @@ const Serp = () => {
         </div>
       )}
 
-      {searchWord && resultsNumber === 0 && (
+      {searchWord !== undefined && resultsNumber === 0 && (
         <SearchMessage
           message={"Nu a fost găsit nici un rezultat!"}
           icon={<FontAwesomeIcon icon={faFrown} size="6x" />}
