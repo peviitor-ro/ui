@@ -32,14 +32,18 @@ const SearchBar = ({ setCurrentPage, switchBackground }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     setCurrentPage && setCurrentPage(0);
+    let url = `${baseUrl}/search/?`
+    if(searchQuery) {
+      const sq = encodeURIComponent(searchQuery);
+      url = url + "q=" + sq;
+    }
 
     try {
       const response = await axios.get(
         getQueryWithFilters(
-          `${baseUrl}/search/?q=${searchQuery}`,
-          currentFilterOption
+          url,
+          currentFilterOption,
         )
       );
       dispatch(
@@ -59,10 +63,16 @@ const SearchBar = ({ setCurrentPage, switchBackground }) => {
 
   useEffect(() => {
     (async () => {
+      //const sq = encodeURIComponent(searchWord);
+      let url = `${baseUrl}/search/?`
+      if(searchWord) {
+      const sq = encodeURIComponent(searchWord);
+      url = url + "q=" + sq;
+    }
       try {
         const response = await axios.get(
           getQueryWithFilters(
-            `${baseUrl}/search/?q=${searchWord}`,
+            url,
             currentFilterOption
           )
         );

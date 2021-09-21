@@ -38,12 +38,12 @@ export const getQueryWithFilters = (query, currentFilterOption) => {
   let { city, company, country } = currentFilterOption;
 
   if (city !== "Oraș" && city !== "Toate orașele")
-    query = query + "&fq%3Dcity%253A" + city;
+    query = query + `&city=${city}`;
   if (country !== "Toate țările")
-    query = query + "&fq%3Dcountry%253A" + country;
+    query = query + `&country=${country}`;
   if (company !== "Toate companiile" && company !== "Companie")
-    query = query + "&fq%3Dcompany%253A" + company;
-
+    query = query + `&company=${company}`;
+  console.log('from function', query)
   return query;
 };
 
@@ -81,11 +81,17 @@ const Serp = () => {
 
   const onPageChange = async ({ selected }) => {
     setCurrentPage(selected);
+    let url = `${baseUrl}/search/?&page=${selected + 1}`
+    if(typeof searchWord !== 'undefined') {
+      const sq = encodeURIComponent(searchWord);
+      url = url + "&q=" + sq;
+    }
+    
     try {
-      const start = selected * intemsPerPage;
+      console.log(selected)
       const response = await axios.get(
         getQueryWithFilters(
-          `${baseUrl}/search/?q=${searchWord}&start=${start}`,
+          url,
           currentFilterOption
         )
       );
