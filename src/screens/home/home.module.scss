@@ -99,13 +99,68 @@
   }
 }
 
-@media screen and (min-width: $mobile-breakpoint) {
+@media screen and (orientation:landscape)
+and (min-device-width: $tablet-breakpoint) {
+  .landingPageContainerOverlay{
+    width: 100%;
+    background-color: transparent;
+    
+  }
+  .overlayContainer {
+    background-color: $borderColor;
+    margin: 5% auto;
+    width: 57%;
+    height: 46%;
+    color: $white;
+    pointer-events: all;
+  }
+  .filtersContainer {
+    padding: 0px 105px;
+    height: 7%;
+  pointer-events: all;
+  }
+
+  .filtersContainerOff{
+    height: 7%;
+    width: 35%;
+    margin:0 auto;
+  }
+
+  .textContainerOverlayOn {
+    margin: 0 auto;
+    width: 30%;
+    background-color: $borderColor;
+    .textInfoOn {
+      font-size: 1.5rem;
+    }
+    .textInfoOff {
+      font-size: 1.5rem;
+    }
+    .textInfoDescriptionOff{
+      font-size: 1.2rem;
+    }
+    .textInfoDescriptionOn{
+      font-size: 1.2rem;
+    }
+} 
+  .textContainer{
+  .textInfoOff {
+    font-size: 1.5rem;
+  }
+  
+  .textInfoDescriptionOn{
+    font-size: 1.2rem;
+  }
+} 
+}
+
+@media screen and(orientation:portrait) and (min-width: $mobile-breakpoint) {
   .filtersContainer {
     padding: 0px 100px;
   }
 }
 
-@media screen and (min-width: $tablet-breakpoint) {
+@media screen and (orientation:portrait) and (min-width: $tablet-breakpoint) {
   .landingPageContainerOverlay {
     background-color: transparent;
   }
