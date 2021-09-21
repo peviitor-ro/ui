@@ -9,15 +9,22 @@ import { faCaretRight, faCaretLeft } from "@fortawesome/free-solid-svg-icons";
 import ToggleButton from "react-toggle-button";
 import styles from "./BackgroundSlider.module.scss";
 import "react-slideshow-image/dist/styles.css";
-import { setSwitchBackground } from "redux/actions/switchBackground";
+import { setSwitchBackground, setSwitchBackgroundOff, setSwitchBackgroundOn } from "redux/actions/switchBackground";
 import switchBackground from "redux/reducers/switchBackground";
+import { setBackgroundBtn } from "redux/actions/backgroundBtn";
 
 const BackgroundSlider = ({ children }) => {
   const [backgroundImages, setBackgroundImages] = useState();
   const switchBackground = useSelector((state) => state.switchBackground);
   const dispatch = useDispatch();
   const toggleButton = () => {
-    dispatch(setSwitchBackground());
+    if (switchBackground) {
+      dispatch(setSwitchBackgroundOff());
+    }
+    if (!switchBackground) {
+      dispatch(setSwitchBackgroundOn())
+    }
+    dispatch(setBackgroundBtn());
   };
 
   useEffect(() => {
@@ -34,6 +41,7 @@ const BackgroundSlider = ({ children }) => {
     toggleButtonContainer,
     noIcon,
     infoContainer,
+    authorPage,
   } = styles;
   const properties = {
     autoplay: false,
@@ -62,8 +70,13 @@ const BackgroundSlider = ({ children }) => {
                 }}
               ></div>
               <div className={infoContainer}>
-                <div>{element.author}</div>
-                <div>{element.source_pic}</div>
+                <div>{element.title}</div>
+                <div
+                  className={authorPage}
+                  onClick={() => window.open(element.url_author, "_blank")}
+                >
+                  {element.author}
+                </div>
               </div>
             </div>
           ))}
