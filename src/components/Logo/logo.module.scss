@@ -6,9 +6,10 @@
     url("../../assets/fonts/JustMandrawn.ttf") format("truetype");
 }
 
-.logoContainer{
+.logoContainer {
   text-decoration: none;
   margin-right: 8px;
+  z-index: 1;
 }
 
 .logo {
