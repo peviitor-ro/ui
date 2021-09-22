@@ -15,13 +15,16 @@ const FooterMenu = () => {
 
   return (
     <div className={footerMenuContainer} style={footerStyle}>
+      {/* real links will be added later */}
       <ul>
         <li className={!switchBackground ? menuTextOff : menuTextOn}>
-          Despre noi
+          <a href="https://www.google.ro" target="_blank" rel="noreferrer">Despre noi</a>
         </li>
-        <li className={!switchBackground ? menuTextOff : menuTextOn}>Ajutor</li>
         <li className={!switchBackground ? menuTextOff : menuTextOn}>
-          Feedback
+          <a href="https://www.google.ro" target="_blank" rel="noreferrer">Ajutor</a>
+        </li>
+        <li className={!switchBackground ? menuTextOff : menuTextOn}>
+          <a href="https://www.google.ro" target="_blank" rel="noreferrer">Feedback</a>
         </li>
       </ul>
     </div>
