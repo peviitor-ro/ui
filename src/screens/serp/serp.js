@@ -32,35 +32,46 @@ import { baseUrl, jobsPerPage } from "utils/constants/url";
 import paginationStyles from "components/Pagination/Pagination.module.scss";
 import filterStyles from "screens/serp/serp.module.scss";
 import styles from "screens/serp/serp.module.scss";
-import { setSwitchBackground, setSwitchBackgroundOff } from "redux/actions/switchBackground";
+import {
+  setSwitchBackground,
+  setSwitchBackgroundOff,
+} from "redux/actions/switchBackground";
 
 export const getQueryWithFilters = (query, currentFilterOption) => {
   let { city, company, country } = currentFilterOption;
 
   if (city !== "Oraș" && city !== "Toate orașele")
     query = query + `&city=${city}`;
-  if (country !== "Toate țările")
-    query = query + `&country=${country}`;
+  if (country !== "Țară") query = query + `&country=${country}`;
   if (company !== "Toate companiile" && company !== "Companie")
     query = query + `&company=${company}`;
-  console.log('from function', query)
+  console.log("from function", query);
   return query;
 };
 
-export const createQueryString = (searchWord, baseUrl, selectedPage = false) => {
-  let url = `${baseUrl}/search/?`
-  if (selectedPage)
-    url = url + `&page=${selectedPage + 1}`;
+export const createQueryString = (
+  searchWord,
+  baseUrl,
+  selectedPage = false
+) => {
+  let url = `${baseUrl}/search/?`;
+  if (selectedPage) url = url + `&page=${selectedPage + 1}`;
 
-  if(searchWord) {
+  if (searchWord) {
     const encodedQuery = encodeURIComponent(searchWord);
     url = url + "&q=" + encodedQuery;
-    }  
+  }
   return url;
-}
+};
 
 const Serp = () => {
-  const { searchResults, isMobile, filterOptions, currentFilterOption, switchBackground } = useSelector((state) => state);
+  const {
+    searchResults,
+    isMobile,
+    filterOptions,
+    currentFilterOption,
+    switchBackground,
+  } = useSelector((state) => state);
   const { searchWord, resultsNumber } = searchResults;
   const [currentPage, setCurrentPage] = useState(0);
   const pageRangeDisplay = isMobile ? 1 : 3;
@@ -89,13 +100,13 @@ const Serp = () => {
 
   useEffect(() => {
     if (switchBackground) dispatch(setSwitchBackgroundOff());
-  }, [dispatch])
+  }, [dispatch]);
 
   const onPageChange = async ({ selected }) => {
     setCurrentPage(selected);
-    
+
     try {
-      console.log(selected)
+      console.log(selected);
       const response = await axios.get(
         getQueryWithFilters(
           createQueryString(searchWord, baseUrl, selected),
