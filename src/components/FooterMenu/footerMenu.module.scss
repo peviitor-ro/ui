@@ -1,4 +1,6 @@
 @import "styles/variables.scss";
+@import "styles/mixins.scss";
+@import "styles/extends.scss";
 
 .footerMenuContainer {
   width: 100%;
@@ -6,47 +8,31 @@
   color: $black;
 
   ul {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    height: 100%;
-    margin: 0;
+    @extend %footerList;
 
     .menuTextOff {
-      list-style: none;
+      @extend %footerLinks;
       border: 1px solid $black;
-      width: 30%;
-      height: 5%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 10px;
-      padding: 5px;
+
+      a {
+        @include anchor-style;
+      }
     }
   }
 }
 
 .footerMenuContainer {
   ul {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    height: 100%;
-    margin: 0;
+    @extend %footerList;
 
     .menuTextOn {
-      list-style: none;
-      border: 1px solid $white;
-      width: 30%;
-      height: 5%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 10px;
-      padding: 5px;
+      @extend %footerLinks;
       color: $white;
+      border: 1px solid $white;
+
+      a {
+        @include anchor-style;
+      }
     }
   }
 }
@@ -67,16 +53,7 @@
       justify-content: space-between;
       padding-left: 0;
 
-      .menuTextOff {
-        font-family: $primaryFont;
-        border: 0;
-        height: 0;
-        width: 15vw;
-        z-index: 1;
-        color: $black;
-        font-size: 12px;
-      }
-      .menuTextOn {
+      .menuTextOff, .menuTextOn {
         font-family: $primaryFont;
         border: 0;
         height: 0;
