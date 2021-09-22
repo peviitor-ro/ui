@@ -96,6 +96,9 @@ const Serp = () => {
     searchResultsList__link,
     menuContainer,
     paginationContainer,
+    numberContainer,
+    horizontalLine,
+    resultsText,
   } = styles;
 
   useEffect(() => {
@@ -166,7 +169,10 @@ const Serp = () => {
           </div>
         </div>
       </div>
-
+      <div className={numberContainer}>
+        <hr className={horizontalLine}></hr>
+        <div className={resultsText}>{resultsNumber} rezultate</div>
+      </div>
       <div className={searchResultsList}>
         {searchResults.searchResults &&
           searchResults.searchResults.map((job) => (
