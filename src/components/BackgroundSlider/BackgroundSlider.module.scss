@@ -19,12 +19,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: $borderColor;
-    color: rgba(250, 250, 250, 0.702);
+    color: white;
+    mix-blend-mode: difference;
     bottom: 5%;
     width: fit-content;
     block-size: fit-content;
-    margin-left: 0.2%;
+    left: 0.5%;
     pointer-events: all;
 
     .authorPage {

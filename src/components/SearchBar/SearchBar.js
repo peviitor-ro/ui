@@ -5,9 +5,8 @@ import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { setSearchResults } from "redux/actions/searchResults";
-import { getQueryWithFilters } from "../../screens/serp/serp";
+import { getQueryWithFilters, createQueryString } from "../../screens/serp/serp";
 import { setSwitchBackground, setSwitchBackgroundOff } from "redux/actions/switchBackground";
-
 import { baseUrl } from "utils/constants/url";
 import styles from "components/SearchBar/searchBar.module.scss";
 
@@ -32,14 +31,12 @@ const SearchBar = ({ setCurrentPage, switchBackground }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     setCurrentPage && setCurrentPage(0);
-
     try {
       const response = await axios.get(
         getQueryWithFilters(
-          `${baseUrl}/search/?q=${searchQuery}`,
-          currentFilterOption
+          createQueryString(searchQuery, baseUrl),
+          currentFilterOption,
         )
       );
       dispatch(
@@ -62,7 +59,7 @@ const SearchBar = ({ setCurrentPage, switchBackground }) => {
       try {
         const response = await axios.get(
           getQueryWithFilters(
-            `${baseUrl}/search/?q=${searchWord}`,
+            createQueryString(searchWord, baseUrl),
             currentFilterOption
           )
         );

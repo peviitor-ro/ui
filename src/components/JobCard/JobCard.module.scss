@@ -1,5 +1,6 @@
 @import "styles/variables.scss";
 
+
 .jobCard {
   font-family: $primaryFont;
   background-color: $white;
@@ -19,12 +20,13 @@
 
   &__details {
     font-size: $font-size-details;
+    color: $card_details_color;
 
     h3 {
       padding-bottom: 5px;
       margin: 0;
     }
-  }
-
   
+  }
 }
+

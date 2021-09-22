@@ -1,4 +1,4 @@
-@import 'styles/variables.scss';
+@import "styles/variables.scss";
 
 .searchFilterContainer {
   display: flex;
@@ -7,7 +7,7 @@
   cursor: pointer;
   position: relative;
   width: 100%;
-  
+
   .searchFilterText {
     margin: 0;
     margin-left: 8px;
@@ -15,6 +15,8 @@
     -moz-user-select: none; /* Firefox */
     -ms-user-select: none; /* IE10+/Edge */
     user-select: none; /* Standard */
+    font-family: $filterFont;
+    letter-spacing: 0.8px;
   }
 
   .textIconFilterContainer {
