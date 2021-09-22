@@ -1,19 +1,22 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap");
 
 // colors
 
-$logoColor: #856a26;
+$logoColor: #917329;
 $white: #ffffff;
 $black: #000000;
 $overlayColor: rgba(13, 12, 12, 0.45);
 $fontColor: #424242;
 $borderColor: rgba(0, 0, 0, 0.5);
 $footerColor: rgba(196, 196, 196, 0.68);
-
+$defaultFilterColor: rgba(145, 116, 41, 0.308);
+$card_details_color: #56410d;
 // fonts
 
 $logoFont: "JustMandrawn";
-$primaryFont: "Poppins", "sans-serif";
+$primaryFont: "Poppins";
+$filterFont: "Raleway";
 
 // screens
 
