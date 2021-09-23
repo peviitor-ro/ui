@@ -15,7 +15,7 @@
       border: 1px solid $black;
 
       a {
-        @include anchor-style;
+        @include anchor-style(none, inherit);
       }
     }
   }
@@ -31,7 +31,7 @@
       border: 1px solid $white;
 
       a {
-        @include anchor-style;
+        @include anchor-style(none, inherit);
       }
     }
   }
@@ -40,14 +40,14 @@
 @media screen and (min-width: $tablet-breakpoint) {
   .footerMenuContainer {
     width: 100vw;
-    height: 3vh;
+    height: 4vh;
     background-color: $footerColor;
     z-index: 1;
     position: fixed;
     bottom: 0;
 
     ul {
-      width: 37%;
+      width: 100%;
       display: flex;
       flex-direction: row;
       justify-content: space-between;
@@ -57,10 +57,10 @@
         font-family: $primaryFont;
         border: 0;
         height: 0;
-        width: 15vw;
+        width: fit-content;
         z-index: 1;
         color: $black;
-        font-size: 12px;
+        font-size: 16px;
       }
     }
   }
