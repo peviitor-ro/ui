@@ -5,8 +5,14 @@ import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { setSearchResults } from "redux/actions/searchResults";
-import { getQueryWithFilters, createQueryString } from "../../screens/serp/serp";
-import { setSwitchBackground, setSwitchBackgroundOff } from "redux/actions/switchBackground";
+import {
+  getQueryWithFilters,
+  createQueryString,
+} from "../../screens/serp/serp";
+import {
+  setSwitchBackground,
+  setSwitchBackgroundOff,
+} from "redux/actions/switchBackground";
 import { baseUrl } from "utils/constants/url";
 import styles from "components/SearchBar/searchBar.module.scss";
 
@@ -36,7 +42,7 @@ const SearchBar = ({ setCurrentPage, switchBackground }) => {
       const response = await axios.get(
         getQueryWithFilters(
           createQueryString(searchQuery, baseUrl),
-          currentFilterOption,
+          currentFilterOption
         )
       );
       dispatch(
@@ -51,7 +57,7 @@ const SearchBar = ({ setCurrentPage, switchBackground }) => {
     }
 
     history.push("/rezultate");
-    dispatch(setSwitchBackgroundOff())
+    dispatch(setSwitchBackgroundOff());
   };
 
   useEffect(() => {
@@ -79,17 +85,25 @@ const SearchBar = ({ setCurrentPage, switchBackground }) => {
   const handleChange = (e) => {
     setSearchQuery(e.target.value);
   };
-
+  const handleBlur = (e) => {
+    dispatch(
+      setSearchResults({
+        ...searchResults,
+        searchWord: e.target.value,
+      })
+    );
+  };
   return (
     <form onSubmit={handleSubmit} className={formSearchBar}>
       <input
         onChange={handleChange}
+        onBlur={handleBlur}
         className={
           switchBackground === undefined
             ? searchInputBlack
             : switchBackground
-              ? searchInputWhite
-              : searchInputBlack
+            ? searchInputWhite
+            : searchInputBlack
         }
         type="text"
         placeholder="căutare..."
@@ -100,8 +114,8 @@ const SearchBar = ({ setCurrentPage, switchBackground }) => {
           switchBackground === undefined
             ? searchButtonBlack
             : switchBackground
-              ? searchButtonWhite
-              : searchButtonBlack
+            ? searchButtonWhite
+            : searchButtonBlack
         }
         type="submit"
       >
