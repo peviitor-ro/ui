@@ -1,4 +1,4 @@
-@mixin anchor-style {
-    text-decoration: none;
-    color: inherit;
+@mixin anchor-style($decoration, $color) {
+    text-decoration: $decoration;
+    color: $color;
 }
