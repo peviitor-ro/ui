@@ -1,27 +1,26 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Logo from "components/Logo/Logo";
-import SearchBar from "components/SearchBar/SearchBar";
-import FooterMenu from "components/FooterMenu/FooterMenu";
-import SearchFilter from "components/SearchFilter/SearchFilter";
 import {
   faGlobeEurope,
   faBuilding,
   faMapMarkerAlt,
 } from "@fortawesome/free-solid-svg-icons";
-import BackgroundSlider from "components/BackgroundSlider/BackgroundSlider";
 
+import { setSwitchBackgroundOff, setSwitchBackgroundOn } from "redux/actions/switchBackground";
 import {
   setCurrentCountryFilterOption,
   setCurrentCityFilterOption,
   setCurrentCompanyFilterOption,
 } from "redux/actions/currentFilterOption";
-import styles from "./home.module.scss";
+import BackgroundSlider from "components/BackgroundSlider/BackgroundSlider";
+import Logo from "components/Logo/Logo";
+import SearchBar from "components/SearchBar/SearchBar";
+import FooterMenu from "components/FooterMenu/FooterMenu";
+import SearchFilter from "components/SearchFilter/SearchFilter";
 import BurgerMenu from "components/FooterMenu/BurgerMenu";
-import { setSwitchBackgroundOff, setSwitchBackgroundOn } from "redux/actions/switchBackground";
-import { setBackgroundBtn } from "redux/actions/backgroundBtn";
+import styles from "./home.module.scss";
 
-const Home = (props) => {
+const Home = () => {
   const dispatch = useDispatch();
   const { filterOptions, currentFilterOption, switchBackground, backgroundBtn } = useSelector((state) => state);
   const {
@@ -39,21 +38,23 @@ const Home = (props) => {
     textInfoOn,
     textContainerOverlayOn,
   } = styles;
+
   useEffect(() => {
     if (!backgroundBtn)
       dispatch(setSwitchBackgroundOff())
     if (backgroundBtn)
       dispatch(setSwitchBackgroundOn())
-    console.log("hii")
   }, [dispatch]);
+
   return (
     <>
       <BackgroundSlider>
         <div
           className={
-            switchBackground
-              ? landingPageContainerOverlay
-              : landingPageContainerNoOverlay
+            switchBackground ? 
+            landingPageContainerOverlay
+            : 
+            landingPageContainerNoOverlay
           }
         >
           <div className={menuContainer}>
