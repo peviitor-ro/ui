@@ -19,7 +19,7 @@ const FooterMenu = () => {
     <div className={footerMenuContainer} style={footerStyle}>
       <ul>
         {footerLinks.map(menuItem => 
-          <li className={!switchBackground ? menuTextOff : menuTextOn}>
+          <li className={!switchBackground ? menuTextOff : menuTextOn} key={menuItem.title}>
             <a href={menuItem.path} target="_blank" rel="noreferrer">{menuItem.title}</a>
           </li>
         )}
