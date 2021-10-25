@@ -5,14 +5,8 @@ import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { setSearchResults } from "redux/actions/searchResults";
-import {
-  getQueryWithFilters,
-  createQueryString,
-} from "../../screens/serp/serp";
-import {
-  setSwitchBackground,
-  setSwitchBackgroundOff,
-} from "redux/actions/switchBackground";
+import { setSwitchBackgroundOff } from "redux/actions/switchBackground";
+import { getQueryWithFilters, createQueryString } from "utils/helperFunctions/queries";
 import { baseUrl } from "utils/constants/url";
 import styles from "components/SearchBar/searchBar.module.scss";
 
