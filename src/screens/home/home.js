@@ -21,10 +21,9 @@ import BurgerMenu from 'components/FooterMenu/BurgerMenu';
 
 const Home = (props) => {
     const dispatch = useDispatch();
-    const { isBackground } = useSelector((state) => state);
     const filterOptions = useSelector((state) => state.filterOptions);
     const currentFilterOption = useSelector((state) => state.currentFilterOption);
-    const { welcome, notWelcome, filtersContainer, menuContainer, homeContainer } = styles;
+    const { filtersContainer, menuContainer, homeContainer } = styles;
     return (
         <>
             <div className={homeContainer}>

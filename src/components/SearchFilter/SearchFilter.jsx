@@ -25,6 +25,7 @@ const SearchFilter = ({ icon, text, options, onSelectOption }) => {
         document.removeEventListener('mousedown', handleClickOutside);
       };
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isActiveDropdown]);
 
   const { searchFilterContainer, searchFilterText, textIconFilterContainer } =

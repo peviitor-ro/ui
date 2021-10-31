@@ -32,6 +32,7 @@ import styles from 'screens/serp/serp.module.scss';
 
 const Serp = () => {
   const { searchResults, searchWord, searchResultsNumber } = useSelector((state) => state);
+  // eslint-disable-next-line no-unused-vars
   const [currentPage, setCurrentPage] = useState(0);
   const [pageRangeDisplay, setPageRangeDisplay] = useState(1);
   const intemsPerPage = jobsPerPage;

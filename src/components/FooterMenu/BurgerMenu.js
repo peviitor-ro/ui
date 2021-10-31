@@ -1,5 +1,5 @@
 import Hamburger from 'hamburger-react';
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import { setIsBurger } from 'redux/actions/burger';
 import useWindowDimensions from 'utils/customsHooks/useWindowsDimensions';
