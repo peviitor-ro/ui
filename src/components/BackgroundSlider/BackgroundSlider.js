@@ -1,19 +1,19 @@
 import React from 'react';
 import { useEffect, useState, useRef } from 'react';
-import { Slide, Fade } from 'react-slideshow-image';
+import { Slide } from 'react-slideshow-image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { getBackgroundImages } from 'utils/services';
 import {
   faCaretSquareLeft,
   faCaretSquareRight,
 } from '@fortawesome/free-solid-svg-icons';
-import ToggleButton from 'react-toggle-button';
+
 import styles from './BackgroundSlider.module.scss';
 import 'react-slideshow-image/dist/styles.css';
 
 const BackgroundSlider = ({ children }) => {
   const [backgroundImages, setBackgroundImages] = useState();
-  const [isBackgroundVisible, setBackgroundVisibility] = useState(true);
+  const [isBackgroundVisible] = useState(true);
 
   useEffect(() => {
     getBackgroundImages((data) => setBackgroundImages(data));
