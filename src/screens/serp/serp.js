@@ -59,6 +59,7 @@ const Serp = () => {
       setPageRangeDisplay(3)
     if (window.innerWidth < 481)
       setPageRangeDisplay(1)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [window.innerWidth])
   ////
   const onPageChange = async ({ selected }) => {
