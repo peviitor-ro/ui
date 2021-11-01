@@ -4,5 +4,5 @@
  test('renders learn react link', () => {
    render(<Logo />);
    const logoText = screen.getByText('pe viitor');
-   expect(logoText).toContain('pe viitor');
+   expect(JSON.stringify(logoText)).toContain('pe viitor');
  });
