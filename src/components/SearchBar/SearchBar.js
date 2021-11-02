@@ -10,8 +10,9 @@ import { getQueryWithFilters, createQueryString } from "utils/helperFunctions/qu
 import { baseUrl } from "utils/constants/url";
 import styles from "components/SearchBar/searchBar.module.scss";
 
-const SearchBar = ({ setCurrentPage, switchBackground }) => {
+const SearchBar = ({ currentPage, setCurrentPage, switchBackground }) => {
   const [searchQuery, setSearchQuery] = useState("");
+  //const [queryString, setQueryString] = useState();
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -24,21 +25,18 @@ const SearchBar = ({ setCurrentPage, switchBackground }) => {
   } = styles;
   const { searchResults, currentFilterOption } = useSelector((state) => state);
   const { searchWord } = searchResults;
+  const queryString = getQueryWithFilters(searchQuery, currentFilterOption);
 
   useEffect(() => {
     setSearchQuery(searchWord);
   }, []);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setCurrentPage && setCurrentPage(0);
+
+  const newSearch = async () => {
+
+    const callQuery = `${baseUrl}/search/${queryString}`;
     try {
-      const response = await axios.get(
-        getQueryWithFilters(
-          createQueryString(searchQuery, baseUrl),
-          currentFilterOption
-        )
-      );
+      const response = await axios.get(callQuery);
       dispatch(
         setSearchResults({
           searchResults: response.data.response.docs,
@@ -49,36 +47,56 @@ const SearchBar = ({ setCurrentPage, switchBackground }) => {
     } catch (error) {
       console.log(error);
     }
+    //history.push(`/rezultate/${queryString}`);
+  };
 
-    history.push("/rezultate");
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setCurrentPage && setCurrentPage(0);
+    newSearch();
+    // try {
+    //   const response = await axios.get(callQuery);
+    //   dispatch(
+    //     setSearchResults({
+    //       searchResults: response.data.response.docs,
+    //       resultsNumber: response.data.response.numFound,
+    //       searchWord: searchQuery,
+    //     })
+    //   );
+    // } catch (error) {
+    //   console.log(error);
+    // }
+    history.push(`/rezultate/${queryString}`);
+
     dispatch(setSwitchBackgroundOff());
   };
 
   useEffect(() => {
-    (async () => {
-      try {
-        const response = await axios.get(
-          getQueryWithFilters(
-            createQueryString(searchWord, baseUrl),
-            currentFilterOption
-          )
-        );
-        dispatch(
-          setSearchResults({
-            ...searchResults,
-            searchResults: response.data.response.docs,
-            resultsNumber: response.data.response.numFound,
-          })
-        );
-      } catch (error) {
-        console.log(error);
-      }
-    })();
+    newSearch();
   }, [currentFilterOption]);
+
+
+  // useEffect(() => {
+  //   (async () => {
+  //     try {
+  //       const response = await axios.get(callQuery);
+  //       dispatch(
+  //         setSearchResults({
+  //           ...searchResults,
+  //           searchResults: response.data.response.docs,
+  //           resultsNumber: response.data.response.numFound,
+  //         })
+  //       );
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   })();
+  // }, [currentFilterOption]);
 
   const handleChange = (e) => {
     setSearchQuery(e.target.value);
   };
+
   const handleBlur = (e) => {
     dispatch(
       setSearchResults({
@@ -96,8 +114,8 @@ const SearchBar = ({ setCurrentPage, switchBackground }) => {
           switchBackground === undefined
             ? searchInputBlack
             : switchBackground
-            ? searchInputWhite
-            : searchInputBlack
+              ? searchInputWhite
+              : searchInputBlack
         }
         type="text"
         placeholder="căutare..."
@@ -108,8 +126,8 @@ const SearchBar = ({ setCurrentPage, switchBackground }) => {
           switchBackground === undefined
             ? searchButtonBlack
             : switchBackground
-            ? searchButtonWhite
-            : searchButtonBlack
+              ? searchButtonWhite
+              : searchButtonBlack
         }
         type="submit"
       >
