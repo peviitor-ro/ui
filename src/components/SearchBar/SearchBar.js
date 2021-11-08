@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router";
+import { useHistory, useRouteMatch } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { setSearchResults } from "redux/actions/searchResults";
 import { setSwitchBackgroundOff } from "redux/actions/switchBackground";
-import { getQueryWithFilters, createQueryString } from "utils/helperFunctions/queries";
+import { getQueryWithFilters } from "utils/helperFunctions/queries";
 import { baseUrl } from "utils/constants/url";
 import styles from "components/SearchBar/searchBar.module.scss";
 
@@ -22,23 +22,21 @@ const SearchBar = ({ setCurrentPage, switchBackground }) => {
     searchButtonBlack,
     searchButtonWhite,
   } = styles;
+
   const { searchResults, currentFilterOption } = useSelector((state) => state);
   const { searchWord } = searchResults;
+  const baseQueryStr = window.location.origin;
+  const queryString = getQueryWithFilters(baseQueryStr, searchQuery, currentFilterOption);
+  const callQuery = `${baseUrl}/search/${queryString}`;
 
   useEffect(() => {
     setSearchQuery(searchWord);
   }, []);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const newSearch = async () => {
     setCurrentPage && setCurrentPage(0);
     try {
-      const response = await axios.get(
-        getQueryWithFilters(
-          createQueryString(searchQuery, baseUrl),
-          currentFilterOption
-        )
-      );
+      const response = await axios.get(callQuery);
       dispatch(
         setSearchResults({
           searchResults: response.data.response.docs,
@@ -49,36 +47,19 @@ const SearchBar = ({ setCurrentPage, switchBackground }) => {
     } catch (error) {
       console.log(error);
     }
+    history.push(`/rezultate/${queryString}`);
+  }
 
-    history.push("/rezultate");
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    newSearch();
     dispatch(setSwitchBackgroundOff());
   };
-
-  useEffect(() => {
-    (async () => {
-      try {
-        const response = await axios.get(
-          getQueryWithFilters(
-            createQueryString(searchWord, baseUrl),
-            currentFilterOption
-          )
-        );
-        dispatch(
-          setSearchResults({
-            ...searchResults,
-            searchResults: response.data.response.docs,
-            resultsNumber: response.data.response.numFound,
-          })
-        );
-      } catch (error) {
-        console.log(error);
-      }
-    })();
-  }, [currentFilterOption]);
 
   const handleChange = (e) => {
     setSearchQuery(e.target.value);
   };
+
   const handleBlur = (e) => {
     dispatch(
       setSearchResults({
@@ -87,6 +68,7 @@ const SearchBar = ({ setCurrentPage, switchBackground }) => {
       })
     );
   };
+
   return (
     <form onSubmit={handleSubmit} className={formSearchBar}>
       <input
@@ -96,8 +78,8 @@ const SearchBar = ({ setCurrentPage, switchBackground }) => {
           switchBackground === undefined
             ? searchInputBlack
             : switchBackground
-            ? searchInputWhite
-            : searchInputBlack
+              ? searchInputWhite
+              : searchInputBlack
         }
         type="text"
         placeholder="căutare..."
@@ -108,8 +90,8 @@ const SearchBar = ({ setCurrentPage, switchBackground }) => {
           switchBackground === undefined
             ? searchButtonBlack
             : switchBackground
-            ? searchButtonWhite
-            : searchButtonBlack
+              ? searchButtonWhite
+              : searchButtonBlack
         }
         type="submit"
       >

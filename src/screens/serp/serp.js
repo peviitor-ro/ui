@@ -1,4 +1,5 @@
 import { React, useEffect, useState } from "react";
+import { useLocation } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ReactPaginate from "react-paginate";
@@ -30,7 +31,6 @@ import { faFrown } from "@fortawesome/free-regular-svg-icons";
 import { setSearchResults } from "redux/actions/searchResults";
 import { setSwitchBackgroundOff } from "redux/actions/switchBackground";
 import { baseUrl, jobsPerPage } from "utils/constants/url";
-import { createQueryString, getQueryWithFilters } from "utils/helperFunctions/queries";
 import paginationStyles from "components/Pagination/Pagination.module.scss";
 import filterStyles from "screens/serp/serp.module.scss";
 import styles from "screens/serp/serp.module.scss";
@@ -49,6 +49,16 @@ const Serp = () => {
   const intemsPerPage = jobsPerPage;
   const pageCount = Math.ceil(resultsNumber / intemsPerPage);
   const dispatch = useDispatch();
+
+  const queryParams = window.location.href;
+  const searchParams = useLocation().search;
+  const params = new URLSearchParams(searchParams);
+  let paramObj = {};
+  for (let value of params.keys()) {
+    paramObj[value] = params.get(value)
+  };
+  const newParams = new URL(queryParams);
+
   const {
     pagination,
     paginationPage,
@@ -76,17 +86,9 @@ const Serp = () => {
     if (switchBackground) dispatch(setSwitchBackgroundOff());
   }, [dispatch]);
 
-  const onPageChange = async ({ selected }) => {
-    setCurrentPage(selected);
-
+  const searchByURL = async () => {
     try {
-      console.log(selected);
-      const response = await axios.get(
-        getQueryWithFilters(
-          createQueryString(searchWord, baseUrl, selected),
-          currentFilterOption
-        )
-      );
+      const response = await axios.get(`${baseUrl}/search/${newParams.search}`);
       dispatch(
         setSearchResults({
           searchResults: response.data.response.docs,
@@ -98,6 +100,32 @@ const Serp = () => {
       console.log(error);
     }
   };
+
+
+  useEffect(() => {
+    searchByURL();
+    paramObj.page && setCurrentPage(Number(paramObj.page) - 1);
+  }, [newParams.search])
+
+  const onPageChange = async ({ selected }) => {
+    //setCurrentPage(selected);
+    newParams.searchParams.set('page', selected + 1)
+    window.history.pushState({}, '', newParams);
+
+    try {
+      const response = await axios.get(`${baseUrl}/search/${newParams.search}`);
+      dispatch(
+        setSearchResults({
+          searchResults: response.data.response.docs,
+          resultsNumber: response.data.response.numFound,
+          searchWord: searchWord,
+        })
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
       <div className={menuContainer}>
@@ -120,6 +148,7 @@ const Serp = () => {
               onSelectOption={(data) => {
                 dispatch(setCurrentCountryFilterOption(data));
               }}
+
             />
             <SearchFilter
               icon={faMapMarkerAlt}

@@ -13,7 +13,7 @@ export const ROUTES = [
 
   {
     key: "serp",
-    path: "/rezultate",
+    path: "/:queryString",
     exact: false,
     component: Serp,
   },
