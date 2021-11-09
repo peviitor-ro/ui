@@ -1,15 +1,15 @@
-import { React, useState, useRef, useEffect } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { React, useState, useRef, useEffect } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import DropdownFilter from '../DropdownFilter/DropdownFilter';
-
-import styles from './SearchFilter.module.scss';
-const SearchFilter = ({ icon, text, options, onSelectOption }) => {
+import DropdownFilter from "../DropdownFilter/DropdownFilter";
+import styles from "./SearchFilter.module.scss";
+const SearchFilter = ({ icon, text, options, onSelectOption, value }) => {
   const [isActiveDropdown, setActiveDropDown] = useState(false);
   const toggleDropdown = () => {
     setActiveDropDown(!isActiveDropdown);
   };
   const dropdownContainerRef = useRef(null);
+
   useEffect(() => {
     if (isActiveDropdown) {
       function handleClickOutside(event) {
@@ -20,9 +20,9 @@ const SearchFilter = ({ icon, text, options, onSelectOption }) => {
           toggleDropdown();
         }
       }
-      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener("mousedown", handleClickOutside);
       return () => {
-        document.removeEventListener('mousedown', handleClickOutside);
+        document.removeEventListener("mousedown", handleClickOutside);
       };
     }
   }, [isActiveDropdown]);
@@ -38,7 +38,6 @@ const SearchFilter = ({ icon, text, options, onSelectOption }) => {
       {isActiveDropdown && (
         <DropdownFilter {...{ options, onSelectOption, toggleDropdown }} />
       )}
-
     </div>
   );
 };
