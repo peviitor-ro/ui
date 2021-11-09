@@ -51,13 +51,31 @@ const Serp = () => {
   const dispatch = useDispatch();
 
   const queryParams = window.location.href;
-  const searchParams = useLocation().search;
-  const params = new URLSearchParams(searchParams);
-  let paramObj = {};
-  for (let value of params.keys()) {
-    paramObj[value] = params.get(value)
-  };
+  //const searchParams = useLocation().search;
+  //const params = new URLSearchParams(searchParams);
+  // let paramObj = {};
+  // for (let value of params.keys()) {
+  //   paramObj[value] = params.getAll(value)
+  // };
   const newParams = new URL(queryParams);
+
+  const parseParams = (querystring) => {
+    // parse query string
+    const params = new URLSearchParams(querystring);
+    const obj = {};
+    // iterate over all keys
+    for (const key of params.keys()) {
+      if (params.getAll(key).length > 1) {
+        obj[key] = params.getAll(key);
+      } else {
+        obj[key] = params.get(key);
+      }
+    }
+    return obj;
+  };
+
+  const paramObj = parseParams(newParams.search);
+  console.log(parseParams(paramObj))
 
   const {
     pagination,
@@ -101,10 +119,18 @@ const Serp = () => {
     }
   };
 
+  const updatePageFromURL = () => {
+    if (paramObj.page) {
+      setCurrentPage(Number(paramObj.page) - 1)
+    } else {
+      setCurrentPage(0);
+    }
+  }
 
   useEffect(() => {
     searchByURL();
-    paramObj.page && setCurrentPage(Number(paramObj.page) - 1);
+    //paramObj.page && setCurrentPage(Number(paramObj.page) - 1);
+    updatePageFromURL();
   }, [newParams.search])
 
   const onPageChange = async ({ selected }) => {

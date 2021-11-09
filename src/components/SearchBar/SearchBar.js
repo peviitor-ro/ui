@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useHistory, useRouteMatch } from "react-router";
+import { useHistory } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -48,7 +48,8 @@ const SearchBar = ({ setCurrentPage, switchBackground }) => {
       console.log(error);
     }
     history.push(`/rezultate/${queryString}`);
-  }
+  };
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
