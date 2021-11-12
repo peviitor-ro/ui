@@ -1,5 +1,4 @@
 import { React, useEffect, useState } from "react";
-import { useLocation } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ReactPaginate from "react-paginate";
@@ -31,6 +30,7 @@ import { faFrown } from "@fortawesome/free-regular-svg-icons";
 import { setSearchResults } from "redux/actions/searchResults";
 import { setSwitchBackgroundOff } from "redux/actions/switchBackground";
 import { baseUrl, jobsPerPage } from "utils/constants/url";
+import { parseURLParams } from "utils/helperFunctions/queries";
 import paginationStyles from "components/Pagination/Pagination.module.scss";
 import filterStyles from "screens/serp/serp.module.scss";
 import styles from "screens/serp/serp.module.scss";
@@ -43,6 +43,7 @@ const Serp = () => {
     currentFilterOption,
     switchBackground,
   } = useSelector((state) => state);
+
   const { searchWord, resultsNumber } = searchResults;
   const [currentPage, setCurrentPage] = useState(0);
   const pageRangeDisplay = isMobile ? 1 : 3;
@@ -51,31 +52,8 @@ const Serp = () => {
   const dispatch = useDispatch();
 
   const queryParams = window.location.href;
-  //const searchParams = useLocation().search;
-  //const params = new URLSearchParams(searchParams);
-  // let paramObj = {};
-  // for (let value of params.keys()) {
-  //   paramObj[value] = params.getAll(value)
-  // };
   const newParams = new URL(queryParams);
-
-  const parseParams = (querystring) => {
-    // parse query string
-    const params = new URLSearchParams(querystring);
-    const obj = {};
-    // iterate over all keys
-    for (const key of params.keys()) {
-      if (params.getAll(key).length > 1) {
-        obj[key] = params.getAll(key);
-      } else {
-        obj[key] = params.get(key);
-      }
-    }
-    return obj;
-  };
-
-  const paramObj = parseParams(newParams.search);
-  console.log(parseParams(paramObj))
+  const paramsObject = parseURLParams(newParams.search);
 
   const {
     pagination,
@@ -85,7 +63,9 @@ const Serp = () => {
     arrowIcons,
     paginationDisabled,
   } = paginationStyles;
+
   const { filtersContainer } = filterStyles;
+
   const {
     headerContainer,
     filterSearchContainer,
@@ -120,8 +100,8 @@ const Serp = () => {
   };
 
   const updatePageFromURL = () => {
-    if (paramObj.page) {
-      setCurrentPage(Number(paramObj.page) - 1)
+    if (paramsObject.page) {
+      setCurrentPage(Number(paramsObject.page) - 1)
     } else {
       setCurrentPage(0);
     }
@@ -129,12 +109,10 @@ const Serp = () => {
 
   useEffect(() => {
     searchByURL();
-    //paramObj.page && setCurrentPage(Number(paramObj.page) - 1);
     updatePageFromURL();
   }, [newParams.search])
 
   const onPageChange = async ({ selected }) => {
-    //setCurrentPage(selected);
     newParams.searchParams.set('page', selected + 1)
     window.history.pushState({}, '', newParams);
 
