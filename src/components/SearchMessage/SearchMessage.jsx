@@ -1,6 +1,4 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFrown } from "@fortawesome/free-regular-svg-icons";
 
 import styles from "components/SearchMessage/SearchMessage.module.scss";
 

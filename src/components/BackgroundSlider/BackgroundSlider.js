@@ -1,21 +1,16 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Slide, Fade } from "react-slideshow-image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { getBackgroundImages } from "utils/services";
-import { faCaretRight, faCaretLeft } from "@fortawesome/free-solid-svg-icons";
 import ToggleButton from "react-toggle-button";
-import styles from "./BackgroundSlider.module.scss";
-import "react-slideshow-image/dist/styles.css";
-import {
-  setSwitchBackground,
-  setSwitchBackgroundOff,
-  setSwitchBackgroundOn,
-} from "redux/actions/switchBackground";
-import switchBackground from "redux/reducers/switchBackground";
+import { faCaretRight, faCaretLeft } from "@fortawesome/free-solid-svg-icons";
+import { Slide } from "react-slideshow-image";
+
+import { getBackgroundImages } from "utils/services";
+import { setSwitchBackgroundOff, setSwitchBackgroundOn } from "redux/actions/switchBackground";
 import { setBackgroundBtn } from "redux/actions/backgroundBtn";
+import "react-slideshow-image/dist/styles.css";
+import styles from "./BackgroundSlider.module.scss";
 
 const BackgroundSlider = ({ children }) => {
   const [backgroundImages, setBackgroundImages] = useState();
@@ -36,7 +31,6 @@ const BackgroundSlider = ({ children }) => {
   }, []);
   const {
     backgroundStyle,
-    switchBackgroundIcon,
     switchBackgroundIconContainer,
     pageContent,
     iconContainer,
@@ -47,10 +41,12 @@ const BackgroundSlider = ({ children }) => {
     infoContainer,
     authorPage,
   } = styles;
+
   const properties = {
     autoplay: false,
     arrows: false,
   };
+
   const slideRef = useRef();
   const back = () => {
     slideRef.current.goBack();
