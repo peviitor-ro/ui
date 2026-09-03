@@ -1,5 +1,5 @@
-@import "styles/extends.scss";
-@import "styles/variables.scss";
+@use "styles/extends.scss" as *;
+@use "styles/variables.scss" as *;
 
 .pagination {
     display: flex;
