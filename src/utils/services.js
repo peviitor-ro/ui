@@ -1,31 +1,31 @@
 import axios from "axios";
 import { baseUrl } from "./constants/url";
 
-export const getFilterData = async (setData) => {
+const safeGet = async (url) => {
   try {
-    const countriesResponse = await axios.get(
-      `${baseUrl}/countries/?count=true`,
-    );
-    const citiesResponse = await axios.get(`${baseUrl}/cities/?count=true`);
-    const companiesResponse = await axios.get(
-      `${baseUrl}/companies/?count=true`,
-    );
-    setData({
-      countries: countriesResponse.data.countries,
-      cities: citiesResponse.data.cities,
-      companies: companiesResponse.data.companies,
-    });
-  } catch (error) {
-    console.log(error);
+    const res = await axios.get(url);
+    return res.data;
+  } catch (err) {
+    console.warn(`API call failed for ${url}:`, err.message);
+    return null;
   }
 };
 
+export const getFilterData = async (setData) => {
+  const [countriesData, citiesData, companiesData] = await Promise.all([
+    safeGet(`${baseUrl}/countries/?count=true`),
+    safeGet(`${baseUrl}/cities/?count=true`),
+    safeGet(`${baseUrl}/companies/?count=true`),
+  ]);
+
+  setData({
+    countries: countriesData?.countries || [],
+    cities: citiesData?.cities || [],
+    companies: companiesData?.companies || [],
+  });
+};
+
 export const getBackgroundImages = async (setData) => {
-  try {
-    const backgroundImagesResponse = await axios.get(`${baseUrl}/background/`);
-    const backgroundImagesData = backgroundImagesResponse.data.response.docs;
-    setData(backgroundImagesData);
-  } catch (error) {
-    console.log(error);
-  }
+  const bgData = await safeGet(`${baseUrl}/background/`);
+  setData(bgData?.response?.docs || []);
 };

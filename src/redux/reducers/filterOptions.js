@@ -1,9 +1,15 @@
 import { SET_FILTER_OPTIONS_DATA } from "../constants/constants";
 
-const filterOptionsReducer = (state = [], action) => {
+const initialState = {
+  countries: [],
+  cities: [],
+  companies: [],
+};
+
+const filterOptionsReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_FILTER_OPTIONS_DATA:
-      return { ...action.payload };
+      return { ...state, ...action.payload };
 
     default:
       return state;
@@ -11,4 +17,3 @@ const filterOptionsReducer = (state = [], action) => {
 };
 
 export default filterOptionsReducer;
-

@@ -1,4 +1,4 @@
-import { BrowserRouter } from "react-router-dom";
+import { HashRouter } from "react-router-dom";
 import SwitchRoutes from 'utils/routing/SwitchRoutes';
 import { ROUTES } from 'utils/routing/Routes';
 import { useEffect } from 'react'
@@ -13,9 +13,9 @@ function App() {
   }, [dispatch]);
   return (
     <div className="App">
-      <BrowserRouter>
+      <HashRouter>
         <SwitchRoutes routes={ROUTES} />
-      </BrowserRouter>
+      </HashRouter>
     </div>
   );
 }
