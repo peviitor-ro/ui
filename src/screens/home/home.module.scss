@@ -1,41 +1,190 @@
 @use "styles/variables.scss" as *;
 
-.homeContainer {
-    width: 100vw;
-    height: 100vh;
+.landingPageContainerOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: $borderColor;
+  color: $white;
+  pointer-events: none;
+}
 
-    .filtersContainer{
-    display: flex;
-    justify-content: space-between;
-    padding: 0px 45px;
-    height: 10%;
-    }
+.landingPageContainerNoOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: transparent;
+}
+.overlayContainer {
+  pointer-events: all;
+}
+.filtersContainer {
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 45px;
+  height: 10%;
+  pointer-events: all;
+}
+.filtersContainerOff {
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 45px;
+  height: 10%;
+}
 
-    .menuContainer{
-        display: flex;
-        justify-content: flex-end;
-    }
+.menuContainer {
+  display: flex;
+  justify-content: flex-end;
+  pointer-events: all;
+}
+
+.textContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .textInfoOff {
+    font-family: $primaryFont;
+    height: 8px;
+    color: $logoColor;
+  }
+  .textInfoOn {
+    font-family: $primaryFont;
+    height: 8px;
+    color: $white;
+  }
+  .textInfoDescriptionOff {
+    font-family: $primaryFont;
+    height: 10px;
+    color: $white;
+  }
+  .textInfoDescriptionOn {
+    font-family: $primaryFont;
+    height: 10px;
+    color: $black;
+  }
+}
+.textContainerOverlayOn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .textInfoOff {
+    font-family: $primaryFont;
+    height: 8px;
+    color: $logoColor;
+  }
+  .textInfoOn {
+    font-family: $primaryFont;
+    height: 8px;
+    color: $white;
+  }
+
+  .textInfoDescriptionOff {
+    font-family: $primaryFont;
+    height: 10px;
+    color: $white;
+    margin-bottom: 8%;
+  }
+
+  .textInfoDescriptionOn {
+    font-family: $primaryFont;
+    height: 10px;
+    color: $black;
+    margin-bottom: 8%;
+  }
 }
 
 @media screen and (min-width: $mobile-breakpoint) {
-
-        .filtersContainer{
-            padding: 0px 100px;
-        }
+  .filtersContainer {
+    padding: 0px 100px;
+  }
 }
 
 @media screen and (min-width: $tablet-breakpoint) {
+  .landingPageContainerOverlay {
+    background-color: transparent;
+  }
+  .overlayContainer {
+    background-color: $borderColor;
+    margin: 5% auto;
+    width: 57%;
+    height: 40%;
+    color: $white;
+    pointer-events: all;
+  }
+  .noOverlayContainer {
+    margin: 5% auto;
+    width: 50%;
+    height: 30%;
+    pointer-events: all;
+  }
+  .textContainer {
+    margin: 0 auto;
+    width: 30%;
+  }
 
-    .search{
-        margin: 30px;
-        margin-bottom: 0px;
-        margin-left: 0px;
+  .textContainerOverlayOn {
+    margin: 0 auto;
+    width: 30%;
+    background-color: $borderColor;
+
+    .textInfoOff {
+      font-size: 20px;
     }
-    
-    .filtersContainer{
-        width: 35vw;
-        display: flex;
-        justify-content: space-between;
-        margin: 0 auto;
+
+    .textInfoOn {
+      font-size: 20px;
     }
+
+    .textInfoDescriptionOff {
+      font-size: 16px;
+    }
+
+    .textInfoDescriptionOn {
+      font-size: 16px;
+    }
+  }
+
+  .textContainer {
+    .textInfoOff {
+      font-size: 20px;
+    }
+
+    .textInfoOn {
+      font-size: 20px;
+    }
+
+    .textInfoDescriptionOff {
+      font-size: 16px;
+    }
+
+    .textInfoDescriptionOn {
+      font-size: 16px;
+    }
+  }
+
+  .search {
+    margin: 30px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+  }
+
+  .filtersContainer {
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+  }
+
+  .filtersContainerOff {
+    width: 74%;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+  }
 }

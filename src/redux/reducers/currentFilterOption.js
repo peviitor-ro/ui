@@ -2,10 +2,10 @@ import {
   SET_COUNTRY_OPTION,
   SET_CITY_OPTION,
   SET_COMPANY_OPTION,
-} from '../constants/constants';
+} from "../constants/constants";
 
 const currentFilterOptionReducer = (
-  state = { country: 'Romania', city: 'Oras', company: 'Companie' },
+  state = { country: "România", city: "Oraș", company: "Companie" },
   action
 ) => {
   switch (action.type) {

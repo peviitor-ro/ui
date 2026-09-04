@@ -1,20 +1,24 @@
+@use "styles/variables.scss" as *;
 
 .searchFilterContainer {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: min-content;
   cursor: pointer;
   position: relative;
+  width: 100%;
 
   .searchFilterText {
     margin: 0;
-    margin-left: 5px;
+    margin-left: 8px;
     -webkit-user-select: none; /* Safari */
     -moz-user-select: none; /* Firefox */
     -ms-user-select: none; /* IE10+/Edge */
     user-select: none; /* Standard */
+    font-family: $filterFont;
+    letter-spacing: 0.8px;
   }
+
   .textIconFilterContainer {
     display: flex;
     align-items: center;

@@ -1,83 +1,126 @@
-import React from 'react';
-import { useEffect, useState, useRef } from 'react';
-import { Slide } from 'react-slideshow-image';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { getBackgroundImages } from 'utils/services';
-import {
-  faCaretSquareLeft,
-  faCaretSquareRight,
-} from '@fortawesome/free-solid-svg-icons';
+import React from "react";
+import { useEffect, useState, useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import ToggleButton from "react-toggle-button";
+import { faCaretRight, faCaretLeft } from "@fortawesome/free-solid-svg-icons";
+import { Slide } from "react-slideshow-image";
 
-import styles from './BackgroundSlider.module.scss';
-import 'react-slideshow-image/dist/styles.css';
+import { getBackgroundImages } from "utils/services";
+import {
+  setSwitchBackgroundOff,
+  setSwitchBackgroundOn,
+} from "redux/actions/switchBackground";
+import { setBackgroundBtn } from "redux/actions/backgroundBtn";
+import "react-slideshow-image/dist/styles.css";
+import styles from "./BackgroundSlider.module.scss";
 
 const BackgroundSlider = ({ children }) => {
-  const [backgroundImages, setBackgroundImages] = useState();
-  const [isBackgroundVisible] = useState(true);
+  const [backgroundImages, setBackgroundImages] = useState([]);
+  const switchBackground = useSelector((state) => state.switchBackground);
+  const dispatch = useDispatch();
+
+  const toggleButton = () => {
+    if (switchBackground) {
+      dispatch(setSwitchBackgroundOff());
+    } else {
+      dispatch(setSwitchBackgroundOn());
+    }
+    dispatch(setBackgroundBtn());
+  };
 
   useEffect(() => {
-    getBackgroundImages((data) => setBackgroundImages(data));
+    getBackgroundImages((data) => setBackgroundImages(data || []));
   }, []);
+
   const {
     backgroundStyle,
-    switchBackgroundIcon,
     switchBackgroundIconContainer,
     pageContent,
+    iconContainer,
+    backgroundSliderContainer,
+    eachSlide,
+    toggleButtonContainer,
+    noIcon,
+    infoContainer,
+    authorPage,
   } = styles;
+
   const properties = {
     autoplay: false,
     arrows: false,
   };
+
   const slideRef = useRef();
   const back = () => {
-    slideRef.current.goBack();
+    slideRef.current?.goBack();
   };
 
   const next = () => {
-    slideRef.current.goNext();
+    slideRef.current?.goNext();
   };
 
   return (
-    <div>
-      {isBackgroundVisible && backgroundImages && (
+    <div className={backgroundSliderContainer}>
+      {switchBackground && backgroundImages && backgroundImages.length > 0 && (
         <Slide easing="ease" ref={slideRef} {...properties}>
           {backgroundImages.map((element) => (
-            <div className="each-slide" key={element.id}>
+            <div className={eachSlide} key={element.id}>
               <div
                 className={backgroundStyle}
                 style={{
                   backgroundImage: `url(${element.url_pic})`,
-                  height: '100vh',
+                  height: "100%",
                 }}
               >
-                {/* {children} */}
+                <div className={infoContainer}>
+                  <div>{element.title}</div>
+                  <div
+                    className={authorPage}
+                    onClick={() => window.open(element.url_author, "_blank")}
+                  >
+                    {element.author}
+                  </div>
+                </div>
               </div>
             </div>
           ))}
         </Slide>
       )}
       <div className={pageContent}>{children}</div>
-      {/* <ToggleButton
-        inactiveLabel={'x'}
-        activeLabel={'y'}
-        value={isBackgroundVisible}
-        onToggle={(value) => {
-          setBackgroundVisibility(!value);
-        }}
-      /> */}
-      <div className={switchBackgroundIconContainer}>
-        <FontAwesomeIcon
-          icon={faCaretSquareLeft}
-          size="2x"
-          onClick={back}
-          className={switchBackgroundIcon}
+      <div className={toggleButtonContainer}>
+        <ToggleButton
+          thumbStyle={{ borderRadius: 2, width: "40px", height: "35px" }}
+          trackStyle={{ borderRadius: 2, width: "40px", height: "35px" }}
+          inactiveLabel={""}
+          activeLabel={""}
+          value={switchBackground}
+          onToggle={toggleButton}
+          colors={{
+            activeThumb: {
+              base: "rgba(250, 250, 250, 0.702)",
+            },
+            inactiveThumb: {
+              base: "rgba(250, 250, 250, 0.702)",
+            },
+            active: {
+              base: "rgba(0, 0, 0, 0.638)",
+            },
+            inactive: {
+              base: "rgba(0, 0, 0, 0.638)",
+            },
+          }}
         />
-        <FontAwesomeIcon
-          icon={faCaretSquareRight}
-          size="2x"
-          onClick={next}
-          className={switchBackgroundIcon}
-        />
+      </div>
+      <div
+        className={switchBackground ? switchBackgroundIconContainer : noIcon}
+      >
+        <div className={iconContainer} onClick={back}>
+          <FontAwesomeIcon icon={faCaretLeft} />
+        </div>
+        <div className={iconContainer} onClick={next}>
+          <FontAwesomeIcon icon={faCaretRight} />
+        </div>
       </div>
     </div>
   );

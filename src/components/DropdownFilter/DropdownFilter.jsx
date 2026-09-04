@@ -1,5 +1,5 @@
-import styles from './DropdownFilter.module.scss';
-import { Scrollbars } from 'react-custom-scrollbars-2';
+import styles from "./DropdownFilter.module.scss";
+import { Scrollbars } from "react-custom-scrollbars-2";
 
 const DropdownFilter = ({ options, onSelectOption, toggleDropdown }) => {
   const { dropdownContainer, dropdownOption } = styles;
@@ -14,13 +14,13 @@ const DropdownFilter = ({ options, onSelectOption, toggleDropdown }) => {
       <Scrollbars style={{ width: 100 }} autoHide>
         {options &&
           options.map((element) => (
-            <div
+            <option
               key={element.name}
               className={dropdownOption}
               onClick={() => handleOptionClick(element.name)}
             >
               {element.name}
-            </div>
+            </option>
           ))}
       </Scrollbars>
     </div>

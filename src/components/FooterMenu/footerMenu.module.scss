@@ -1,25 +1,32 @@
 @use "styles/variables.scss" as *;
+@use "styles/mixins.scss" as *;
+@use "styles/extends.scss" as *;
 
 .footerMenuContainer {
-  width: 100vw;
-  height: 30vh;
+  width: 100%;
+  height: 50%;
+  color: $black;
 
   ul {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    height: 100%;
-    margin: 0;
+    @extend %footerList;
 
-    li {
-      list-style: none;
-      border: 1px solid black;
-      width: 30vw;
-      height: 4vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .menuTextOff {
+      @extend %footerLinks;
+      border: 1px solid $black;
+
+      a {
+        @include anchor-style(none, inherit);
+      }
+    }
+
+    .menuTextOn {
+      @extend %footerLinks;
+      color: $white;
+      border: 1px solid $white;
+
+      a {
+        @include anchor-style(none, inherit);
+      }
     }
   }
 }
@@ -27,27 +34,28 @@
 @media screen and (min-width: $tablet-breakpoint) {
   .footerMenuContainer {
     width: 100vw;
-    height: 3vh;
+    height: 4vh;
     background-color: $footerColor;
     z-index: 1;
     position: fixed;
     bottom: 0;
 
     ul {
-      width: 30vw;
+      width: 100%;
       display: flex;
       flex-direction: row;
       justify-content: space-between;
       padding-left: 0;
 
-      li {
+      .menuTextOff,
+      .menuTextOn {
         font-family: $primaryFont;
         border: 0;
         height: 0;
-        width: 15vw;
+        width: fit-content;
         z-index: 1;
         color: $black;
-        font-size: 12px;
+        font-size: 16px;
       }
     }
   }

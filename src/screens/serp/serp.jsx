@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from "react";
+import { React, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ReactPaginate from "react-paginate";
@@ -10,11 +10,14 @@ import SearchFilter from "components/SearchFilter/SearchFilter";
 import { Link } from "react-router-dom";
 import FooterMenu from "components/FooterMenu/FooterMenu";
 import BurgerMenu from "components/FooterMenu/BurgerMenu";
+import SearchMessage from "components/SearchMessage/SearchMessage";
+
 import {
   setCurrentCountryFilterOption,
   setCurrentCityFilterOption,
   setCurrentCompanyFilterOption,
 } from "redux/actions/currentFilterOption";
+
 import {
   faGlobeEurope,
   faBuilding,
@@ -22,24 +25,36 @@ import {
   faAngleDoubleLeft,
   faAngleDoubleRight,
 } from "@fortawesome/free-solid-svg-icons";
+import { faFrown } from "@fortawesome/free-regular-svg-icons";
+
 import { setSearchResults } from "redux/actions/searchResults";
+import { setSwitchBackgroundOff } from "redux/actions/switchBackground";
 import { baseUrl, jobsPerPage } from "utils/constants/url";
+import { parseURLParams } from "utils/helperFunctions/queries";
 import paginationStyles from "components/Pagination/Pagination.module.scss";
-import filterStyles from "screens/home/home.module.scss";
+import filterStyles from "screens/serp/serp.module.scss";
 import styles from "screens/serp/serp.module.scss";
 
 const Serp = () => {
-  const { searchResults, searchWord, searchResultsNumber } = useSelector(
-    (state) => state,
-  );
-  // eslint-disable-next-line no-unused-vars
+  const {
+    searchResults,
+    isMobile,
+    filterOptions,
+    currentFilterOption,
+    switchBackground,
+  } = useSelector((state) => state);
+
+  const { searchWord, resultsNumber } = searchResults || {};
   const [currentPage, setCurrentPage] = useState(0);
-  const [pageRangeDisplay, setPageRangeDisplay] = useState(1);
+  const pageRangeDisplay = isMobile ? 1 : 3;
   const intemsPerPage = jobsPerPage;
-  const pageCount = Math.ceil(searchResultsNumber / intemsPerPage);
+  const pageCount = Math.ceil((resultsNumber || 0) / intemsPerPage);
   const dispatch = useDispatch();
-  const filterOptions = useSelector((state) => state.filterOptions);
-  const currentFilterOption = useSelector((state) => state.currentFilterOption);
+
+  const queryParams = window.location.href;
+  const newParams = new URL(queryParams);
+  const paramsObject = parseURLParams(newParams.search);
+
   const {
     pagination,
     paginationPage,
@@ -48,7 +63,9 @@ const Serp = () => {
     arrowIcons,
     paginationDisabled,
   } = paginationStyles;
+
   const { filtersContainer } = filterStyles;
+
   const {
     headerContainer,
     filterSearchContainer,
@@ -58,23 +75,32 @@ const Serp = () => {
     searchResultsList__link,
     menuContainer,
     paginationContainer,
+    resultsNumberText,
   } = styles;
 
-  ////needs refactoring
   useEffect(() => {
-    if (window.innerWidth > 481) setPageRangeDisplay(3);
-    if (window.innerWidth < 481) setPageRangeDisplay(1);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [window.innerWidth]);
-  ////
+    dispatch(setSwitchBackgroundOff());
+  }, [dispatch]);
+
   const onPageChange = async ({ selected }) => {
     setCurrentPage(selected);
     try {
       const start = selected * intemsPerPage;
-      const response = await axios.get(
-        `${baseUrl}/search/?q=${searchWord}&start=${start}`,
+      let callQuery;
+      if (paramsObject) {
+        const { q, city, country, company } = paramsObject;
+        callQuery = `${baseUrl}/search/?q=${encodeURIComponent(q || searchWord || "")}&city=${encodeURIComponent(city || "")}&country=${encodeURIComponent(country || "")}&company=${encodeURIComponent(company || "")}&start=${start}`;
+      } else {
+        callQuery = `${baseUrl}/search/?q=${encodeURIComponent(searchWord || "")}&start=${start}`;
+      }
+      const response = await axios.get(callQuery);
+      dispatch(
+        setSearchResults({
+          searchResults: response.data?.response?.docs || [],
+          resultsNumber: response.data?.response?.numFound || 0,
+          searchWord: searchWord,
+        })
       );
-      dispatch(setSearchResults(response.data.response.docs));
     } catch (error) {
       console.log(error);
     }
@@ -92,29 +118,29 @@ const Serp = () => {
         </div>
         <div className={filterSearchContainer}>
           <div className={search}>
-            <SearchBar />
+            <SearchBar {...{ setCurrentPage, switchBackground }} />
           </div>
           <div className={filtersContainer}>
             <SearchFilter
               icon={faGlobeEurope}
-              text={currentFilterOption.country}
-              options={filterOptions.countries}
+              text={currentFilterOption?.country || "Țară"}
+              options={filterOptions?.countries || []}
               onSelectOption={(data) => {
                 dispatch(setCurrentCountryFilterOption(data));
               }}
             />
             <SearchFilter
               icon={faMapMarkerAlt}
-              text={currentFilterOption.city}
-              options={filterOptions.cities}
+              text={currentFilterOption?.city || "Oraș"}
+              options={filterOptions?.cities || []}
               onSelectOption={(data) =>
                 dispatch(setCurrentCityFilterOption(data))
               }
             />
             <SearchFilter
               icon={faBuilding}
-              text={currentFilterOption.company}
-              options={filterOptions.companies}
+              text={currentFilterOption?.company || "Companie"}
+              options={filterOptions?.companies || []}
               onSelectOption={(data) =>
                 dispatch(setCurrentCompanyFilterOption(data))
               }
@@ -122,34 +148,33 @@ const Serp = () => {
           </div>
         </div>
       </div>
-
+      <div className={resultsNumberText}>
+        {resultsNumber ? (
+          <div>
+            Rezultate <b>{resultsNumber}</b>
+          </div>
+        ) : null}
+      </div>
       <div className={searchResultsList}>
-        {searchResults.map((job) => (
+        {searchResults?.searchResults?.map((job) => (
           <Link
             className={searchResultsList__link}
             to={{ pathname: job.job_link }}
             target="_blank"
             key={job.id}
           >
-            {" "}
-            <JobCard {...job} />{" "}
+            <JobCard {...job} />
           </Link>
         ))}
       </div>
-      {searchResultsNumber > intemsPerPage && (
+      {resultsNumber > intemsPerPage && (
         <div className={paginationContainer}>
           <ReactPaginate
             previousLabel={
-              <FontAwesomeIcon
-                icon={faAngleDoubleLeft}
-                className={arrowIcons}
-              />
+              <FontAwesomeIcon icon={faAngleDoubleLeft} className={arrowIcons} />
             }
             nextLabel={
-              <FontAwesomeIcon
-                icon={faAngleDoubleRight}
-                className={arrowIcons}
-              />
+              <FontAwesomeIcon icon={faAngleDoubleRight} className={arrowIcons} />
             }
             pageCount={pageCount}
             onPageChange={onPageChange}
@@ -162,12 +187,15 @@ const Serp = () => {
             breakClassName={paginationPage}
             pageRangeDisplayed={pageRangeDisplay}
             marginPagesDisplayed={1}
+            forcePage={currentPage}
           />
         </div>
       )}
-      {/* to be replaced with a react component */}
-      {searchWord && searchResultsNumber === 0 && (
-        <p>Nu a fost gasit nici un rezultat!</p>
+      {resultsNumber === 0 && (
+        <SearchMessage
+          icon={faFrown}
+          text="Nu am găsit nici un rezultat, te rugăm să verifici dacă ai scris corect sau încearcă din nou."
+        />
       )}
     </>
   );

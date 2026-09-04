@@ -19,9 +19,9 @@ export const getFilterData = async (setData) => {
   ]);
 
   setData({
-    countries: countriesData?.countries || [],
-    cities: citiesData?.cities || [],
-    companies: companiesData?.companies || [],
+    countries: [{ name: "Țară" }, ...(countriesData?.countries || [])],
+    cities: [{ name: "Oraș" }, ...(citiesData?.cities || [])],
+    companies: [{ name: "Companie" }, ...(companiesData?.companies || [])],
   });
 };
 

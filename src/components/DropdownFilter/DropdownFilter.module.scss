@@ -1,3 +1,5 @@
+@use "styles/variables.scss" as *;
+
 .dropdownContainer {
   height: 40vh;
   overflow: scroll;
@@ -10,13 +12,15 @@
   justify-content: center;
   text-align: center;
   z-index: 2;
+  margin-right: 0px;
+  margin-bottom: -17px;
 
   &::-webkit-scrollbar {
     display: none;
   }
 
   .dropdownOption {
-    padding: 0 5%;
+    padding: 2% 5%;
     &:hover {
       background-color: rgba(255, 255, 255, 0.275);
       cursor: pointer;
@@ -25,5 +29,9 @@
     -moz-user-select: none; /* Firefox */
     -ms-user-select: none; /* IE10+/Edge */
     user-select: none; /* Standard */
+    font-family: $filterFont;
+    &:first-child {
+      background-color: $defaultFilterColor;
+    }
   }
 }

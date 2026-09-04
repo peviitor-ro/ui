@@ -1,12 +1,12 @@
 @use "styles/variables.scss" as *;
 
-.menuContainer{
-    display: flex;
-    justify-content: flex-end;
+.menuContainer {
+  display: flex;
+  justify-content: flex-end;
 }
 
 .searchResultsList {
-  margin: 0 auto;
+  margin: 0 auto 6vh;
 }
 
 .searchResultsList__link {
@@ -15,81 +15,120 @@
 }
 
 .headerContainer {
+  display: flex;
+  flex-direction: column;
+
+  height: 30%;
+  margin-bottom: 1rem;
+
+  .logoContainer {
+    margin-top: 0;
+  }
+  .filterSearchContainer {
     display: flex;
     flex-direction: column;
-    width: 100vw;
-    height: 25vh;
-  
-    .logoContainer{
-        margin-top: 0;
-    }
-    .filterSearchContainer {
-        display: flex;
-        flex-direction: column;
-       
-        .filters{
-            display: flex;
-            justify-content: space-between;
-            padding: 0px 45px;
-            height: 10%;
 
-        }
+    .filtersContainer {
+      display: flex;
+      width: 80%;
+      margin-left: 9%;
+      justify-content: space-between;
     }
+
+    .filters {
+      display: flex;
+      justify-content: space-between;
+      padding: 0px 45px;
+      height: 10%;
+    }
+  }
 }
-.paginationContainer {
-    display: flex;
-    justify-content: center;
-    padding: 10px;
+.numberContainer {
+  width: 100%;
+  margin-top: 3vh;
+  .horizontalLine {
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
   }
 
-@media screen and (min-width: $mobile-breakpoint) {
-
-    .headerContainer {.filterSearchContainer {
-        .filters{
-            padding: 0px 100px;
-        }
-    }
+  .resultsText {
+    font-family: $primaryFont;
+    color: $card_details_color;
+    margin-left: 39%;
+    margin-bottom: 2%;
+  }
 }
+.paginationContainer {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
+
+@media screen and (min-width: $mobile-breakpoint) {
+  .headerContainer {
+    .filterSearchContainer {
+      .filtersContainer {
+        display: flex;
+        width: 80%;
+        margin-left: 9%;
+      }
+
+      .filters {
+        padding: 0px 100px;
+      }
+    }
+  }
 
   .searchResultsList {
     width: 75%;
   }
+  .numberContainer {
+    .resultsText {
+      margin-left: 12.5%;
+      width: 75%;
+    }
+  }
+
   .paginationContainer {
     min-width: fit-content;
     max-width: 50%;
     margin: 0 auto;
   }
-
 }
 
-@media screen and (min-width: $tablet-breakpoint){
+@media screen and (min-width: $tablet-breakpoint) {
+  .headerContainer {
+    flex-direction: row;
+    padding: 4px 0px 28px 12px;
 
-    .headerContainer {
-        flex-direction: row;
-      
-      .logoContainer{
-          display: flex;
-          align-items: flex-start;
-          
-          p{
-              margin: 15px;
-              font-size: 3em;
-          }
+    .logoContainer {
+      display: flex;
+      align-items: flex-start;
+
+      p {
+        margin: 20px 0px 0px 5px;
+        font-size: 3em;
       }
-        .filterSearchContainer {
-             display: flex;
-             justify-content: flex-start;
-             flex-direction: column;
-
-           .search{
-               margin: 30px;
-               margin-bottom: 0px;
-               margin-left: 0px;  
-           }
-    
-            .filters{
-                padding: 0px 30px 0px 0px; 
-            }
-        }
     }
+    .filterSearchContainer {
+      display: flex;
+      justify-content: flex-start;
+      flex-direction: column;
+      width: 45%;
+      padding: 17px 0px 0px 0px;
+
+      .filtersContainer {
+        display: flex;
+        width: 100%;
+        margin-left: -4%;
+      }
+      .search {
+        margin-bottom: 0px;
+        margin-left: -10%;
+      }
+
+      .filters {
+        padding: 0px 30px 0px 0px;
+      }
+    }
+  }
 }

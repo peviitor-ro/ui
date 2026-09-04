@@ -6,11 +6,48 @@
     url("../../assets/fonts/JustMandrawn.ttf") format("truetype");
 }
 
+.logoContainer {
+  text-decoration: none;
+  margin-right: 8px;
+  z-index: 1;
+}
+
 .logo {
   display: flex;
   justify-content: center;
   color: $logoColor;
   font-family: $logoFont;
+  margin-bottom: 0;
+  font-size: 7rem;
   margin: 0;
-  font-size: 4rem;
+}
+
+.logoOff {
+  display: flex;
+  justify-content: center;
+  color: $white;
+  font-family: $logoFont;
+  margin-bottom: 0;
+  font-size: 7rem;
+  margin: 0;
+}
+
+@media screen and (min-width: $mobile-breakpoint) {
+  .logo {
+    font-size: 6.5rem;
+  }
+  .logoOff {
+    font-size: 6.5rem;
+  }
+}
+
+@media screen and (min-width: $tablet-breakpoint) {
+  .logo {
+    margin-top: 5%;
+    font-size: 5rem;
+  }
+  .logoOff {
+    margin-top: 5%;
+    font-size: 5rem;
+  }
 }
